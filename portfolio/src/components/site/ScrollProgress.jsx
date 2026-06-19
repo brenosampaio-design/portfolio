@@ -35,9 +35,10 @@ export function ScrollProgress() {
       fill.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
 
       const secs = sectionsRef.current;
+      const threshold = window.innerHeight * 0.6;
       let idx = 0;
       for (let i = 0; i < secs.length; i++) {
-        if (secs[i].getBoundingClientRect().top <= HEADER_OFFSET + 4) idx = i;
+        if (secs[i].getBoundingClientRect().top <= threshold) idx = i;
       }
 
       const shouldShow = y > window.innerHeight * 0.35;
