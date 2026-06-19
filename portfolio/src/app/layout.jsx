@@ -1,0 +1,72 @@
+// Link the design system FOR REAL — this single file imports the brand
+// tokens (color, type, spacing, motion), the font @imports, and the base
+// reset. Nothing below should reintroduce raw values.
+import "../../design-system/styles.css";
+import "./globals.css";
+
+import Script from "next/script";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
+import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { ToTop } from "@/components/site/ToTop";
+
+export const metadata = {
+  metadataBase: new URL("https://brenosampaio.com"),
+  title: {
+    default: "Breno Sampaio — Product Designer with a technical edge",
+    template: "%s — Breno Sampaio",
+  },
+  description:
+    "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
+  openGraph: {
+    title: "Breno Sampaio — Product Designer with a technical edge",
+    description:
+      "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
+    type: "website",
+  },
+};
+
+export const viewport = {
+  themeColor: "#F9F7F3",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/*
+          Brand webfonts. The design system declares these via an @import in
+          design-system/tokens/fonts.css (the canonical source). The bundler
+          strips nested remote @imports from the compiled CSS, so we mirror the
+          EXACT same Google Fonts request here as a <link> — same families and
+          weights — so DM Sans + Cormorant Garamond actually load. display=swap
+          keeps it non-blocking.
+        */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+        />
+
+      </head>
+      <body>
+        {/* Enable JS-gated reveals before first paint — no flash for JS users,
+            and no-JS visitors still get fully visible content. */}
+        <Script id="js-flag" strategy="beforeInteractive">
+          {`document.documentElement.classList.add('js')`}
+        </Script>
+        <SmoothScroll />
+        <ScrollProgress />
+        <a href="#main" className="skip-link">Skip to content</a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <ToTop />
+      </body>
+    </html>
+  );
+}

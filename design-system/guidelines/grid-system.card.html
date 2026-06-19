@@ -1,0 +1,74 @@
+<!-- @dsCard group="Spacing" viewport="700x264" name="Grid system" subtitle="12-col desktop · 8-col tablet · 4-col mobile · 8px base" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--paper); color: var(--ink); }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--pebble);
+    margin-bottom: 20px;
+  }
+  .breakpoints { display: grid; grid-template-columns: 3fr 2fr 1.5fr; gap: 24px; align-items: start; }
+  .bp { display: flex; flex-direction: column; gap: 10px; }
+  .bp-name { font-family: var(--font-sans); font-size: 13px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
+  .bp-meta { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.03em; color: var(--stone); line-height: 1.7; }
+  .cols-vis { display: flex; gap: 2px; }
+  .col-unit { flex: 1; height: 40px; background: var(--clay); opacity: 0.12; border-radius: 1px; }
+  .col-unit.active { opacity: 0.25; }
+  .divider { height: 1px; background: var(--mist); margin: 20px 0; }
+  .tokens { display: flex; gap: 32px; flex-wrap: wrap; }
+  .token-item { display: flex; flex-direction: column; gap: 3px; }
+  .token-name { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.04em; color: var(--pebble); }
+  .token-val { font-family: var(--font-sans); font-size: 13px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="section-label">Grid & layout system</div>
+  <div class="breakpoints">
+    <div class="bp">
+      <div class="bp-name">Desktop — 12 columns</div>
+      <div class="cols-vis">
+        <div class="col-unit active"></div><div class="col-unit active"></div><div class="col-unit active"></div>
+        <div class="col-unit active"></div><div class="col-unit active"></div><div class="col-unit active"></div>
+        <div class="col-unit active"></div><div class="col-unit active"></div><div class="col-unit active"></div>
+        <div class="col-unit active"></div><div class="col-unit active"></div><div class="col-unit active"></div>
+      </div>
+      <div class="bp-meta">≥ 1280px · 24px gutter · 80px margin<br>Max content: 1100px · Max prose: 680px</div>
+    </div>
+    <div class="bp">
+      <div class="bp-name">Tablet — 8 columns</div>
+      <div class="cols-vis">
+        <div class="col-unit active"></div><div class="col-unit active"></div><div class="col-unit active"></div>
+        <div class="col-unit active"></div><div class="col-unit active"></div><div class="col-unit active"></div>
+        <div class="col-unit active"></div><div class="col-unit active"></div>
+      </div>
+      <div class="bp-meta">768–1279px · 20px gutter<br>48px margin</div>
+    </div>
+    <div class="bp">
+      <div class="bp-name">Mobile — 4 cols</div>
+      <div class="cols-vis">
+        <div class="col-unit active"></div><div class="col-unit active"></div>
+        <div class="col-unit active"></div><div class="col-unit active"></div>
+      </div>
+      <div class="bp-meta">&lt; 768px · 16px gutter<br>24px margin</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="tokens">
+    <div class="token-item"><div class="token-name">--max-content</div><div class="token-val">1100px</div></div>
+    <div class="token-item"><div class="token-name">--max-prose</div><div class="token-val">680px</div></div>
+    <div class="token-item"><div class="token-name">--gap-section</div><div class="token-val">120px</div></div>
+    <div class="token-item"><div class="token-name">--gap-content</div><div class="token-val">64px</div></div>
+    <div class="token-item"><div class="token-name">--gap-card</div><div class="token-val">32px</div></div>
+    <div class="token-item"><div class="token-name">--gap-body</div><div class="token-val">24px</div></div>
+  </div>
+</body>
+</html>

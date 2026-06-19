@@ -1,0 +1,59 @@
+/*
+ * Typography — DM Sans (sans) + Cormorant Garamond (serif accent).
+ *
+ * Hierarchy from scale, weight, and space — almost never colour.
+ * Tracking tightens as type grows (editorial discipline).
+ * Light weight (300) at display sizes — restraint at scale.
+ * Serif reserved for pull quotes, openers, editorial moments only.
+ *
+ * Max line length: 75ch body / 60ch captions / never constrain headings.
+ * Minimum size: 13px for any visible text. Never smaller.
+ */
+:root {
+  /* ── Families ─────────────────────────────────────────────── */
+  --font-sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-mono:  ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ── Scale ────────────────────────────────────────────────── */
+  --text-display:      72px;   /* Display title — DM Sans 300 */
+  --text-h1:           52px;   /* Hero / case study title */
+  --text-h2:           36px;   /* Section heading */
+  --text-h3:           24px;   /* Subsection */
+  --text-body-lg:      19px;   /* Lead paragraph */
+  --text-body:         16px;   /* Body */
+  --text-small:        14px;   /* Captions, metadata */
+  --text-micro:        12px;   /* Labels, chips */
+  --text-mono:         11px;   /* Technical labels, eyebrows */
+  --text-serif-disp:   60px;   /* Cormorant display accent */
+  --text-serif-quote:  26px;   /* Cormorant pull quote */
+
+  /* ── Weight ──────────────────────────────────────────────── */
+  --weight-light:    300;   /* Display, editorial, restrained headers */
+  --weight-regular:  400;   /* Body text */
+  --weight-medium:   500;   /* UI, subheadings, emphasis */
+  --weight-semibold: 600;   /* Strong headings, CTA labels */
+  /* Note: bold (700) is intentionally absent — semibold is the ceiling */
+
+  /* ── Leading ─────────────────────────────────────────────── */
+  --leading-display:  0.95;   /* Tight at display, editorial discipline */
+  --leading-heading:  1.08;
+  --leading-tight:    1.2;
+  --leading-body:     1.68;
+  --leading-relaxed:  1.8;    /* Long-form prose */
+
+  /* ── Tracking — tightens as type grows ──────────────────── */
+  --tracking-display: -0.04em;
+  --tracking-h1:      -0.03em;
+  --tracking-h2:      -0.025em;
+  --tracking-h3:      -0.018em;
+  --tracking-body-lg: -0.005em;
+  --tracking-body:     0em;
+  --tracking-mono:     0.07em;
+  --tracking-eyebrow:  0.12em;
+  --tracking-serif:   -0.01em;
+
+  /* ── Max widths ──────────────────────────────────────────── */
+  --prose-width:    68ch;   /* Optimal reading: 60–75ch */
+  --caption-width:  52ch;
+}

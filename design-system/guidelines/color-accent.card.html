@@ -1,0 +1,61 @@
+<!-- @dsCard group="Colors" viewport="700x184" name="Accent & alert" subtitle="Clay — one warm earth tone. Alert held in strict reserve." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--paper); }
+  .row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; }
+  .sw { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--mist); }
+  .chip { height: 80px; }
+  .meta { padding: 10px 12px; background: var(--silk); }
+  .name { font-family: var(--font-sans); font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+  .token { font-family: var(--font-mono); font-size: 9.5px; color: var(--stone); margin-top: 2px; letter-spacing: 0.03em; }
+  .hex  { font-family: var(--font-mono); font-size: 9.5px; color: var(--pebble); margin-top: 1px; letter-spacing: 0.02em; }
+  .role { font-family: var(--font-sans); font-size: 11px; color: var(--stone); margin-top: 5px; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="sw">
+    <div class="chip" style="background:#8A6A4E; display:flex; align-items:center; padding:0 16px;">
+      <span style="font-family:var(--font-sans);font-size:13px;font-weight:500;color:#F9F7F3;letter-spacing:-0.01em;">Primary action</span>
+    </div>
+    <div class="meta">
+      <div class="name">Clay</div>
+      <div class="token">--clay</div>
+      <div class="hex">#8A6A4E</div>
+      <div class="role">Actions · focus ring · the only tint</div>
+    </div>
+  </div>
+  <div class="sw">
+    <div class="chip" style="background:#6A5038"></div>
+    <div class="meta">
+      <div class="name">Clay Dark</div>
+      <div class="token">--clay-dark</div>
+      <div class="hex">#6A5038</div>
+      <div class="role">Hover / pressed</div>
+    </div>
+  </div>
+  <div class="sw">
+    <div class="chip" style="background:#B89A7E"></div>
+    <div class="meta">
+      <div class="name">Clay Light</div>
+      <div class="token">--clay-light</div>
+      <div class="hex">#B89A7E</div>
+      <div class="role">On dark surfaces</div>
+    </div>
+  </div>
+  <div class="sw">
+    <div class="chip" style="background:#C44A31"></div>
+    <div class="meta">
+      <div class="name">Alert</div>
+      <div class="token">--alert</div>
+      <div class="hex">#C44A31</div>
+      <div class="role">Errors only — never decoration</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

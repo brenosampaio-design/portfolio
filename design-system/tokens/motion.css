@@ -1,0 +1,33 @@
+/*
+ * Motion — restrained, purposeful, premium-paced.
+ *
+ * seijaku (静寂) — calm visual stillness. Motion reveals structure,
+ * never decorates it. Slow enough to feel considered; never distracting.
+ *
+ * Hover: 160ms. Transitions: 300ms. Reveals: 480ms.
+ * No parallax. No bounce. No infinite loops on content.
+ * Always respects prefers-reduced-motion.
+ */
+:root {
+  /* ── Easing ──────────────────────────────────────────────── */
+  --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94); /* @kind other */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);         /* @kind other */
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);        /* @kind other */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);        /* @kind other */
+
+  /* ── Duration ────────────────────────────────────────────── */
+  --duration-xs:  80ms; /* @kind other */
+  --duration-sm: 160ms; /* @kind other */
+  --duration-md: 300ms; /* @kind other */
+  --duration-lg: 480ms; /* @kind other */
+  --duration-xl: 640ms; /* @kind other */
+}
+
+/* Reduced-motion override — always applied */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration:        0.01ms !important;
+    animation-duration:         0.01ms !important;
+    animation-iteration-count:  1      !important;
+  }
+}

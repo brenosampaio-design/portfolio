@@ -1,0 +1,58 @@
+/*
+ * Color — Japanese paper warmth, charcoal ink, one clay accent.
+ *
+ * Palette inspired by: washi paper, unglazed ceramic, graphite,
+ * soft stone, warm grey, muted earth tones. No tech blues, no neon.
+ *
+ * Naming follows the brand vocabulary: Paper, Silk, Mist, Stone,
+ * Graphite, Ink, Clay. One warm accent (Clay). Alert held in reserve.
+ *
+ * ma (間) — intentional restraint. Every color earns its presence.
+ */
+:root {
+  /* ── Warm neutrals ──────────────────────────────────────────── */
+  --paper:    #F9F7F3;  /* Page background — warm off-white, washi paper */
+  --silk:     #F0EDE7;  /* Card / input surfaces — slightly warmer */
+  --mist:     #DDD9D4;  /* Borders, hairlines — soft stone */
+  --pebble:   #BCB8B3;  /* Disabled, placeholders — river pebble */
+  --stone:    #857F79;  /* Secondary text — aged stone */
+  --graphite: #3D3B38;  /* Strong surface text — graphite stick */
+  --ink:      #1C1A18;  /* Primary text — charcoal ink */
+
+  /* ── Accent — one warm earth tone ──────────────────────────── */
+  --clay:       #8A6A4E;  /* Warm accent — unglazed clay */
+  --clay-dark:  #6A5038;  /* Hover / pressed — darker clay */
+  --clay-light: #B89A7E;  /* Accent on dark surfaces */
+  --clay-ring:  rgba(138, 106, 78, 0.16);  /* Focus ring */
+  --clay-wash:  rgba(138, 106, 78, 0.06);  /* Subtle tinted surface */
+
+  /* ── Alert — genuine exception only ────────────────────────── */
+  --alert:        #C44A31;
+  --alert-wash:   rgba(196,  74, 49, 0.06);
+  --alert-border: rgba(196,  74, 49, 0.20);
+
+  /* ── Backwards-compatible aliases (old names still resolve) ─── */
+  --charcoal:         var(--graphite);
+  --ivory:            var(--silk);
+  --warm-grey:        var(--stone);
+  --muted-grey:       var(--pebble);
+  --moss:             var(--clay);
+  --moss-dark:        var(--clay-dark);
+  --moss-mid:         var(--clay-light);
+  --vermilion:        var(--alert);
+  --ring-moss:        var(--clay-ring);
+  --moss-wash:        var(--clay-wash);
+  --vermilion-wash:   var(--alert-wash);
+  --vermilion-border: var(--alert-border);
+
+  /* ── Semantic aliases ──────────────────────────────────────── */
+  --bg-page:        var(--paper);
+  --surface-card:   var(--silk);
+  --text-primary:   var(--ink);
+  --text-secondary: var(--stone);
+  --text-disabled:  var(--pebble);
+  --border:         var(--mist);
+  --accent:         var(--clay);
+  --accent-hover:   var(--clay-dark);
+  --on-accent:      var(--paper);
+}

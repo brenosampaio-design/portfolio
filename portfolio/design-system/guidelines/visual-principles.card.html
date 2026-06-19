@@ -1,0 +1,111 @@
+<!-- @dsCard group="Brand" viewport="700x400" name="Visual principles" subtitle="6 structural principles · Japanese discipline · product clarity" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 36px 40px; background: var(--paper); color: var(--ink); }
+  .header {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--pebble);
+    margin-bottom: 28px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .cell {
+    padding: 24px 24px 28px;
+    border-top: 1px solid var(--mist);
+    border-right: 1px solid var(--mist);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cell:nth-child(3n) { border-right: none; }
+  .cell:nth-child(4),
+  .cell:nth-child(5),
+  .cell:nth-child(6) { /* second row, no extra border needed */ }
+  .annotation {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--clay);
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .annotation::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--mist);
+    max-width: 24px;
+  }
+  .principle {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .desc {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--stone);
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="header">Visual principles — the system's rules of behavior</div>
+  <div class="grid">
+
+    <div class="cell">
+      <div class="annotation">間 ma</div>
+      <div class="principle">Space as structure</div>
+      <div class="desc">Negative space is not absence — it is the design. Margins are intentional, never filled.</div>
+    </div>
+
+    <div class="cell">
+      <div class="annotation">簡 kanso</div>
+      <div class="principle">Clarity before decoration</div>
+      <div class="desc">Remove until only what matters remains. Every element earns its place or is removed.</div>
+    </div>
+
+    <div class="cell">
+      <div class="annotation">——</div>
+      <div class="principle">Quiet hierarchy</div>
+      <div class="desc">Scale, weight, and space communicate everything. Colour and decoration communicate nothing.</div>
+    </div>
+
+    <div class="cell">
+      <div class="annotation">渋 shibui</div>
+      <div class="principle">Restraint with intention</div>
+      <div class="desc">Quiet refinement over loud presence. Premium is earned through discipline, not embellishment.</div>
+    </div>
+
+    <div class="cell">
+      <div class="annotation">——</div>
+      <div class="principle">Product thinking visible</div>
+      <div class="desc">Design should reveal structured thought. Clarity of process shows through clarity of form.</div>
+    </div>
+
+    <div class="cell">
+      <div class="annotation">——</div>
+      <div class="principle">Continuity of touch­points</div>
+      <div class="desc">One system, one feeling — portfolio, slides, PDF, LinkedIn. The brand is consistent, not repeated.</div>
+    </div>
+
+  </div>
+</body>
+</html>

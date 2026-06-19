@@ -1,0 +1,29 @@
+<!-- @dsCard group="Colors" viewport="700x172" name="Neutral palette" subtitle="Warm off-white → charcoal ink · Japanese paper inspired" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--paper); }
+  .row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+  .sw { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--mist); }
+  .chip { height: 60px; }
+  .meta { padding: 9px 11px; background: var(--silk); }
+  .name { font-family: var(--font-sans); font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+  .token { font-family: var(--font-mono); font-size: 9.5px; color: var(--stone); margin-top: 2px; letter-spacing: 0.03em; }
+  .hex  { font-family: var(--font-mono); font-size: 9.5px; color: var(--pebble); margin-top: 1px; letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="sw"><div class="chip" style="background:#1C1A18"></div><div class="meta"><div class="name">Ink</div><div class="token">--ink</div><div class="hex">#1C1A18</div></div></div>
+  <div class="sw"><div class="chip" style="background:#3D3B38"></div><div class="meta"><div class="name">Graphite</div><div class="token">--graphite</div><div class="hex">#3D3B38</div></div></div>
+  <div class="sw"><div class="chip" style="background:#857F79"></div><div class="meta"><div class="name">Stone</div><div class="token">--stone</div><div class="hex">#857F79</div></div></div>
+  <div class="sw"><div class="chip" style="background:#BCB8B3"></div><div class="meta"><div class="name">Pebble</div><div class="token">--pebble</div><div class="hex">#BCB8B3</div></div></div>
+  <div class="sw"><div class="chip" style="background:#DDD9D4"></div><div class="meta"><div class="name">Mist</div><div class="token">--mist</div><div class="hex">#DDD9D4</div></div></div>
+  <div class="sw"><div class="chip" style="background:#F0EDE7"></div><div class="meta"><div class="name">Silk</div><div class="token">--silk</div><div class="hex">#F0EDE7</div></div></div>
+  <div class="sw"><div class="chip" style="background:#F9F7F3; border-bottom: 1px solid var(--mist)"></div><div class="meta"><div class="name">Paper</div><div class="token">--paper</div><div class="hex">#F9F7F3</div></div></div>
+</div>
+</body>
+</html>

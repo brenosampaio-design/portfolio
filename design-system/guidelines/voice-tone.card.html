@@ -1,0 +1,96 @@
+<!-- @dsCard group="Brand" viewport="700x320" name="Voice & tone" subtitle="Clear · direct · mature · strategic · useful · never hype" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 32px 36px; background: var(--paper); }
+  .header {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--pebble);
+    margin-bottom: 22px;
+  }
+  .pairs { display: flex; flex-direction: column; gap: 12px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .side { border-radius: var(--radius-sm); padding: 13px 16px; }
+  .do-side { background: var(--silk); border: 1px solid var(--mist); border-left: 2px solid var(--clay); }
+  .dont-side { background: var(--silk); border: 1px solid var(--mist); border-left: 2px solid var(--pebble); }
+  .side-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+  .do-label { color: var(--clay); }
+  .dont-label { color: var(--pebble); }
+  .side-text { font-family: var(--font-sans); font-size: 13px; font-weight: 400; line-height: 1.55; }
+  .do-text { color: var(--ink); }
+  .dont-text { color: var(--stone); }
+  .divider { height: 1px; background: var(--mist); margin: 20px 0; }
+  .traits { display: flex; gap: 8px; flex-wrap: wrap; }
+  .trait {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    color: var(--stone);
+    border: 1px solid var(--mist);
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
+    background: var(--silk);
+  }
+</style>
+</head>
+<body>
+  <div class="header">Voice & tone — writing principles for all brand copy</div>
+
+  <div class="pairs">
+    <div class="pair">
+      <div class="side do-side">
+        <div class="side-label do-label">✓ Do</div>
+        <div class="side-text do-text">"I redesigned the dispatch workflow. Error rate dropped 40% in the first month."</div>
+      </div>
+      <div class="side dont-side">
+        <div class="side-label dont-label">✕ Don't</div>
+        <div class="side-text dont-text">"I crafted delightful end-to-end user journeys that transformed the experience."</div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="side do-side">
+        <div class="side-label do-label">✓ Do</div>
+        <div class="side-text do-text">"The problem: service requests scattered across four disconnected tools."</div>
+      </div>
+      <div class="side dont-side">
+        <div class="side-label dont-label">✕ Don't</div>
+        <div class="side-text dont-text">"Leveraged design thinking methodologies to ideate human-centred solutions."</div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="side do-side">
+        <div class="side-label do-label">✓ Do</div>
+        <div class="side-text do-text">"Product designer with 4 years in service operations — I know where systems break."</div>
+      </div>
+      <div class="side dont-side">
+        <div class="side-label dont-label">✕ Don't</div>
+        <div class="side-text dont-text">"Passionate UX professional dedicated to innovative, impactful digital solutions."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="traits">
+    <span class="trait">Sentence case always</span>
+    <span class="trait">No exclamation marks</span>
+    <span class="trait">Numbers over words</span>
+    <span class="trait">Active voice</span>
+    <span class="trait">Problem → solution → result</span>
+    <span class="trait">No buzzwords</span>
+  </div>
+</body>
+</html>

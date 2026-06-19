@@ -1,0 +1,51 @@
+/*
+ * Spacing, radius, elevation.
+ *
+ * 8px base — every space is a multiple of 8 (or 4 for micro).
+ * Sections breathe at 80–120px. Large negative space is intentional.
+ * Radius: 6px buttons/inputs (restrained), 12px cards, none for editorial.
+ * Elevation: hairlines before shadows. Shadow only on genuine lift.
+ *
+ * kanso (簡素) — nothing unnecessary; nothing missing.
+ */
+:root {
+  /* ── Spacing scale ──────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* ── Semantic spacing ───────────────────────────────────── */
+  --gap-section:  var(--space-30);  /* 120px between sections */
+  --gap-content:  var(--space-16);  /* 64px between content blocks */
+  --gap-card:     var(--space-8);   /* 32px between cards */
+  --gap-body:     var(--space-6);   /* 24px between paragraphs */
+  --gap-element:  var(--space-4);   /* 16px within components */
+
+  /* ── Radius ─────────────────────────────────────────────── */
+  --radius-xs:   2px;    /* hairline rounding, editorial frames */
+  --radius-sm:   6px;    /* buttons, inputs, chips */
+  --radius-md:   10px;   /* cards */
+  --radius-lg:   14px;   /* large cards, modals */
+  --radius-xl:   20px;   /* panels, image frames */
+  --radius-full: 999px;  /* pills, tags */
+
+  /* ── Elevation — hairline first ─────────────────────────── */
+  --shadow-subtle: 0 1px 4px rgba(28, 26, 24, 0.05);
+  --shadow-card:   0 4px 24px rgba(28, 26, 24, 0.07), 0 1px 3px rgba(28, 26, 24, 0.04);
+  --shadow-lift:   0 12px 48px rgba(28, 26, 24, 0.10), 0 2px 8px rgba(28, 26, 24, 0.05);
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  --max-content: 1100px;
+  --max-prose:    680px;
+  --max-narrow:   480px;
+}

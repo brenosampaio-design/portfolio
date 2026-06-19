@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breno Sampaio — Portfolio Design System v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* base */
+    --ink: #111111;
+    --charcoal: #1C1C1A;
+    --paper: #F7F5F0;
+    --ivory: #FBFAF7;
+    --stone: #E6E2D8;
+    --warm-grey: #8A8781;
+    --muted-grey: #C9C5BC;
+    /* accent — one tint + one alert */
+    --moss: #465242;        /* the single accent: actions, focus */
+    --moss-dark: #3a463a;
+    --vermilion: #C84A31;   /* alert state only */
+    /* radius */
+    --radius-xs: 6px;
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-full: 999px;
+    /* elevation — hairline first, shadow only on lift */
+    --shadow-card: 0 8px 24px rgba(17,17,17,0.06);
+    --shadow-subtle: 0 1px 2px rgba(17,17,17,0.04);
+    /* type */
+    --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    /* motion */
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --dur: 180ms;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Masthead (quiet, functional — defers to the work) ---- */
+  .masthead { padding: 96px 0 56px; border-bottom: 1px solid var(--stone); }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--warm-grey);
+  }
+  .masthead h1 {
+    font-size: 52px; font-weight: 600; line-height: 1.04;
+    letter-spacing: -0.03em; margin-top: 20px; max-width: 16ch;
+  }
+  .masthead p { font-size: 19px; color: var(--warm-grey); margin-top: 20px; max-width: 54ch; }
+
+  /* ---- Section scaffold (no numbering — order carries no information) ---- */
+  section { padding: 64px 0; border-bottom: 1px solid var(--stone); }
+  .sec-label {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--warm-grey); margin-bottom: 10px;
+  }
+  .sec-title { font-size: 26px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 8px; }
+  .sec-note { color: var(--warm-grey); max-width: 60ch; margin-bottom: 40px; font-size: 16px; }
+
+  /* ---- Color ---- */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+  .swatch { border: 1px solid var(--stone); border-radius: var(--radius-md); overflow: hidden; background: var(--ivory); }
+  .swatch .chip { height: 84px; }
+  .swatch .meta { padding: 12px 14px; }
+  .swatch .name { font-size: 14px; font-weight: 500; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 12px; color: var(--warm-grey); margin-top: 2px; }
+  .swatch .role { font-size: 12px; color: var(--muted-grey); margin-top: 6px; line-height: 1.4; }
+
+  /* ---- Type scale ---- */
+  .type-row { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-top: 1px solid var(--stone); }
+  .type-row:first-child { border-top: none; }
+  .type-tag { font-family: var(--font-mono); font-size: 12px; color: var(--warm-grey); width: 130px; flex-shrink: 0; }
+  .t-display { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -0.03em; }
+  .t-h1 { font-size: 44px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; }
+  .t-h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.015em; }
+  .t-h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.01em; }
+  .t-bodylg { font-size: 20px; font-weight: 400; }
+  .t-body { font-size: 16px; font-weight: 400; }
+  .t-small { font-size: 14px; font-weight: 400; color: var(--warm-grey); }
+  .t-mono { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--warm-grey); }
+
+  /* ---- Spacing ---- */
+  .space-grid { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; }
+  .space-item { text-align: center; }
+  .space-bar { background: var(--moss); border-radius: var(--radius-xs); width: 28px; }
+  .space-num { font-family: var(--font-mono); font-size: 12px; color: var(--warm-grey); margin-top: 8px; }
+
+  /* ---- Radius (concentric: inner = outer − padding) ---- */
+  .radius-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+  .radius-item { text-align: center; }
+  .radius-box { height: 80px; background: var(--ivory); border: 1px solid var(--stone); }
+  .radius-label { font-family: var(--font-mono); font-size: 12px; color: var(--warm-grey); margin-top: 8px; }
+
+  /* ---- Buttons (one primary; moss is the only tint) ---- */
+  .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .btn {
+    font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+    border-radius: var(--radius-sm); border: 1px solid transparent;
+    padding: 0 20px; height: 44px; display: inline-flex; align-items: center;
+    cursor: pointer; transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--moss); color: var(--ivory); }
+  .btn-primary:hover { background: var(--moss-dark); box-shadow: var(--shadow-card); }
+  .btn-secondary { background: var(--ivory); color: var(--ink); border-color: var(--stone); }
+  .btn-secondary:hover { background: #fff; box-shadow: var(--shadow-subtle); }
+  .btn-ghost { background: transparent; color: var(--ink); }
+  .btn-ghost:hover { background: var(--ivory); }
+  .btn-link { background: none; border: none; padding: 0; height: auto; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--muted-grey); }
+  .btn-link:hover { text-decoration-color: var(--ink); }
+  .btn:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+  /* ---- Tags ---- */
+  .tag {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em;
+    background: var(--ivory); color: var(--warm-grey); border: 1px solid var(--stone);
+    border-radius: var(--radius-full); padding: 5px 12px; display: inline-flex;
+  }
+
+  /* ---- Status (neutral by default; colour only for the exception) ---- */
+  .status { font-family: var(--font-mono); font-size: 12px; border-radius: var(--radius-full); padding: 5px 12px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--stone); background: var(--ivory); color: var(--warm-grey); }
+  .status::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--muted-grey); }
+  .status-urgent { background: rgba(200,74,49,0.07); color: var(--vermilion); border-color: rgba(200,74,49,0.22); }
+  .status-urgent::before { background: var(--vermilion); }
+  .status-done::before { content: "✓"; width: auto; height: auto; background: none; color: var(--warm-grey); font-size: 11px; }
+
+  /* ---- Project card ---- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .card {
+    background: var(--ivory); border: 1px solid var(--stone); border-radius: var(--radius-md);
+    overflow: hidden; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+  /* honest empty frame — no faked screenshot */
+  .preview { height: 150px; background: var(--ivory); border-bottom: 1px solid var(--stone); display: flex; align-items: center; justify-content: center; }
+  .preview .frame { width: 72%; height: 64%; border: 1px solid var(--muted-grey); border-radius: var(--radius-xs); display: flex; align-items: center; justify-content: center; }
+  .preview .frame span { font-family: var(--font-mono); font-size: 11px; color: var(--muted-grey); letter-spacing: 0.04em; }
+  .card .body { padding: 24px; }
+  .card .ctitle { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+  .card .cproblem { font-size: 14px; color: var(--warm-grey); margin-top: 8px; line-height: 1.5; }
+  .card .cmeta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .card .crole { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-grey); margin-top: 14px; }
+
+  /* ---- Input ---- */
+  .field { max-width: 420px; }
+  .field label { font-size: 14px; font-weight: 500; display: block; margin-bottom: 8px; }
+  .field input {
+    width: 100%; font-family: var(--font-sans); font-size: 16px;
+    padding: 12px 14px; border: 1px solid var(--stone); border-radius: var(--radius-sm);
+    background: var(--ivory); color: var(--ink); transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .field input::placeholder { color: var(--muted-grey); }
+  .field input:focus { outline: none; border-color: var(--moss); box-shadow: 0 0 0 3px rgba(70,82,66,0.16); }
+  .field .help { font-size: 13px; color: var(--warm-grey); margin-top: 8px; }
+
+  /* ---- Token block ---- */
+  pre {
+    font-family: var(--font-mono); font-size: 13px; line-height: 1.7;
+    background: var(--charcoal); color: #E8E6E0; border-radius: var(--radius-md);
+    padding: 24px; overflow-x: auto;
+  }
+  pre .c { color: #8A8781; }
+
+  .motion-note { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pill { font-family: var(--font-mono); font-size: 12px; color: var(--warm-grey); border: 1px solid var(--stone); border-radius: var(--radius-full); padding: 6px 14px; background: var(--ivory); }
+
+  footer { padding: 48px 0 96px; }
+  footer p { font-family: var(--font-mono); font-size: 12px; color: var(--muted-grey); }
+
+  @media (max-width: 640px) {
+    .masthead { padding: 56px 0 40px; }
+    .masthead h1 { font-size: 34px; }
+    .t-display { font-size: 34px; }
+    .t-h1 { font-size: 28px; }
+    .type-row { flex-direction: column; gap: 6px; }
+    .type-tag { width: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="wrap">
+      <span class="eyebrow">Portfolio Design System · v2</span>
+      <h1>Decide once. Apply everywhere.</h1>
+      <p>The tokens and components for Breno Sampaio's portfolio. Built for consistency, so the case studies — not the interface — hold attention.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Foundations</div>
+      <h2 class="sec-title">Color</h2>
+      <p class="sec-note">Warm neutral base, not cold white. One accent (Deep Moss) does all the work. Vermilion is held back for a single alert state — when it appears, it means something.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta"><div class="name">Ink</div><div class="hex">#111111</div><div class="role">Primary text, titles</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1C1C1A"></div><div class="meta"><div class="name">Charcoal</div><div class="hex">#1C1C1A</div><div class="role">Dark surfaces, code</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F7F5F0"></div><div class="meta"><div class="name">Paper</div><div class="hex">#F7F5F0</div><div class="role">Main background</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FBFAF7"></div><div class="meta"><div class="name">Ivory</div><div class="hex">#FBFAF7</div><div class="role">Cards, raised surfaces</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E6E2D8"></div><div class="meta"><div class="name">Stone</div><div class="hex">#E6E2D8</div><div class="role">Borders, dividers</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#8A8781"></div><div class="meta"><div class="name">Warm Grey</div><div class="hex">#8A8781</div><div class="role">Secondary text</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#C9C5BC"></div><div class="meta"><div class="name">Muted Grey</div><div class="hex">#C9C5BC</div><div class="role">Lines, disabled</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#465242"></div><div class="meta"><div class="name">Deep Moss</div><div class="hex">#465242</div><div class="role">The accent: actions, focus</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#C84A31"></div><div class="meta"><div class="name">Vermilion</div><div class="hex">#C84A31</div><div class="role">Alert state only</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Foundations</div>
+      <h2 class="sec-title">Typography</h2>
+      <p class="sec-note">Geist Sans for everything human; Geist Mono for what is technical — metadata, tags, numbers, labels. Hierarchy comes from size, weight and space — almost never from colour. Tracking tightens as type grows.</p>
+      <div class="type-row"><div class="type-tag">Display · 56/600</div><div class="t-display">Service clarity</div></div>
+      <div class="type-row"><div class="type-tag">H1 · 44/600</div><div class="t-h1">Designing for operations</div></div>
+      <div class="type-row"><div class="type-tag">H2 · 32/600</div><div class="t-h2">The problem, stated plainly</div></div>
+      <div class="type-row"><div class="type-tag">H3 · 24/500</div><div class="t-h3">Role and scope</div></div>
+      <div class="type-row"><div class="type-tag">Body L · 20/400</div><div class="t-bodylg">A practical, implementation-aware approach to product.</div></div>
+      <div class="type-row"><div class="type-tag">Body · 16/400</div><div class="t-body">Front-desk teams lose time when requests, incidents and handovers live across disconnected tools and informal notes.</div></div>
+      <div class="type-row"><div class="type-tag">Small · 14/400</div><div class="t-small">Supporting caption and secondary detail.</div></div>
+      <div class="type-row"><div class="type-tag">Mono label · 12</div><div class="t-mono">B2B · Service Operations · 2026</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Foundations</div>
+      <h2 class="sec-title">Spacing & Radius</h2>
+      <p class="sec-note">A 4/8 scale gives rhythm; vertical spacing stays on 8px multiples. Radius lives in 16–20px for cards. Nested elements stay concentric: inner radius equals outer minus padding.</p>
+      <div class="space-grid" style="margin-bottom:48px;">
+        <div class="space-item"><div class="space-bar" style="height:4px"></div><div class="space-num">4</div></div>
+        <div class="space-item"><div class="space-bar" style="height:8px"></div><div class="space-num">8</div></div>
+        <div class="space-item"><div class="space-bar" style="height:12px"></div><div class="space-num">12</div></div>
+        <div class="space-item"><div class="space-bar" style="height:16px"></div><div class="space-num">16</div></div>
+        <div class="space-item"><div class="space-bar" style="height:24px"></div><div class="space-num">24</div></div>
+        <div class="space-item"><div class="space-bar" style="height:32px"></div><div class="space-num">32</div></div>
+        <div class="space-item"><div class="space-bar" style="height:48px"></div><div class="space-num">48</div></div>
+        <div class="space-item"><div class="space-bar" style="height:64px"></div><div class="space-num">64</div></div>
+        <div class="space-item"><div class="space-bar" style="height:96px"></div><div class="space-num">96</div></div>
+      </div>
+      <div class="radius-grid">
+        <div class="radius-item"><div class="radius-box" style="border-radius:6px"></div><div class="radius-label">xs · 6</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:10px"></div><div class="radius-label">sm · 10</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><div class="radius-label">md · 16</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:20px"></div><div class="radius-label">lg · 20</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Components</div>
+      <h2 class="sec-title">Buttons</h2>
+      <p class="sec-note">One primary action per view. Deep Moss carries it; everything else recedes to neutral.</p>
+      <div class="row">
+        <button class="btn btn-primary">View selected work</button>
+        <button class="btn btn-secondary">Download CV</button>
+        <button class="btn btn-ghost">Contact</button>
+        <button class="btn btn-link">Next case →</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Components</div>
+      <h2 class="sec-title">Tags & Status</h2>
+      <p class="sec-note">Mono tags label domain and discipline, all neutral. Status stays neutral too — only a genuine exception (an urgent incident) earns Vermilion.</p>
+      <div class="row" style="margin-bottom:24px;">
+        <span class="tag">UX Flow</span>
+        <span class="tag">Design System</span>
+        <span class="tag">Prototype</span>
+        <span class="tag">B2B</span>
+        <span class="tag">Service Operations</span>
+        <span class="tag">Handoff</span>
+      </div>
+      <div class="row">
+        <span class="status status-urgent">Urgent incident</span>
+        <span class="status">In progress</span>
+        <span class="status status-done">Resolved</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Components</div>
+      <h2 class="sec-title">Project card</h2>
+      <p class="sec-note">Reads like a product, not a Dribbble shot: problem first, role explicit, tags honest. The preview is an honest empty frame until a real screen exists — no faked image. Hover lifts gently, 180ms.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="preview"><div class="frame"><span>case preview</span></div></div>
+          <div class="body">
+            <div class="ctitle">Service Operations Dashboard</div>
+            <div class="cproblem">Front-desk teams lose visibility when incidents and handovers scatter across tools and informal notes.</div>
+            <div class="cmeta"><span class="tag">B2B</span><span class="tag">Service Ops</span><span class="tag">Design System</span></div>
+            <div class="crole">Concept · Product Design, flows, UI · 2026</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="preview"><div class="frame"><span>case preview</span></div></div>
+          <div class="body">
+            <div class="ctitle">Field Service Flow</div>
+            <div class="cproblem">Technicians need to log tasks, evidence and status from the field without extra admin friction.</div>
+            <div class="cmeta"><span class="tag">B2B</span><span class="tag">Mobile</span><span class="tag">Prototype</span></div>
+            <div class="crole">Concept · UX flows, prototype · 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Components</div>
+      <h2 class="sec-title">Input</h2>
+      <p class="sec-note">Visible focus is non-negotiable — accessibility is part of the craft you're selling. Focus uses the one accent.</p>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com">
+        <div class="help">I read every message. Expect a reply within two days.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Foundations</div>
+      <h2 class="sec-title">Motion</h2>
+      <p class="sec-note">Almost invisible. Functional. Respects reduced-motion. If a recruiter notices the animation, it's too much.</p>
+      <div class="motion-note">
+        <span class="pill">Micro-interaction · 120–220ms</span>
+        <span class="pill">Section reveal · 250–400ms</span>
+        <span class="pill">Easing · ease-out</span>
+        <span class="pill">No parallax · No scroll-jacking</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-label">Build</div>
+      <h2 class="sec-title">Tokens — copy into your build</h2>
+      <p class="sec-note">Drop these straight into the portfolio (Claude Design, Figma variables, or code). One source of truth for every surface.</p>
+      <pre>:root {
+  <span class="c">/* base */</span>
+  --ink: #111111;
+  --charcoal: #1C1C1A;
+  --paper: #F7F5F0;
+  --ivory: #FBFAF7;
+  --stone: #E6E2D8;
+  --warm-grey: #8A8781;
+  --muted-grey: #C9C5BC;
+  <span class="c">/* accent — one tint + one alert */</span>
+  --moss: #465242;       <span class="c">/* actions, focus */</span>
+  --moss-dark: #3A463A;  <span class="c">/* hover */</span>
+  --vermilion: #C84A31;  <span class="c">/* alert only */</span>
+  <span class="c">/* radius */</span>
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+  <span class="c">/* type */</span>
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  <span class="c">/* motion */</span>
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 180ms;
+}</pre>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>Breno Sampaio · Portfolio Design System v2 · Geist + warm neutral · One accent (Moss), one alert (Vermilion), everything else quiet.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

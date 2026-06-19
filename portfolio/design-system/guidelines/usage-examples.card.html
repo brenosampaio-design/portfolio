@@ -1,0 +1,182 @@
+<!-- @dsCard group="Brand" viewport="700x480" name="Usage examples" subtitle="System applied — portfolio · case study · LinkedIn · social · PDF · card" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 32px 36px; background: var(--paper); }
+  .header {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--pebble);
+    margin-bottom: 22px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .artboard { border: 1px solid var(--mist); border-radius: var(--radius-md); overflow: hidden; background: var(--silk); }
+  .ab-label {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--stone);
+    padding: 7px 12px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--mist);
+  }
+  .ab-body { padding: 14px; }
+  .blk { border-radius: 2px; }
+
+  /* Portfolio cover */
+  .portfolio-ab { background: var(--graphite); }
+  .portfolio-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .p-eyebrow { height: 5px; width: 60px; background: var(--clay); opacity: 0.7; border-radius: 1px; }
+  .p-title { height: 18px; width: 90%; background: var(--paper); border-radius: 2px; opacity: 0.9; }
+  .p-title-2 { height: 18px; width: 70%; background: var(--paper); border-radius: 2px; opacity: 0.6; }
+  .p-sub { height: 6px; width: 60%; background: var(--stone); border-radius: 1px; margin-top: 4px; }
+  .p-btn { height: 18px; width: 70px; background: var(--clay); border-radius: 3px; margin-top: 6px; opacity: 0.8; }
+
+  /* Case study */
+  .cs-tag { height: 14px; width: 80px; border: 1px solid var(--mist); border-radius: 99px; }
+  .cs-serif { height: 16px; width: 95%; background: var(--ink); border-radius: 2px; margin-top: 6px; opacity: 0.8; }
+  .cs-serif-2 { height: 16px; width: 80%; background: var(--ink); border-radius: 2px; opacity: 0.5; margin-top: 3px; }
+  .cs-meta { display: flex; gap: 8px; margin-top: 10px; }
+  .cs-meta-item { height: 6px; width: 44px; background: var(--mist); border-radius: 1px; }
+
+  /* LinkedIn banner — wide format */
+  .li-ab { grid-column: span 2; }
+  .li-inner { height: 80px; background: var(--graphite); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+  .li-left { display: flex; flex-direction: column; gap: 6px; }
+  .li-name { height: 12px; width: 120px; background: var(--paper); border-radius: 2px; opacity: 0.9; }
+  .li-role { height: 7px; width: 88px; background: var(--clay); border-radius: 1px; opacity: 0.7; }
+  .li-right { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .li-tag { height: 6px; width: 60px; background: var(--stone); border-radius: 1px; opacity: 0.5; }
+
+  /* Social post */
+  .social-inner { display: flex; flex-direction: column; gap: 7px; }
+  .soc-eyebrow { height: 5px; width: 50px; background: var(--clay); border-radius: 1px; opacity: 0.6; }
+  .soc-title { height: 12px; width: 90%; background: var(--ink); border-radius: 2px; opacity: 0.85; }
+  .soc-title-2 { height: 12px; width: 70%; background: var(--ink); border-radius: 2px; opacity: 0.55; }
+  .soc-divider { height: 1px; background: var(--mist); margin: 4px 0; }
+  .soc-body { height: 6px; width: 80%; background: var(--mist); border-radius: 1px; }
+  .soc-body-2 { height: 6px; width: 65%; background: var(--mist); border-radius: 1px; }
+
+  /* PDF case study */
+  .pdf-inner { display: flex; flex-direction: column; gap: 8px; }
+  .pdf-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--mist); margin-bottom: 4px; }
+  .pdf-name { height: 6px; width: 80px; background: var(--stone); border-radius: 1px; }
+  .pdf-page { height: 6px; width: 20px; background: var(--pebble); border-radius: 1px; }
+  .pdf-title { height: 14px; width: 75%; background: var(--ink); border-radius: 2px; opacity: 0.85; }
+  .pdf-lines { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+  .pdf-line { height: 5px; background: var(--mist); border-radius: 1px; }
+
+  /* Business card */
+  .bc-inner { display: flex; flex-direction: column; justify-content: space-between; height: 90px; padding: 14px; }
+  .bc-name { height: 10px; width: 80%; background: var(--ink); border-radius: 2px; opacity: 0.9; }
+  .bc-role { height: 6px; width: 55%; background: var(--stone); border-radius: 1px; margin-top: 4px; }
+  .bc-dot { width: 5px; height: 5px; border-radius: 999px; background: var(--clay); opacity: 0.8; }
+  .bc-contact { display: flex; flex-direction: column; gap: 4px; }
+  .bc-line { height: 5px; width: 100px; background: var(--mist); border-radius: 1px; }
+</style>
+</head>
+<body>
+  <div class="header">System in use — touchpoint previews, not finished assets</div>
+  <div class="grid">
+
+    <!-- Portfolio cover -->
+    <div class="artboard">
+      <div class="ab-label">Portfolio cover</div>
+      <div class="portfolio-ab portfolio-body">
+        <div class="p-eyebrow"></div>
+        <div class="p-title"></div>
+        <div class="p-title-2"></div>
+        <div class="p-sub"></div>
+        <div class="p-btn"></div>
+      </div>
+    </div>
+
+    <!-- Case study opening -->
+    <div class="artboard">
+      <div class="ab-label">Case study opener</div>
+      <div class="ab-body">
+        <div class="cs-tag"></div>
+        <div class="cs-serif"></div>
+        <div class="cs-serif-2"></div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"></div>
+          <div class="cs-meta-item"></div>
+          <div class="cs-meta-item" style="width:36px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LinkedIn banner -->
+    <div class="artboard li-ab">
+      <div class="ab-label">LinkedIn banner</div>
+      <div class="li-inner">
+        <div class="li-left">
+          <div class="li-name"></div>
+          <div class="li-role"></div>
+        </div>
+        <div class="li-right">
+          <div class="li-tag"></div>
+          <div class="li-tag" style="width:48px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social post -->
+    <div class="artboard">
+      <div class="ab-label">Social carousel</div>
+      <div class="ab-body">
+        <div class="social-inner">
+          <div class="soc-eyebrow"></div>
+          <div class="soc-title"></div>
+          <div class="soc-title-2"></div>
+          <div class="soc-divider"></div>
+          <div class="soc-body"></div>
+          <div class="soc-body-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF case study -->
+    <div class="artboard">
+      <div class="ab-label">PDF case study</div>
+      <div class="ab-body">
+        <div class="pdf-inner">
+          <div class="pdf-header"><div class="pdf-name"></div><div class="pdf-page"></div></div>
+          <div class="pdf-title"></div>
+          <div class="pdf-lines">
+            <div class="pdf-line" style="width:95%"></div>
+            <div class="pdf-line" style="width:80%"></div>
+            <div class="pdf-line" style="width:88%"></div>
+            <div class="pdf-line" style="width:60%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business card -->
+    <div class="artboard">
+      <div class="ab-label">Contact card</div>
+      <div class="bc-inner">
+        <div>
+          <div class="bc-name"></div>
+          <div class="bc-role"></div>
+        </div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between;">
+          <div class="bc-contact">
+            <div class="bc-line"></div>
+            <div class="bc-line" style="width:80px"></div>
+          </div>
+          <div class="bc-dot"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

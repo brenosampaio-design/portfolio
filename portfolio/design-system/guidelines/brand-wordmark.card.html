@@ -1,0 +1,83 @@
+<!-- @dsCard group="Brand" viewport="700x240" name="Wordmark & brand essence" subtitle="DM Sans 300 · Cormorant accent · Clay dot · calm precision" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body {
+    margin: 0;
+    padding: 40px 44px 36px;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .identity { display: flex; flex-direction: column; gap: 6px; }
+  .wordmark {
+    font-family: var(--font-sans);
+    font-size: 34px;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .wordmark .dot { color: var(--clay); }
+  .role {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: var(--tracking-serif);
+    color: var(--stone);
+    line-height: 1;
+  }
+  .divider { height: 1px; background: var(--mist); }
+  .bottom { display: flex; align-items: center; justify-content: space-between; }
+  .traits { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--stone);
+    border: 1px solid var(--mist);
+    border-radius: var(--radius-full);
+    padding: 4px 13px;
+    background: var(--silk);
+  }
+  .annotation {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--pebble);
+    text-align: right;
+  }
+  .annotation strong { color: var(--stone); font-weight: 400; }
+</style>
+</head>
+<body>
+  <div class="identity">
+    <div class="wordmark">Breno Sampaio<span class="dot">.</span></div>
+    <div class="role">Product Designer</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="bottom">
+    <div class="traits">
+      <span class="chip">Calm</span>
+      <span class="chip">Precise</span>
+      <span class="chip">Structured</span>
+      <span class="chip">Mature</span>
+      <span class="chip">Useful</span>
+      <span class="chip">Refined</span>
+    </div>
+    <div class="annotation">
+      <strong>間</strong> ma<br>
+      intentional space
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Generated / heavy — regenerate at home with `npm install` / `npm run build`
+portfolio/node_modules/
+portfolio/.next/
+portfolio/out/
+portfolio/build/
+
+# Transferable snapshot (don't track the zip of ourselves)
+breno-portfolio-snapshot.zip
+
+# Logs / OS
+*.log
+.DS_Store
+Thumbs.db
+portfolio/dev.log

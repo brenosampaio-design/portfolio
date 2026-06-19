@@ -1,0 +1,346 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "components/work/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:DM Sans|Cormorant Garamond))/i]",
+        "message": "Font not provided by the design system. Available: DM Sans, Cormorant Garamond."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|disabled|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, disabled, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Divider'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|label|key|ref|className|style|children)$/]",
+        "message": "<Divider> doesn't accept that prop. Declared props: variant, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PrincipleCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:annotation|principle|description|index|key|ref|className|style|children)$/]",
+        "message": "<PrincipleCard> doesn't accept that prop. Declared props: annotation, principle, description, index."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProjectCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|problem|tags|role|previewSrc|previewLabel|key|ref|className|style|children)$/]",
+        "message": "<ProjectCard> doesn't accept that prop. Declared props: title, problem, tags, role, previewSrc, previewLabel."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='QuoteBlock'] > JSXAttribute > JSXIdentifier[name!=/^(?:quote|attribution|context|size|key|ref|className|style|children)$/]",
+        "message": "<QuoteBlock> doesn't accept that prop. Declared props: quote, attribution, context, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Status'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|children|key|ref|className|style|children)$/]",
+        "message": "<Status> doesn't accept that prop. Declared props: variant, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Text'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|as|children|key|ref|className|style|children)$/]",
+        "message": "<Text> doesn't accept that prop. Declared props: variant, as, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TextField'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|help|error|containerStyle|key|ref|className|style|children)$/]",
+        "message": "<TextField> doesn't accept that prop. Declared props: label, help, error, containerStyle."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "Divider": {
+        "replaces": []
+      },
+      "PrincipleCard": {
+        "replaces": []
+      },
+      "ProjectCard": {
+        "replaces": []
+      },
+      "QuoteBlock": {
+        "replaces": []
+      },
+      "Status": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      },
+      "Text": {
+        "replaces": []
+      },
+      "TextField": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-hover",
+      "--alert",
+      "--alert-border",
+      "--alert-wash",
+      "--bg-page",
+      "--border",
+      "--caption-width",
+      "--charcoal",
+      "--clay",
+      "--clay-dark",
+      "--clay-light",
+      "--clay-ring",
+      "--clay-wash",
+      "--duration-lg",
+      "--duration-md",
+      "--duration-sm",
+      "--duration-xl",
+      "--duration-xs",
+      "--ease",
+      "--ease-in-out",
+      "--ease-out",
+      "--ease-reveal",
+      "--font-mono",
+      "--font-sans",
+      "--font-serif",
+      "--gap-body",
+      "--gap-card",
+      "--gap-content",
+      "--gap-element",
+      "--gap-section",
+      "--graphite",
+      "--ink",
+      "--ivory",
+      "--leading-body",
+      "--leading-display",
+      "--leading-heading",
+      "--leading-relaxed",
+      "--leading-tight",
+      "--max-content",
+      "--max-narrow",
+      "--max-prose",
+      "--mist",
+      "--moss",
+      "--moss-dark",
+      "--moss-mid",
+      "--moss-wash",
+      "--muted-grey",
+      "--on-accent",
+      "--paper",
+      "--pebble",
+      "--prose-width",
+      "--radius-full",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-sm",
+      "--radius-xl",
+      "--radius-xs",
+      "--ring-moss",
+      "--shadow-card",
+      "--shadow-lift",
+      "--shadow-subtle",
+      "--silk",
+      "--space-1",
+      "--space-10",
+      "--space-12",
+      "--space-16",
+      "--space-2",
+      "--space-20",
+      "--space-24",
+      "--space-3",
+      "--space-30",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--stone",
+      "--surface-card",
+      "--text-body",
+      "--text-body-lg",
+      "--text-disabled",
+      "--text-display",
+      "--text-h1",
+      "--text-h2",
+      "--text-h3",
+      "--text-micro",
+      "--text-mono",
+      "--text-primary",
+      "--text-secondary",
+      "--text-serif-disp",
+      "--text-serif-quote",
+      "--text-small",
+      "--tracking-body",
+      "--tracking-body-lg",
+      "--tracking-display",
+      "--tracking-eyebrow",
+      "--tracking-h1",
+      "--tracking-h2",
+      "--tracking-h3",
+      "--tracking-mono",
+      "--tracking-serif",
+      "--vermilion",
+      "--vermilion-border",
+      "--vermilion-wash",
+      "--warm-grey",
+      "--weight-light",
+      "--weight-medium",
+      "--weight-regular",
+      "--weight-semibold"
+    ],
+    "tokenKinds": {
+      "--paper": "color",
+      "--silk": "color",
+      "--mist": "color",
+      "--pebble": "color",
+      "--stone": "color",
+      "--graphite": "color",
+      "--ink": "color",
+      "--clay": "color",
+      "--clay-dark": "color",
+      "--clay-light": "color",
+      "--clay-ring": "color",
+      "--clay-wash": "color",
+      "--alert": "color",
+      "--alert-wash": "color",
+      "--alert-border": "color",
+      "--charcoal": "color",
+      "--ivory": "color",
+      "--warm-grey": "color",
+      "--muted-grey": "color",
+      "--moss": "color",
+      "--moss-dark": "color",
+      "--moss-mid": "color",
+      "--vermilion": "color",
+      "--ring-moss": "color",
+      "--moss-wash": "color",
+      "--vermilion-wash": "color",
+      "--vermilion-border": "color",
+      "--bg-page": "color",
+      "--surface-card": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-disabled": "font",
+      "--border": "color",
+      "--accent": "color",
+      "--accent-hover": "color",
+      "--on-accent": "color",
+      "--font-sans": "font",
+      "--font-serif": "font",
+      "--font-mono": "font",
+      "--text-display": "font",
+      "--text-h1": "font",
+      "--text-h2": "font",
+      "--text-h3": "font",
+      "--text-body-lg": "font",
+      "--text-body": "font",
+      "--text-small": "font",
+      "--text-micro": "font",
+      "--text-mono": "font",
+      "--text-serif-disp": "font",
+      "--text-serif-quote": "font",
+      "--weight-light": "font",
+      "--weight-regular": "font",
+      "--weight-medium": "font",
+      "--weight-semibold": "font",
+      "--leading-display": "font",
+      "--leading-heading": "font",
+      "--leading-tight": "font",
+      "--leading-body": "font",
+      "--leading-relaxed": "font",
+      "--tracking-display": "font",
+      "--tracking-h1": "font",
+      "--tracking-h2": "font",
+      "--tracking-h3": "font",
+      "--tracking-body-lg": "font",
+      "--tracking-body": "font",
+      "--tracking-mono": "font",
+      "--tracking-eyebrow": "font",
+      "--tracking-serif": "font",
+      "--prose-width": "spacing",
+      "--caption-width": "spacing",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--space-10": "spacing",
+      "--space-12": "spacing",
+      "--space-16": "spacing",
+      "--space-20": "spacing",
+      "--space-24": "spacing",
+      "--space-30": "spacing",
+      "--gap-section": "spacing",
+      "--gap-content": "spacing",
+      "--gap-card": "spacing",
+      "--gap-body": "spacing",
+      "--gap-element": "spacing",
+      "--radius-xs": "radius",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-xl": "radius",
+      "--radius-full": "radius",
+      "--shadow-subtle": "shadow",
+      "--shadow-card": "shadow",
+      "--shadow-lift": "shadow",
+      "--max-content": "spacing",
+      "--max-prose": "spacing",
+      "--max-narrow": "spacing",
+      "--ease": "other",
+      "--ease-out": "other",
+      "--ease-in-out": "other",
+      "--ease-reveal": "other",
+      "--duration-xs": "other",
+      "--duration-sm": "other",
+      "--duration-md": "other",
+      "--duration-lg": "other",
+      "--duration-xl": "other"
+    },
+    "fontFamilies": [
+      "Cormorant Garamond",
+      "DM Sans"
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+<!-- @dsCard group="Brand" viewport="700x460" name="Layout language" subtitle="Abstract layout patterns — hero · case study · quote · metadata" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 32px 36px; background: var(--paper); color: var(--ink); }
+  .header {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--pebble);
+    margin-bottom: 24px;
+  }
+  .layouts { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+  .frame {
+    border: 1px solid var(--mist);
+    border-radius: var(--radius-md);
+    background: var(--silk);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .frame-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--stone);
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--mist);
+    background: var(--paper);
+  }
+  .frame-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+  /* Layout blocks */
+  .blk { border-radius: 2px; }
+  .blk-dark { background: var(--graphite); }
+  .blk-mid  { background: var(--mist); }
+  .blk-light { background: var(--silk); border: 1px solid var(--mist); }
+  .blk-accent { background: var(--clay); opacity: 0.7; }
+  .blk-text-lg { height: 14px; }
+  .blk-text-sm { height: 8px; }
+  .blk-text-xs { height: 6px; }
+
+  /* Hero layout */
+  .hero-layout { display: flex; flex-direction: column; gap: 10px; }
+  .hero-eyebrow { height: 6px; width: 100px; background: var(--clay); opacity: 0.5; border-radius: 2px; }
+  .hero-title { height: 22px; width: 85%; background: var(--graphite); border-radius: 2px; }
+  .hero-title-2 { height: 22px; width: 65%; background: var(--graphite); border-radius: 2px; opacity: 0.7; }
+  .hero-sub { height: 9px; width: 70%; background: var(--mist); border-radius: 2px; margin-top: 4px; }
+  .hero-cta { display: flex; gap: 8px; margin-top: 8px; }
+  .hero-btn { height: 22px; width: 88px; background: var(--clay); border-radius: 4px; opacity: 0.8; }
+  .hero-btn-ghost { height: 22px; width: 66px; border: 1px solid var(--mist); border-radius: 4px; }
+
+  /* Card grid */
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .card-item { background: var(--paper); border: 1px solid var(--mist); border-radius: 6px; overflow: hidden; }
+  .card-img { height: 44px; background: var(--mist); }
+  .card-body { padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .card-title { height: 8px; width: 80%; background: var(--graphite); border-radius: 2px; }
+  .card-sub   { height: 6px; width: 60%; background: var(--mist); border-radius: 2px; }
+  .card-tag   { height: 12px; width: 44px; background: var(--silk); border: 1px solid var(--mist); border-radius: 99px; }
+
+  /* Quote block */
+  .quote-frame { flex: 1; justify-content: center; }
+  .quote-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 20px; }
+  .quote-mark { width: 16px; height: 10px; background: var(--clay); opacity: 0.4; border-radius: 1px; }
+  .quote-line-lg { height: 10px; width: 90%; background: var(--graphite); border-radius: 2px; opacity: 0.7; }
+  .quote-line-md { height: 10px; width: 75%; background: var(--graphite); border-radius: 2px; opacity: 0.5; }
+  .quote-attr { height: 6px; width: 40%; background: var(--mist); border-radius: 2px; margin-top: 6px; }
+
+  /* Metadata block */
+  .meta-body { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .meta-item { display: flex; flex-direction: column; gap: 5px; }
+  .meta-key { height: 5px; width: 50%; background: var(--pebble); border-radius: 2px; }
+  .meta-val { height: 9px; width: 80%; background: var(--graphite); border-radius: 2px; opacity: 0.8; }
+</style>
+</head>
+<body>
+  <div class="header">Layout language — reusable compositional patterns</div>
+  <div class="layouts">
+
+    <!-- Hero -->
+    <div class="frame">
+      <div class="frame-label">Hero composition</div>
+      <div class="frame-body hero-layout">
+        <div class="hero-eyebrow"></div>
+        <div class="hero-title"></div>
+        <div class="hero-title-2"></div>
+        <div class="hero-sub"></div>
+        <div class="hero-cta">
+          <div class="hero-btn"></div>
+          <div class="hero-btn-ghost"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="frame quote-frame">
+      <div class="frame-label">Quote block</div>
+      <div class="quote-body">
+        <div class="quote-mark"></div>
+        <div class="quote-line-lg"></div>
+        <div class="quote-line-md"></div>
+        <div class="quote-attr"></div>
+      </div>
+    </div>
+
+    <!-- Card grid -->
+    <div class="frame">
+      <div class="frame-label">Case study card grid</div>
+      <div class="frame-body">
+        <div class="card-grid">
+          <div class="card-item"><div class="card-img"></div><div class="card-body"><div class="card-title"></div><div class="card-sub"></div><div class="card-tag"></div></div></div>
+          <div class="card-item"><div class="card-img"></div><div class="card-body"><div class="card-title"></div><div class="card-sub"></div><div class="card-tag"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metadata -->
+    <div class="frame">
+      <div class="frame-label">Project metadata block</div>
+      <div class="frame-body">
+        <div class="meta-body">
+          <div class="meta-item"><div class="meta-key"></div><div class="meta-val"></div></div>
+          <div class="meta-item"><div class="meta-key"></div><div class="meta-val" style="width:60%"></div></div>
+          <div class="meta-item"><div class="meta-key"></div><div class="meta-val" style="width:70%"></div></div>
+          <div class="meta-item"><div class="meta-key"></div><div class="meta-val" style="width:55%"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

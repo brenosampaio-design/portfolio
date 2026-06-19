@@ -1,0 +1,23 @@
+{
+  "name": "breno-sampaio-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio for Breno Sampaio, Product Designer — built on his own design system.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.9"
+  }
+}
