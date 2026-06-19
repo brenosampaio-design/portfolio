@@ -128,7 +128,12 @@ html {
   text-transform: uppercase;
   color: var(--clay);
   white-space: nowrap;
-  opacity: 0.8;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 0.5px solid color-mix(in srgb, var(--clay) 22%, transparent);
+  border-radius: var(--radius-full);
+  padding: 3px 10px 3px 8px;
 }
 
 /* ── Back to top ──────────────────────────────────────────── */
