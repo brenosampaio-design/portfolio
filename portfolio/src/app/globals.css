@@ -565,14 +565,29 @@ html {
   font-family: var(--font-sans);
   font-size: var(--text-small);
   line-height: 1.45;
-  color: var(--graphite);
+  color: var(--stone);
+  transition:
+    color var(--duration-md) var(--ease),
+    text-shadow var(--duration-md) var(--ease);
 }
 .process-col__items li::before {
   content: "↘";
-  color: var(--clay);
+  color: var(--pebble);
   font-size: 11px;
   line-height: 1.5;
   flex-shrink: 0;
+  transition:
+    color var(--duration-md) var(--ease),
+    transform var(--duration-md) var(--ease-out);
+}
+/* Looping point-by-point emphasis (driven by ProcessHighlight; no reflow) */
+.process-col__items li.is-active {
+  color: var(--ink);
+  text-shadow: 0 0 0.4px currentColor; /* faux-bold — emphasis without layout shift */
+}
+.process-col__items li.is-active::before {
+  color: var(--clay);
+  transform: translateX(2px);
 }
 
 /* ── About teaser + contact ────────────────────────────────── */

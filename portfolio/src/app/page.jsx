@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Text, Button, ProjectCard, Divider } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
 import { Cascade } from "@/components/site/Cascade";
+import { ProcessHighlight } from "@/components/site/ProcessHighlight";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -139,7 +140,7 @@ export default function Home() {
 
         <div className="process-grid">
           {process.map((step, i) => (
-            <Cascade key={step.title} className="process-col" base={i * 70} step={45}>
+            <Cascade key={step.title} className="process-col" base={i * 300} step={40}>
               <span className="process-col__index reveal" data-cascade>{String(i + 1).padStart(2, "0")}</span>
               <span className="process-col__title reveal" data-cascade>{step.title}</span>
               <span className="process-col__desc reveal" data-cascade>{step.description}</span>
@@ -151,6 +152,7 @@ export default function Home() {
             </Cascade>
           ))}
         </div>
+        <ProcessHighlight targetId="process" steps={4} interval={1150} startDelay={2300} />
       </section>
 
       {/* ── 5 · Principles — numbered rows + annotation (mockup 6) ─ */}
