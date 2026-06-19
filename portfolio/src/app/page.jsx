@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Text, Button, ProjectCard, Divider } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
 import { Cascade } from "@/components/site/Cascade";
-import { ProcessHighlight } from "@/components/site/ProcessHighlight";
+import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -140,19 +140,19 @@ export default function Home() {
 
         <div className="process-grid">
           {process.map((step, i) => (
-            <Cascade key={step.title} className="process-col" base={i * 300} step={40}>
-              <span className="process-col__index reveal" data-cascade>{String(i + 1).padStart(2, "0")}</span>
-              <span className="process-col__title reveal" data-cascade>{step.title}</span>
-              <span className="process-col__desc reveal" data-cascade>{step.description}</span>
+            <div className="process-col" key={step.title}>
+              <span className="process-col__index reveal">{String(i + 1).padStart(2, "0")}</span>
+              <span className="process-col__title reveal">{step.title}</span>
+              <span className="process-col__desc reveal">{step.description}</span>
               <ul className="process-col__items">
                 {step.items.map((it) => (
-                  <li className="reveal" data-cascade key={it}>{it}</li>
+                  <li className="reveal" key={it}>{it}</li>
                 ))}
               </ul>
-            </Cascade>
+            </div>
           ))}
         </div>
-        <ProcessHighlight targetId="process" steps={4} interval={1150} startDelay={2300} />
+        <ProcessReveal targetId="process" />
       </section>
 
       {/* ── 5 · Principles — numbered rows + annotation (mockup 6) ─ */}

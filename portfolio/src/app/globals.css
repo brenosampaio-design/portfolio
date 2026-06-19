@@ -565,7 +565,7 @@ html {
   font-family: var(--font-sans);
   font-size: var(--text-small);
   line-height: 1.45;
-  color: var(--stone);
+  color: var(--graphite);
   transition:
     color var(--duration-md) var(--ease),
     text-shadow var(--duration-md) var(--ease);
