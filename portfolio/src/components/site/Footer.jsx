@@ -11,7 +11,7 @@ export function Footer() {
       <div className="container site-footer__grid">
         <div className="stack" style={{ gap: "var(--space-2)" }}>
           <Text variant="small" style={{ color: "var(--ink)" }}>
-            © {year} Breno Sampaio
+            © {year} Breno Sampayo
           </Text>
           <Text variant="small">Valencia, Spain · working remotely</Text>
         </div>

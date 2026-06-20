@@ -301,6 +301,10 @@ html {
 .eyebrow--accent {
   color: var(--clay);
 }
+/* Hero kicker — the name, a touch larger than a standard eyebrow label. */
+.hero__eyebrow {
+  font-size: var(--text-small);
+}
 
 /* ── Links that read as text, underline on intent ──────────── */
 .link-quiet {
