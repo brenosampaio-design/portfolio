@@ -504,6 +504,13 @@ html {
 }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; }
 
+/* Portrait fills the hero media box (next/image fill needs a positioned box). */
+.hero__media--photo {
+  position: relative;
+  border: 0;
+  background: none;
+}
+
 /* Live WebGL media — the flowing shader replaces the dashed placeholder. */
 .hero__media--live {
   position: relative;

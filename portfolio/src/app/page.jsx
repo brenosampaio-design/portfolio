@@ -1,10 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Text, Button, ProjectCard, Divider } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
 import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { Scramble } from "@/components/site/Scramble";
 import { SequenceSteps } from "@/components/site/SequenceSteps";
-import { LiquidHero } from "@/components/site/LiquidHero";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -33,8 +33,15 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <Reveal delay={160} className="hero__media hero__media--live" aria-hidden="true">
-            <LiquidHero />
+          <Reveal delay={160} className="hero__media hero__media--photo">
+            <Image
+              src="/images/breno-portrait.png"
+              alt="Breno Sampayo"
+              fill
+              sizes="(max-width: 980px) 90vw, 460px"
+              style={{ objectFit: "cover" }}
+              priority
+            />
           </Reveal>
         </div>
 
