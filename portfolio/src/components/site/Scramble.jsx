@@ -16,7 +16,7 @@ export function Scramble({
   text,
   className = "",
   delay = 0,
-  duration = 0.9,
+  duration = 1.4,
   ...props
 }) {
   const ref = useRef(null);
@@ -54,8 +54,8 @@ export function Scramble({
               scrambleText: {
                 text,
                 chars: "upperCase",
-                revealDelay: 0.15,
-                speed: 0.7,
+                revealDelay: 0.4,
+                speed: 0.5,
               },
             });
           },

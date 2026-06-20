@@ -79,25 +79,26 @@ export function Reveal({ as: Tag = "div", mask = false, delay = 0, className = "
 
           split = new SplitText(inner, {
             type: "lines",
-            mask: "lines",
             linesClass: "reveal__line",
           });
 
-          // Hide each line inside its mask, then neutralise the block-level CSS
-          // mask so only the per-line motion shows.
-          gsap.set(split.lines, { yPercent: 110 });
+          // Each line starts low, transparent and out of focus; neutralise the
+          // block-level CSS mask so only the per-line motion shows.
+          gsap.set(split.lines, { yPercent: 55, autoAlpha: 0, filter: "blur(12px)" });
           el.classList.add("reveal--split");
 
           st = ScrollTrigger.create({
             trigger: el,
-            start: "top 88%",
+            start: "top 85%",
             once: true,
             onEnter: () => {
               gsap.to(split.lines, {
                 yPercent: 0,
-                duration: 0.9,
-                ease: "expo.out",
-                stagger: 0.11,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 1.05,
+                ease: "power3.out",
+                stagger: 0.16,
                 delay: delay / 1000,
                 onComplete: () => {
                   if (split) {

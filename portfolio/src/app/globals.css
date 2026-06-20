@@ -409,8 +409,9 @@ html {
   transform: translateY(0);
 }
 
-/* Line-by-line mask (SplitText path) — the block transform is handed off to
-   GSAP per line, so neutralise the single-block CSS mask while it plays. */
+/* Line-by-line reveal (SplitText path) — each line fades up out of a blur and
+   staggers in. Neutralise the single-block CSS mask and let lines overflow so
+   the blur isn't clipped while it resolves. */
 .js .reveal--mask.reveal--split {
   overflow: visible;
   padding-bottom: 0;
@@ -419,17 +420,8 @@ html {
   transform: none;
   transition: none;
 }
-/* SplitText's own mask wrappers clip the rise; a hair of room keeps italic
-   descenders from being shaved. */
 .reveal__line {
-  padding-bottom: 0.08em;
-}
-
-/* Magnetic wrapper — inline-flex so it hugs its target; transform is driven
-   imperatively per-frame while hovered. */
-.magnetic {
-  display: inline-flex;
-  will-change: transform;
+  will-change: transform, opacity, filter;
 }
 
 @media (prefers-reduced-motion: reduce) {

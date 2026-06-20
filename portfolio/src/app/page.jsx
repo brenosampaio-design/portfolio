@@ -4,7 +4,6 @@ import { Reveal } from "@/components/site/Reveal";
 import { Cascade } from "@/components/site/Cascade";
 import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { Scramble } from "@/components/site/Scramble";
-import { Magnetic } from "@/components/site/Magnetic";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -28,9 +27,7 @@ export default function Home() {
               </Text>
             </Reveal>
             <Reveal delay={320} className="hero__actions">
-              <Magnetic strength={0.4}>
-                <Button href="/work/service-operations" variant="primary">View selected work</Button>
-              </Magnetic>
+              <Button href="/work/service-operations" variant="primary">View selected work</Button>
               <Button href="#approach" variant="link">Learn about my approach</Button>
             </Reveal>
           </div>
