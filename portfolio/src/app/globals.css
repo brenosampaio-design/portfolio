@@ -658,6 +658,9 @@ html {
     grid-template-columns: 1fr;
     gap: var(--space-3);
   }
+  .toolkit__row {
+    gap: var(--space-3) var(--space-5);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .js .toolkit__item,
@@ -733,6 +736,19 @@ html {
    Process). Mirror of SEQ_BEAT's companion in lib/motion.js — keep in sync. */
 :root {
   --reveal-dur: 700ms;
+}
+
+/* Fluid type — scale the headline sizes down on small screens. Overrides the
+   design-system fixed tokens (the DS file stays canonical); each clamp reaches
+   its max well before desktop widths, so desktop sizes are unchanged. */
+:root {
+  --text-display:     clamp(40px, calc(20px + 5.2vw), 72px);
+  --text-h1:          clamp(33px, calc(18px + 4vw), 52px);
+  --text-h2:          clamp(27px, calc(16px + 2.8vw), 36px);
+  --text-h3:          clamp(20px, calc(14px + 1.6vw), 24px);
+  --text-body-lg:     clamp(17px, calc(14px + 0.9vw), 19px);
+  --text-serif-disp:  clamp(34px, calc(18px + 4.4vw), 60px);
+  --text-serif-quote: clamp(21px, calc(16px + 1.4vw), 26px);
 }
 
 /* ── Sequence steps — Approach & Principles, sequential disclosure ─ */
@@ -854,6 +870,20 @@ html {
     opacity: 1;
     filter: none;
     transition: none;
+  }
+}
+/* Tighten the timeline gutter on small screens (kept after the base rules so
+   it wins). */
+@media (max-width: 640px) {
+  .seq {
+    padding-left: 44px;
+  }
+  .seq__line,
+  .seq__fill {
+    left: 14px;
+  }
+  .seq-step__num {
+    left: -30px;
   }
 }
 
