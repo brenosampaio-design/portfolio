@@ -28,7 +28,10 @@ export function ProcessReveal({
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const allReveal = () => section.querySelectorAll(".reveal");
+    // Scope strictly to the grid columns. The section heading (.process-head)
+    // has its own <Reveal>, which fires once — this orchestrator must never
+    // reset its is-in, or the heading can't recover after scrolling away.
+    const allReveal = () => section.querySelectorAll(".process-col .reveal");
     const allTasks = () => section.querySelectorAll(".process-col__items li");
 
     const showAll = () => {

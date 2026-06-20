@@ -3,6 +3,8 @@ import { Text, Button, ProjectCard, Divider } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
 import { Cascade } from "@/components/site/Cascade";
 import { ProcessReveal } from "@/components/site/ProcessReveal";
+import { Scramble } from "@/components/site/Scramble";
+import { Magnetic } from "@/components/site/Magnetic";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -13,7 +15,7 @@ export default function Home() {
       <section className="container hero" id="top" data-label="Intro" aria-labelledby="hero-title">
         <div className="hero__grid">
           <div className="hero__copy">
-            <Reveal><span className="eyebrow eyebrow--accent">Product designer</span></Reveal>
+            <Scramble className="eyebrow eyebrow--accent" text="Product designer" delay={120} />
             <Reveal mask delay={60}>
               <Text variant="display" id="hero-title" className="hero__title">
                 Product designer with a <span className="accent">technical</span> edge.
@@ -26,7 +28,9 @@ export default function Home() {
               </Text>
             </Reveal>
             <Reveal delay={320} className="hero__actions">
-              <Button href="/work/service-operations" variant="primary">View selected work</Button>
+              <Magnetic strength={0.4}>
+                <Button href="/work/service-operations" variant="primary">View selected work</Button>
+              </Magnetic>
               <Button href="#approach" variant="link">Learn about my approach</Button>
             </Reveal>
           </div>
