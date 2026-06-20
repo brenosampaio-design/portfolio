@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Text, Button, Divider } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
 import { Scramble } from "@/components/site/Scramble";
@@ -38,8 +39,14 @@ export default function About() {
         </div>
 
         <Reveal delay={100}>
-          <div className="portrait" role="img" aria-label="Portrait of Breno Sampayo — photo to be added">
-            <span>Portrait — to add</span>
+          <div className="portrait portrait--photo">
+            <Image
+              src="/images/breno-portrait.png"
+              alt="Breno Sampayo"
+              fill
+              sizes="(max-width: 980px) 90vw, 360px"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </Reveal>
 

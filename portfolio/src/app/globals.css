@@ -941,6 +941,12 @@ html {
   text-transform: uppercase;
   color: var(--pebble);
 }
+/* Real portrait fills the slot (next/image fill needs a positioned box). */
+.portrait--photo {
+  position: relative;
+  border: 0;
+  background: none;
+}
 
 .about-facts { display: flex; flex-direction: column; }
 .about-fact {
