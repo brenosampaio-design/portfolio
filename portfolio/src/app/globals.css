@@ -562,6 +562,77 @@ html {
   font-size: var(--text-small);
   color: var(--stone);
 }
+
+/* ── Toolkit — calm static tool row (replaces the meta-strip) ── */
+.toolkit {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--space-8);
+  align-items: start;
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--mist);
+}
+.toolkit__label {
+  padding-top: 3px;
+}
+.toolkit__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+  align-items: center;
+}
+.toolkit__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--graphite);
+  transition: color var(--duration-md) var(--ease);
+}
+.toolkit__item:hover {
+  color: var(--ink);
+}
+.toolkit__logo {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  display: block;
+  flex-shrink: 0;
+}
+.toolkit__name {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+}
+/* Focus-in deal (JS-gated): each logo resolves from a blur in quick succession. */
+.js .toolkit__item {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(6px);
+  will-change: opacity, transform, filter;
+}
+.js .toolkit__item.is-in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition:
+    opacity var(--reveal-dur) var(--ease-reveal),
+    transform var(--reveal-dur) var(--ease-reveal),
+    filter var(--reveal-dur) var(--ease);
+}
+@media (max-width: 640px) {
+  .toolkit {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .toolkit__item,
+  .js .toolkit__item.is-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
 /* ── Selected work — editorial card row (4-up) ─────────────── */
 .work-grid {
   display: grid;

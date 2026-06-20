@@ -5,6 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { Scramble } from "@/components/site/Scramble";
 import { SequenceSteps } from "@/components/site/SequenceSteps";
+import { Toolkit } from "@/components/site/Toolkit";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -45,20 +46,7 @@ export default function Home() {
           </Reveal>
         </div>
 
-        <Reveal className="meta-strip" delay={120}>
-          <div className="meta-strip__item">
-            <span className="meta-strip__k">Operations → product</span>
-            <span className="meta-strip__v">Designing from inside the work</span>
-          </div>
-          <div className="meta-strip__item">
-            <span className="meta-strip__k">B2B · B2C</span>
-            <span className="meta-strip__v">Service operations &amp; tools</span>
-          </div>
-          <div className="meta-strip__item">
-            <span className="meta-strip__k">Discovery → handoff</span>
-            <span className="meta-strip__v">Systems thinking, build-aware</span>
-          </div>
-        </Reveal>
+        <Toolkit />
       </section>
 
       {/* ── 2 · Selected work — 4-up editorial row (mockup 3) ──── */}
