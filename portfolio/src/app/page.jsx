@@ -49,16 +49,11 @@ export default function Home() {
             <span className="meta-strip__k">Discovery → handoff</span>
             <span className="meta-strip__v">Systems thinking, build-aware</span>
           </div>
-          <div className="meta-strip__spacer" />
-          <span className="scroll-cue">
-            Scroll
-            <span className="arrow" aria-hidden="true">↓</span>
-          </span>
         </Reveal>
       </section>
 
       {/* ── 2 · Selected work — 4-up editorial row (mockup 3) ──── */}
-      <section className="container section" id="work" data-label="Selected work" aria-labelledby="work-title">
+      <section className="container section" id="work" data-label="Work" aria-labelledby="work-title">
         <div className="section-head">
           <Reveal><span className="eyebrow eyebrow--accent">Selected work</span></Reveal>
           <Reveal mask delay={60}><Text variant="h2" id="work-title">Selected work</Text></Reveal>

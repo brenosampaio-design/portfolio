@@ -60,80 +60,94 @@ html {
   scroll-margin-top: 88px;
 }
 
-/* ── Scroll progress bar (top hairline that fills as you descend) ── */
-.scroll-progress {
+/* ── Rail — vertical timeline that draws in on load ─────────── */
+.rail {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: 60;
-  background: transparent;
-  pointer-events: none;
-}
-.scroll-progress__fill {
-  height: 100%;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  background: var(--clay);
-  will-change: transform;
-}
-
-/* ── Section dot indicator (single pulsing dot + label) ─────── */
-.section-dot {
-  position: fixed;
-  left: var(--space-8);
-  bottom: var(--space-8);
+  left: 32px;
+  top: 14vh;
+  height: 72vh;
+  width: 140px;
   z-index: 40;
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
   pointer-events: none;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity var(--duration-md) var(--ease), transform var(--duration-md) var(--ease);
 }
-.section-dot.is-visible { opacity: 1; transform: none; }
 
-.section-dot__pulse {
-  width: 7px;
-  height: 7px;
+.rail__line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5px;
+  height: 100%;
+  background: color-mix(in srgb, var(--clay) 18%, transparent);
+  transform: scaleY(0);
+  transform-origin: top center;
+  animation: rail-draw 1.4s var(--ease-out) 0.2s forwards;
+}
+@keyframes rail-draw { to { transform: scaleY(1); } }
+@keyframes rail-fade { to { opacity: 1; } }
+
+.rail__dot {
+  position: absolute;
+  left: 0.75px;
+  margin-left: -3px;
+  margin-top: -3px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
+  background: color-mix(in srgb, var(--clay) 30%, transparent);
+  opacity: 0;
+  animation: rail-fade 0.5s var(--ease-out) forwards;
+  transition: transform var(--duration-md) var(--ease), background var(--duration-md) var(--ease);
+}
+.rail__dot.is-active {
   background: var(--clay);
-  flex-shrink: 0;
-  position: relative;
+  transform: scale(1.35);
 }
-@keyframes section-pulse {
-  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.45; }
-  65%  { transform: translate(-50%, -50%) scale(2.8); opacity: 0;    }
-  100% { transform: translate(-50%, -50%) scale(1);   opacity: 0;    }
+@keyframes rail-pulse {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+  70%  { transform: translate(-50%, -50%) scale(3); opacity: 0;   }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0;   }
 }
-.section-dot__pulse::after {
+.rail__dot.is-active::after {
   content: '';
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--clay);
-  animation: section-pulse 2.2s ease-out infinite;
+  animation: rail-pulse 2.2s var(--ease-out) infinite;
 }
 
-.section-dot__label {
+.rail__label {
+  position: absolute;
+  left: 16px;
+  transform: translateY(-50%);
   font-family: var(--font-mono);
   font-size: var(--text-mono);
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
   color: var(--clay);
   white-space: nowrap;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  border: 0.5px solid color-mix(in srgb, var(--clay) 22%, transparent);
+  border: 0.5px solid color-mix(in srgb, var(--clay) 20%, transparent);
   border-radius: var(--radius-full);
-  padding: 3px 10px 3px 8px;
+  padding: 3px 10px;
+  opacity: 0;
+  animation: rail-fade 0.6s var(--ease-out) 1.6s forwards;
+  transition: top var(--duration-lg) var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail__line { animation: none; transform: scaleY(1); }
+  .rail__dot,
+  .rail__label { animation: none; opacity: 1; }
+}
+
+@media (max-width: 1360px) {
+  .rail { display: none; }
 }
 
 /* ── Back to top ──────────────────────────────────────────── */
@@ -175,7 +189,6 @@ html {
 .to-top svg { width: 16px; height: 16px; display: block; }
 
 @media (max-width: 600px) {
-  .section-dot { left: var(--space-4); bottom: var(--space-4); }
   .to-top { right: var(--space-4); bottom: var(--space-4); width: 42px; height: 42px; }
 }
 
@@ -454,20 +467,6 @@ html {
   font-size: var(--text-small);
   color: var(--stone);
 }
-.meta-strip__spacer { flex: 1; }
-.scroll-cue {
-  display: inline-flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--text-mono);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--pebble);
-  align-self: flex-end;
-}
-.scroll-cue .arrow { font-size: 14px; }
-
 /* ── Selected work — editorial card row (4-up) ─────────────── */
 .work-grid {
   display: grid;
