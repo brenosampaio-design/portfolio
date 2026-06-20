@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { Text, Button, ProjectCard, Divider } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
-import { Cascade } from "@/components/site/Cascade";
 import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { Scramble } from "@/components/site/Scramble";
-import { ApproachStepper } from "@/components/site/ApproachStepper";
+import { SequenceSteps } from "@/components/site/SequenceSteps";
 import { LiquidHero } from "@/components/site/LiquidHero";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
@@ -103,7 +102,7 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <ApproachStepper items={approach} />
+          <SequenceSteps items={approach} />
         </div>
       </section>
 
@@ -161,18 +160,13 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="principle-list">
-            {principles.map((pr, i) => (
-              <Cascade key={pr.principle} className="principle-row" base={i * 80} step={50}>
-                <span className="principle-row__index reveal" data-cascade>{String(i + 1).padStart(2, "0")}</span>
-                <div className="principle-row__name">
-                  <span className="principle-row__title reveal" data-cascade>{pr.principle}</span>
-                  {pr.annotation && <span className="principle-row__annotation reveal" data-cascade>{pr.annotation}</span>}
-                </div>
-                <p className="principle-row__desc reveal" data-cascade>{pr.description}</p>
-              </Cascade>
-            ))}
-          </div>
+          <SequenceSteps
+            items={principles.map((pr) => ({
+              title: pr.principle,
+              description: pr.description,
+              annotation: pr.annotation,
+            }))}
+          />
         </div>
       </section>
 
