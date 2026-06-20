@@ -6,6 +6,7 @@ import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { Scramble } from "@/components/site/Scramble";
 import { SequenceSteps } from "@/components/site/SequenceSteps";
 import { Toolkit } from "@/components/site/Toolkit";
+import { LocationTime } from "@/components/site/LocationTime";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <section className="container hero" id="top" data-label="Intro" aria-labelledby="hero-title">
         <div className="hero__grid">
           <div className="hero__copy">
+            <Reveal><LocationTime /></Reveal>
             <Scramble className="eyebrow eyebrow--accent hero__eyebrow" text="Breno Sampayo" delay={120} />
             <Reveal mask delay={60}>
               <Text variant="display" id="hero-title" className="hero__title">
