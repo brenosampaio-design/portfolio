@@ -613,6 +613,106 @@ html {
   padding-top: 4px;
 }
 
+/* ── Approach — scroll-driven stepper (home only) ───────────── */
+.ap-stepper {
+  position: relative;
+  padding-left: 56px;
+  border-top: 1px solid var(--mist);
+}
+.ap-stepper__line,
+.ap-stepper__fill {
+  position: absolute;
+  left: 18px;
+  top: 30px;
+  width: 1.5px;
+  z-index: 0;
+}
+.ap-stepper__line {
+  bottom: 30px;
+  background: var(--mist);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.ap-stepper.is-in .ap-stepper__line {
+  animation: rail-draw 1.2s var(--ease-out) 0.1s forwards;
+}
+.ap-stepper.is-static .ap-stepper__line {
+  transform: scaleY(1);
+}
+.ap-stepper__fill {
+  height: 0;
+  background: var(--clay);
+  transition: height var(--duration-lg) var(--ease-reveal);
+}
+.ap-step {
+  position: relative;
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--mist);
+}
+.ap-step:last-child {
+  border-bottom: 0;
+}
+.ap-step__num {
+  position: absolute;
+  left: -38px;
+  top: var(--space-6);
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--pebble);
+  background: var(--paper);
+  padding: 4px 6px;
+  z-index: 1;
+  transition: font-size var(--duration-md) var(--ease-out), color var(--duration-md) var(--ease);
+}
+.ap-step__title {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-h3);
+  line-height: var(--leading-tight);
+  color: var(--stone);
+  transition: color var(--duration-md) var(--ease);
+}
+.ap-step__desc {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--stone);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  filter: blur(8px);
+  transition:
+    max-height var(--duration-lg) var(--ease-reveal),
+    opacity var(--duration-lg) var(--ease),
+    filter var(--duration-lg) var(--ease),
+    margin var(--duration-lg) var(--ease);
+}
+.ap-step.is-active .ap-step__num {
+  font-size: var(--text-h3);
+  color: var(--clay);
+}
+.ap-step.is-active .ap-step__title {
+  color: var(--ink);
+}
+.ap-step.is-active .ap-step__desc {
+  max-height: 9em;
+  opacity: 1;
+  filter: blur(0);
+  margin-top: var(--space-3);
+}
+.ap-stepper.is-static .ap-step__desc {
+  max-height: 12em;
+  opacity: 1;
+  filter: none;
+  margin-top: var(--space-3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ap-step__desc { transition: none; }
+}
+
 /* ── Process — 6-column grid (mockup 1) ────────────────────── */
 .process-head {
   display: grid;
