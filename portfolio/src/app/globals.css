@@ -613,6 +613,12 @@ html {
   padding-top: 4px;
 }
 
+/* Shared focus-in duration for the sequential reveals (Approach, Principles,
+   Process). Mirror of SEQ_BEAT's companion in lib/motion.js — keep in sync. */
+:root {
+  --reveal-dur: 700ms;
+}
+
 /* ── Sequence steps — Approach & Principles, sequential disclosure ─ */
 .seq {
   position: relative;
@@ -677,46 +683,60 @@ html {
   letter-spacing: var(--tracking-mono);
   color: var(--clay);
 }
+.seq-step__descwrap {
+  display: grid;
+}
 .seq-step__desc {
   font-family: var(--font-sans);
   font-size: var(--text-body);
   line-height: var(--leading-body);
   color: var(--stone);
-  padding-top: 4px;
+  overflow: hidden;
+  min-height: 0;
+  padding-top: var(--space-2);
 }
-/* JS-gated: rows sit dim with their description collapsed until they open. */
+/* JS-gated disclosure. Height eases via grid-template-rows 0fr→1fr (exact to
+   content — smooth, unlike a guessed max-height), in lockstep with the dim and
+   blur over the shared --reveal-dur. */
 .js .seq-step {
   opacity: 0.5;
-  transition: opacity var(--duration-lg) var(--ease);
+  transition: opacity var(--reveal-dur) var(--ease);
 }
 .js .seq-step.is-open {
   opacity: 1;
 }
+.js .seq-step__descwrap {
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--reveal-dur) var(--ease-reveal);
+}
+.js .seq-step.is-open .seq-step__descwrap {
+  grid-template-rows: 1fr;
+}
 .js .seq-step__desc {
-  max-height: 0;
   opacity: 0;
-  overflow: hidden;
   filter: blur(8px);
-  padding-top: 0;
   transition:
-    max-height var(--duration-lg) var(--ease-reveal),
-    opacity var(--duration-lg) var(--ease),
-    filter var(--duration-lg) var(--ease),
-    margin var(--duration-lg) var(--ease);
+    opacity var(--reveal-dur) var(--ease),
+    filter var(--reveal-dur) var(--ease);
 }
 .js .seq-step.is-open .seq-step__desc {
-  max-height: 10em;
   opacity: 1;
   filter: blur(0);
-  margin-top: var(--space-2);
 }
 @media (prefers-reduced-motion: reduce) {
   .js .seq-step,
   .js .seq-step.is-open {
     opacity: 1;
   }
+  .js .seq-step__descwrap,
+  .js .seq-step.is-open .seq-step__descwrap {
+    grid-template-rows: 1fr;
+    transition: none;
+  }
   .js .seq-step__desc,
   .js .seq-step.is-open .seq-step__desc {
+    opacity: 1;
+    filter: none;
     transition: none;
   }
 }
@@ -753,9 +773,9 @@ html {
   transform: none;
   filter: blur(0);
   transition:
-    opacity var(--duration-lg) var(--ease-reveal),
-    transform var(--duration-lg) var(--ease-reveal),
-    filter var(--duration-lg) var(--ease);
+    opacity var(--reveal-dur) var(--ease-reveal),
+    transform var(--reveal-dur) var(--ease-reveal),
+    filter var(--reveal-dur) var(--ease);
 }
 /* Inner pieces ride the column — no separate hidden state of their own. */
 .js .process-col .reveal {

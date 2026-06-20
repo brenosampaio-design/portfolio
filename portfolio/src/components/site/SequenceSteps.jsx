@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SEQ_BEAT, SEQ_START } from "@/lib/motion";
 
 /*
  * SequenceSteps — a numbered timeline that discloses itself once, in order.
@@ -12,7 +13,7 @@ import { useEffect, useRef, useState } from "react";
  * wheel nudge can't flick several open at once. Reduced motion / no-JS shows
  * everything open and still. Used by both Approach and Principles.
  */
-export function SequenceSteps({ items, interval = 500 }) {
+export function SequenceSteps({ items, interval = SEQ_BEAT }) {
   const ref = useRef(null);
   const fillRef = useRef(null);
   const [open, setOpen] = useState(0); // how many steps have opened so far
@@ -37,7 +38,7 @@ export function SequenceSteps({ items, interval = 500 }) {
       started = true;
       el.classList.add("is-in");
       for (let i = 0; i < n; i += 1) {
-        timers.push(setTimeout(() => setOpen(i + 1), 220 + i * interval));
+        timers.push(setTimeout(() => setOpen(i + 1), SEQ_START + i * interval));
       }
     };
 
@@ -94,7 +95,7 @@ export function SequenceSteps({ items, interval = 500 }) {
           <div className="seq-step__body">
             <span className="seq-step__title">{it.title}</span>
             {it.annotation ? <span className="seq-step__annotation">{it.annotation}</span> : null}
-            <p className="seq-step__desc">{it.description}</p>
+            <div className="seq-step__descwrap"><p className="seq-step__desc">{it.description}</p></div>
           </div>
         </div>
       ))}

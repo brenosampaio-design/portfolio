@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { SEQ_BEAT, SEQ_START } from "@/lib/motion";
 
 /*
  * ProcessReveal — deals the process columns in left-to-right. When the grid
@@ -8,7 +9,7 @@ import { useEffect } from "react";
  * steps land like a fast, satisfying cascade (same focus-in language as the
  * headings). Plays once; reduced motion / no-JS shows the grid in place.
  */
-export function ProcessReveal({ targetId = "process", stagger = 110, startDelay = 120 }) {
+export function ProcessReveal({ targetId = "process", stagger = SEQ_BEAT, startDelay = SEQ_START }) {
   useEffect(() => {
     const section = document.getElementById(targetId);
     if (!section) return;
