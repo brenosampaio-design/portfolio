@@ -8,7 +8,7 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container site-header__inner">
-        <Link href="/" className="wordmark" aria-label="Breno Sampaio — home">
+        <Link href="/" className="wordmark" aria-label="Breno Sampayo — home">
           BS<span className="dot">.</span>
         </Link>
 

@@ -1,7 +1,7 @@
 // Single source of real content. No invented clients, metrics, or logos.
 
 export const profile = {
-  name: "Breno Sampaio",
+  name: "Breno Sampayo",
   role: "Product Designer with a technical edge",
   location: "Valencia, Spain",
   timezone: "Europe/Madrid",

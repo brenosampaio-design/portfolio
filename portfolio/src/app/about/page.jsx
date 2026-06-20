@@ -38,7 +38,7 @@ export default function About() {
         </div>
 
         <Reveal delay={100}>
-          <div className="portrait" role="img" aria-label="Portrait of Breno Sampaio — photo to be added">
+          <div className="portrait" role="img" aria-label="Portrait of Breno Sampayo — photo to be added">
             <span>Portrait — to add</span>
           </div>
         </Reveal>

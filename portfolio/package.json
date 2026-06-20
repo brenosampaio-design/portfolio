@@ -2,7 +2,7 @@
   "name": "breno-sampaio-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal portfolio for Breno Sampaio, Product Designer — built on his own design system.",
+  "description": "Personal portfolio for Breno Sampayo, Product Designer — built on his own design system.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

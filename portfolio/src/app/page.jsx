@@ -15,7 +15,7 @@ export default function Home() {
       <section className="container hero" id="top" data-label="Intro" aria-labelledby="hero-title">
         <div className="hero__grid">
           <div className="hero__copy">
-            <Scramble className="eyebrow eyebrow--accent" text="Product designer" delay={120} />
+            <Scramble className="eyebrow eyebrow--accent hero__eyebrow" text="Breno Sampayo" delay={120} />
             <Reveal mask delay={60}>
               <Text variant="display" id="hero-title" className="hero__title">
                 Product designer with a <span className="accent">technical</span> edge.
@@ -195,7 +195,7 @@ export default function Home() {
         </div>
 
         <Reveal delay={120}>
-          <div className="portrait" role="img" aria-label="Portrait of Breno Sampaio — photo to be added">
+          <div className="portrait" role="img" aria-label="Portrait of Breno Sampayo — photo to be added">
             <span>Portrait — to add</span>
           </div>
         </Reveal>

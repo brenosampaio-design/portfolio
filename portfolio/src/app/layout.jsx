@@ -14,13 +14,13 @@ import { ToTop } from "@/components/site/ToTop";
 export const metadata = {
   metadataBase: new URL("https://brenosampaio.com"),
   title: {
-    default: "Breno Sampaio — Product Designer with a technical edge",
-    template: "%s — Breno Sampaio",
+    default: "Breno Sampayo — Product Designer with a technical edge",
+    template: "%s — Breno Sampayo",
   },
   description:
     "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
   openGraph: {
-    title: "Breno Sampaio — Product Designer with a technical edge",
+    title: "Breno Sampayo — Product Designer with a technical edge",
     description:
       "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
     type: "website",
