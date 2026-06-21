@@ -55,31 +55,37 @@ export const projects = [
 export const process = [
   {
     title: "Discover",
+    icon: "search",
     description: "Understand the operation, the people, and the constraints before proposing anything.",
     items: ["Talk to the people doing the work", "Map where information lives", "Find the failure points", "Separate evidence from assumption"],
   },
   {
     title: "Frame",
+    icon: "frame",
     description: "Turn the mess into a clear problem worth solving, with explicit scope.",
     items: ["Define the real problem", "Set what's in and out of scope", "Name the constraints", "Decide what success looks like"],
   },
   {
     title: "Systems",
+    icon: "sitemap",
     description: "Design the structure before the screens — the rules that keep things consistent.",
     items: ["Information architecture", "Core flows", "States and rules", "Tokens and components"],
   },
   {
     title: "Interface",
+    icon: "layout",
     description: "Make it clear, fast, and honest — designed for the worst moment, not the demo.",
     items: ["Hierarchy and contrast", "Guided over free-form", "Every state, not just the happy path", "Plain language"],
   },
   {
     title: "Validate",
+    icon: "check-circle",
     description: "Test the assumptions with real people and iterate on what breaks.",
     items: ["Put it in front of real users", "Watch behaviour, not opinions", "Iterate on what breaks", "Keep what holds"],
   },
   {
     title: "Deliver",
+    icon: "send",
     description: "Hand off so it ships as designed — build-aware, with the edge cases written down.",
     items: ["Build-aware specs", "Work with engineering", "Edge cases documented", "Support through implementation"],
   },
