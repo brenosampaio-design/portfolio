@@ -1814,9 +1814,10 @@ html {
   .collapsible.is-open .reveal--mask { overflow: visible; }
   .collapsible.is-open .reveal--mask .reveal__inner { transform: none !important; }
 
-  /* Case sections read as a tight accordion list — trim the large section
-     padding; the existing dividers between sections handle separation. */
-  .case-section.section { padding-block: var(--space-5); }
+  /* Case sections: remove outer padding so collapsed sections collapse cleanly
+     to just the header row. The collapsible__head padding-block provides the
+     breathing room; the Divider elements between sections handle separation. */
+  .case-section.section { padding-block: 0; }
 
   /* Process steps as accordion rows */
   .process-grid .collapsible.process-col {
@@ -1826,6 +1827,17 @@ html {
   }
   .process-grid .collapsible.process-col:last-child { border-bottom: 1px solid var(--mist); }
   .process-col .collapsible__head { padding-block: var(--space-4); }
+
+  /* ProcessReveal animates opacity/transform — on mobile the accordion provides
+     progressive disclosure instead; disable the reveal animation entirely so
+     process col content is never stuck invisible inside an open panel. */
+  .js .process-col,
+  .js .process-col.is-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }
 
 /* ── Preloader ─────────────────────────────────────────────── */
