@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Text, Tag, Status, Button, Divider, QuoteBlock } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
 import { Scramble } from "@/components/site/Scramble";
+import { Collapsible } from "@/components/site/Collapsible";
 
 export const metadata = {
   title: "Service Operations Dashboard",
@@ -123,13 +124,17 @@ export default function ServiceOperationsCase() {
 
       {/* ── Context & problem ────────────────────────────────── */}
       <section id="sec-context" data-label="Context" className="container section case-section" aria-labelledby="ctx">
-        <div className="case-section__head">
-          <Scramble className="eyebrow eyebrow--accent" text="01 — Context & problem" />
-          <Reveal mask>
-            <Text variant="h2" id="ctx">The day doesn&rsquo;t end. It gets handed over.</Text>
-          </Reveal>
-        </div>
-
+        <Collapsible
+          defaultOpen
+          header={
+            <div className="case-section__head">
+              <Scramble className="eyebrow eyebrow--accent" text="01 — Context & problem" />
+              <Reveal mask>
+                <Text variant="h2" id="ctx">The day doesn&rsquo;t end. It gets handed over.</Text>
+              </Reveal>
+            </div>
+          }
+        >
         <Reveal className="prose">
           <p>
             In a hotel front desk, the day doesn&rsquo;t end — it gets handed over. And the
@@ -161,19 +166,23 @@ export default function ServiceOperationsCase() {
             quote="The handover usually lives nowhere — half in a notebook, half in a chat, half in someone's memory."
           />
         </Reveal>
+        </Collapsible>
       </section>
 
       <div className="container"><Divider /></div>
 
       {/* ── Role, scope & constraints ────────────────────────── */}
       <section id="sec-scope" data-label="Scope" className="container section case-section" aria-labelledby="scope">
-        <div className="case-section__head">
-          <Scramble className="eyebrow eyebrow--accent" text="02 — Role, scope & constraints" />
-          <Reveal mask>
-            <Text variant="h2" id="scope">A real problem, an honest proposal.</Text>
-          </Reveal>
-        </div>
-
+        <Collapsible
+          header={
+            <div className="case-section__head">
+              <Scramble className="eyebrow eyebrow--accent" text="02 — Role, scope & constraints" />
+              <Reveal mask>
+                <Text variant="h2" id="scope">A real problem, an honest proposal.</Text>
+              </Reveal>
+            </div>
+          }
+        >
         <Reveal className="prose">
           <p className="muted">
             <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Role.</strong> Sole designer.
@@ -203,19 +212,23 @@ export default function ServiceOperationsCase() {
             ))}
           </div>
         </Reveal>
+        </Collapsible>
       </section>
 
       <div className="container"><Divider /></div>
 
       {/* ── Process ──────────────────────────────────────────── */}
       <section id="sec-process" data-label="Process" className="container section case-section" aria-labelledby="process">
-        <div className="case-section__head">
-          <Scramble className="eyebrow eyebrow--accent" text="03 — Process" />
-          <Reveal mask>
-            <Text variant="h2" id="process">Evidence I lived, assumptions to validate.</Text>
-          </Reveal>
-        </div>
-
+        <Collapsible
+          header={
+            <div className="case-section__head">
+              <Scramble className="eyebrow eyebrow--accent" text="03 — Process" />
+              <Reveal mask>
+                <Text variant="h2" id="process">Evidence I lived, assumptions to validate.</Text>
+              </Reveal>
+            </div>
+          }
+        >
         <Reveal className="prose">
           <p className="muted">
             <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Research, evidence, assumptions.</strong>{" "}
@@ -258,19 +271,23 @@ export default function ServiceOperationsCase() {
             ))}
           </div>
         </Reveal>
+        </Collapsible>
       </section>
 
       <div className="container"><Divider /></div>
 
       {/* ── The design & system ──────────────────────────────── */}
       <section id="sec-design" data-label="Design" className="container section case-section" aria-labelledby="design">
-        <div className="case-section__head">
-          <Scramble className="eyebrow eyebrow--accent" text="04 — The design & system" />
-          <Reveal mask>
-            <Text variant="h2" id="design">Operational clarity before pretty reports.</Text>
-          </Reveal>
-        </div>
-
+        <Collapsible
+          header={
+            <div className="case-section__head">
+              <Scramble className="eyebrow eyebrow--accent" text="04 — The design & system" />
+              <Reveal mask>
+                <Text variant="h2" id="design">Operational clarity before pretty reports.</Text>
+              </Reveal>
+            </div>
+          }
+        >
         <Reveal className="prose">
           <p>
             The main screen is an operational dashboard. On open, it shows what matters <em>now</em>:
@@ -347,19 +364,23 @@ export default function ServiceOperationsCase() {
             </div>
           </div>
         </Reveal>
+        </Collapsible>
       </section>
 
       <div className="container"><Divider /></div>
 
       {/* ── Outcome & reflection ─────────────────────────────── */}
       <section id="sec-outcome" data-label="Outcome" className="container section case-section" aria-labelledby="outcome">
-        <div className="case-section__head">
-          <Scramble className="eyebrow eyebrow--accent" text="05 — Outcome & reflection" />
-          <Reveal mask>
-            <Text variant="h2" id="outcome">Hypotheses, not results.</Text>
-          </Reveal>
-        </div>
-
+        <Collapsible
+          header={
+            <div className="case-section__head">
+              <Scramble className="eyebrow eyebrow--accent" text="05 — Outcome & reflection" />
+              <Reveal mask>
+                <Text variant="h2" id="outcome">Hypotheses, not results.</Text>
+              </Reveal>
+            </div>
+          }
+        >
         <Reveal className="prose">
           <p className="muted">
             <strong style={{ color: "var(--ink)", fontWeight: 500 }}>Expected impact — to validate.</strong>{" "}
@@ -418,6 +439,7 @@ export default function ServiceOperationsCase() {
           </Text>
           <Button href="/#contact" variant="secondary">Get in touch</Button>
         </Reveal>
+        </Collapsible>
       </section>
     </article>
   );

@@ -682,6 +682,9 @@ html {
 .work-grid--solo {
   grid-template-columns: repeat(2, 1fr);
 }
+/* Desktop keeps a single featured case + a discrete line; the upcoming cards
+   exist only for the mobile carousel. */
+.work-item--upcoming { display: none; }
 .work-more {
   margin-top: var(--space-6);
   font-family: var(--font-sans);
@@ -1352,6 +1355,46 @@ html {
   border-top: 1px solid var(--mist);
 }
 
+/* ── Collapsible — mobile-only progressive disclosure ──────────
+   Desktop: body always open, no toggle chrome. Spacing here mirrors the
+   old section flex-gap so the reading rhythm is unchanged above the phone
+   breakpoint. The mobile accordion behaviour lives in the 700px query. */
+.collapsible {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+.collapsible__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  cursor: default;
+}
+.collapsible__head:focus-visible {
+  outline: 2px solid var(--clay-ring);
+  outline-offset: 6px;
+  border-radius: var(--radius-sm);
+}
+.collapsible__headInner { flex: 1 1 auto; min-width: 0; }
+.collapsible__icon { display: none; }
+.collapsible__panel { display: block; }
+.collapsible__panelInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Process columns reuse the collapsible primitive but keep their own tighter
+   16px rhythm (index → title → desc → items), so desktop is visually unchanged. */
+.collapsible.process-col,
+.collapsible.process-col .collapsible__panelInner { gap: var(--space-4); }
+.collapsible.process-col .collapsible__headInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 /* ── Site header / dock ────────────────────────────────────── */
 #main { padding-top: 72px; }
 
@@ -1664,27 +1707,125 @@ html {
   .grid--4,
   .grid--2 { grid-template-columns: 1fr; }
 
-  .site-header { left: var(--space-4); right: var(--space-4); transform: none; }
-  .dock { height: 46px; padding-inline: var(--space-4); gap: var(--space-3); }
-  .nav { gap: var(--space-4); }
-  .nav a { font-size: var(--text-micro); }
+  /* Dock — a centered, content-hugging pill (not a stretched bar). Drop the
+     availability indicator and its divider so it reads clean: B/S | Work About Contact */
+  .site-header { left: 50%; right: auto; transform: translateX(-50%); }
+  .dock { height: 48px; padding-inline: var(--space-5); gap: var(--space-4); }
+  .nav { gap: var(--space-5); }
+  .nav a { font-size: var(--text-small); }
   .nav .nav-hide-sm { display: none; }
-  .availability__text { display: none; }
+  .dock .availability { display: none; }
+  .dock .dock__divider--mid { display: none; }
+  .dock__actions { gap: 0; }
+
   .site-footer__grid { grid-template-columns: 1fr; gap: var(--space-8); }
 
-  .work-grid { grid-template-columns: 1fr; }
-  .process-grid { grid-template-columns: 1fr; row-gap: var(--space-8); }
-  .meta-strip { flex-direction: column; gap: var(--space-5); }
-  .meta-strip__spacer { display: none; }
+  /* The timeline mini-indicator overlapped the hero on phones — remove it. */
+  .rail-mini { display: none; }
+
+  /* Hero portrait — frame the face, no 16:10 guillotine. */
+  .hero__media { aspect-ratio: 4 / 5; max-height: none; }
+  .hero__media--photo img { object-position: center 16%; }
+
+  /* Selected work — horizontal scroll-snap carousel with a peek of the next card,
+     bleeding to the screen edges. Replaces the stacked column. */
+  .work-grid--solo {
+    display: flex;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    gap: var(--space-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--space-5));
+    padding-inline: var(--space-5);
+    scroll-padding-left: var(--space-5);
+  }
+  .work-grid--solo::-webkit-scrollbar { display: none; }
+  .work-grid--solo .work-item {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+  .work-item--upcoming { display: block; }
+  .work-more { display: none; }
+
+  .process-grid { grid-template-columns: 1fr; row-gap: 0; }
 
   .about-hero { grid-template-columns: 1fr; }
   .about-hero .portrait { max-width: 320px; }
 
+  /* Snapshot / TL;DR — keep it visible but compact (smaller value text, tighter rows). */
   .snapshot { grid-template-columns: 1fr; }
+  .snapshot__row { padding-block: var(--space-3); }
+  .snapshot__value { font-size: var(--text-small); }
   .def-item { grid-template-columns: 1fr; gap: var(--space-2); }
   .decision { grid-template-columns: 1fr; gap: var(--space-4); padding: var(--space-6); }
   .incident__fields { grid-template-columns: 1fr; }
   .prose p { font-size: var(--text-body); }
+}
+
+/* ── Mobile accordion (≤700px) — case sections & process steps ───── */
+@media (max-width: 700px) {
+  .collapsible { gap: 0; }
+  .collapsible__head {
+    cursor: pointer;
+    align-items: center;
+    gap: var(--space-4);
+    padding-block: var(--space-5);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* + → − toggle */
+  .collapsible__icon {
+    display: block;
+    position: relative;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+  }
+  .collapsible__icon::before,
+  .collapsible__icon::after {
+    content: "";
+    position: absolute;
+    background: var(--clay);
+    transition: transform var(--duration-md) var(--ease);
+  }
+  .collapsible__icon::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
+  .collapsible__icon::after  { left: 50%; top: 0; width: 1.5px; height: 100%; transform: translateX(-50%); }
+  .collapsible.is-open .collapsible__icon::after { transform: translateX(-50%) scaleY(0); }
+
+  .collapsible__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--reveal-dur) var(--ease-reveal);
+  }
+  .collapsible.is-open .collapsible__panel { grid-template-rows: 1fr; }
+  .collapsible__panelInner {
+    overflow: hidden;
+    min-height: 0;
+    gap: var(--space-6);
+  }
+  .collapsible.is-open .collapsible__panelInner { padding-bottom: var(--space-6); }
+
+  /* A collapsed-then-opened section must never keep scroll-reveal content hidden. */
+  .collapsible.is-open .reveal { opacity: 1 !important; transform: none !important; }
+  .collapsible.is-open .reveal--mask { overflow: visible; }
+  .collapsible.is-open .reveal--mask .reveal__inner { transform: none !important; }
+
+  /* Case sections read as a tight accordion list — trim the large section
+     padding; the existing dividers between sections handle separation. */
+  .case-section.section { padding-block: var(--space-5); }
+
+  /* Process steps as accordion rows */
+  .process-grid .collapsible.process-col {
+    gap: 0;
+    padding-top: 0;
+    border-top: 1px solid var(--mist);
+  }
+  .process-grid .collapsible.process-col:last-child { border-bottom: 1px solid var(--mist); }
+  .process-col .collapsible__head { padding-block: var(--space-4); }
 }
 
 /* ── Preloader ─────────────────────────────────────────────── */

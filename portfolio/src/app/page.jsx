@@ -6,6 +6,7 @@ import { ProcessReveal } from "@/components/site/ProcessReveal";
 import { Scramble } from "@/components/site/Scramble";
 import { SequenceSteps } from "@/components/site/SequenceSteps";
 import { Toolkit } from "@/components/site/Toolkit";
+import { Collapsible } from "@/components/site/Collapsible";
 import { LocationTime } from "@/components/site/LocationTime";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile, projects, approach, process, principles } from "@/lib/content";
@@ -63,20 +64,23 @@ export default function Home() {
         </div>
 
         <div className="work-grid work-grid--solo">
-          {projects
-            .filter((p) => !p.upcoming)
-            .map((p) => (
-              <Reveal key={p.slug} delay={90}>
-                <ProjectCard
-                  category={p.category}
-                  title={p.title}
-                  problem={p.problem}
-                  role={p.role}
-                  year={p.year}
-                  href={p.href}
-                />
-              </Reveal>
-            ))}
+          {projects.map((p, i) => (
+            <Reveal
+              key={p.slug || `upcoming-${i}`}
+              delay={i * 90}
+              className={`work-item${p.upcoming ? " work-item--upcoming" : ""}`}
+            >
+              <ProjectCard
+                category={p.category}
+                title={p.title}
+                problem={p.problem}
+                role={p.role}
+                year={p.year}
+                href={p.href}
+                upcoming={p.upcoming}
+              />
+            </Reveal>
+          ))}
         </div>
         <Reveal delay={180}>
           <p className="work-more">More case studies in progress — one honest piece beats a padded grid.</p>
@@ -126,16 +130,24 @@ export default function Home() {
 
         <div className="process-grid">
           {process.map((step, i) => (
-            <div className="process-col" key={step.title}>
-              <span className="process-col__index reveal">{String(i + 1).padStart(2, "0")}</span>
-              <span className="process-col__title reveal">{step.title}</span>
-              <span className="process-col__desc reveal">{step.description}</span>
+            <Collapsible
+              key={step.title}
+              className="process-col"
+              defaultOpen={i === 0}
+              header={
+                <>
+                  <span className="process-col__index">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="process-col__title">{step.title}</span>
+                </>
+              }
+            >
+              <span className="process-col__desc">{step.description}</span>
               <ul className="process-col__items">
                 {step.items.map((it) => (
-                  <li className="reveal" key={it}>{it}</li>
+                  <li key={it}>{it}</li>
                 ))}
               </ul>
-            </div>
+            </Collapsible>
           ))}
         </div>
         <ProcessReveal targetId="process" />

@@ -42,7 +42,7 @@ export function Header() {
           <Link href="/#approach" className="nav-hide-sm">Approach</Link>
         </nav>
 
-        <div className="dock__divider" aria-hidden="true" />
+        <div className="dock__divider dock__divider--mid" aria-hidden="true" />
 
         <div className="dock__actions">
           <span className="availability">
