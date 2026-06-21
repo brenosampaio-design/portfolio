@@ -1395,6 +1395,59 @@ html {
   gap: var(--space-2);
 }
 
+/* ── Monoline icons — draw-on-interaction marks ────────────── */
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  overflow: visible;
+}
+/* Natural resting state: fully drawn. pathLength="1" normalises every path so
+   one dash spans the whole stroke regardless of its real length. */
+.icon path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+/* The flourish: redraw from blank back to the natural state — always settles. */
+.icon--draw path { animation: icon-draw 600ms var(--ease-reveal) both; }
+@keyframes icon-draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon--draw path { animation: none; }
+}
+
+/* Snapshot rows — icon anchors the row */
+.snapshot__row { flex-direction: row; align-items: flex-start; gap: var(--space-4); }
+.snapshot__icon { color: var(--clay); margin-top: 3px; }
+.snapshot__rowMain { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+
+/* About facts — icon anchor */
+.about-fact { flex-direction: row; align-items: flex-start; gap: var(--space-4); }
+.about-fact__icon { color: var(--clay); margin-top: 3px; }
+.about-fact__main { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; flex: 1; }
+
+/* Contact rows — icon anchor */
+.contact-row__lead { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
+.contact-row__icon { color: var(--clay); }
+
+/* Constraints — icon anchor (only the icon variant of the def list) */
+.def-list--icon .def-item {
+  grid-template-columns: 22px 188px 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+.def-item__icon { color: var(--clay); margin-top: 1px; }
+
+/* Process step — icon sits above the index in each header */
+.process-col__icon { color: var(--clay); margin-bottom: var(--space-1); }
+
+@media (max-width: 700px) {
+  .def-list--icon .def-item { grid-template-columns: 22px 1fr; gap: var(--space-2) var(--space-4); }
+  .def-list--icon .def-item__icon { grid-row: span 2; }
+}
+
 /* ── Site header / dock ────────────────────────────────────── */
 #main { padding-top: 72px; }
 

@@ -3,6 +3,7 @@ import { Text, Tag, Status, Button, Divider, QuoteBlock } from "@/components/ds"
 import { Reveal } from "@/components/site/Reveal";
 import { Scramble } from "@/components/site/Scramble";
 import { Collapsible } from "@/components/site/Collapsible";
+import { Icon } from "@/components/site/Icon";
 
 export const metadata = {
   title: "Service Operations Dashboard",
@@ -32,11 +33,11 @@ const decisions = [
 ];
 
 const constraints = [
-  ["Multilingual teams", "Staff and guests may speak ES, PT, FR or EN — the interface has to stay simple, objective and unambiguous across languages."],
-  ["Mobile + desktop", "Desktop at the counter; a quick check on phone or tablet on the move."],
-  ["Tired people on night shifts", "The interface can't rely on memory, patience, or interpretation."],
-  ["Almost no time to log", "If logging an incident is slow, the team falls back to WhatsApp, paper, or “later.”"],
-  ["Slow connection, heavy systems", "It has to be light, with clear saving — and reduce noise, not add it. Not one more tool that adds work."],
+  { icon: "globe", term: "Multilingual teams", desc: "Staff and guests may speak ES, PT, FR or EN — the interface has to stay simple, objective and unambiguous across languages." },
+  { icon: "devices", term: "Mobile + desktop", desc: "Desktop at the counter; a quick check on phone or tablet on the move." },
+  { icon: "moon", term: "Tired people on night shifts", desc: "The interface can't rely on memory, patience, or interpretation." },
+  { icon: "bolt", term: "Almost no time to log", desc: "If logging an incident is slow, the team falls back to WhatsApp, paper, or “later.”" },
+  { icon: "wifi", term: "Slow connection, heavy systems", desc: "It has to be light, with clear saving — and reduce noise, not add it. Not one more tool that adds work." },
 ];
 
 const measure = [
@@ -85,38 +86,53 @@ export default function ServiceOperationsCase() {
       <section id="snapshot" data-label="Snapshot" className="container section--tight" aria-label="Snapshot">
         <Reveal className="snapshot">
           <div className="snapshot__row">
-            <span className="snapshot__label">Problem</span>
-            <span className="snapshot__value">
-              On shift handover, operational information scatters across PMS, email, WhatsApp,
-              notebooks and people&rsquo;s memory — so the incoming shift can&rsquo;t quickly see
-              what&rsquo;s open, what&rsquo;s urgent, and what&rsquo;s already resolved.
+            <Icon name="alert" className="snapshot__icon" />
+            <span className="snapshot__rowMain">
+              <span className="snapshot__label">Problem</span>
+              <span className="snapshot__value">
+                On shift handover, operational information scatters across PMS, email, WhatsApp,
+                notebooks and people&rsquo;s memory — so the incoming shift can&rsquo;t quickly see
+                what&rsquo;s open, what&rsquo;s urgent, and what&rsquo;s already resolved.
+              </span>
             </span>
           </div>
           <div className="snapshot__row">
-            <span className="snapshot__label">For whom</span>
-            <span className="snapshot__value">
-              Front-desk and service-operations teams — and everyone downstream: housekeeping,
-              maintenance, shift leads, and ultimately the guest.
+            <Icon name="users" className="snapshot__icon" />
+            <span className="snapshot__rowMain">
+              <span className="snapshot__label">For whom</span>
+              <span className="snapshot__value">
+                Front-desk and service-operations teams — and everyone downstream: housekeeping,
+                maintenance, shift leads, and ultimately the guest.
+              </span>
             </span>
           </div>
           <div className="snapshot__row">
-            <span className="snapshot__label">My role</span>
-            <span className="snapshot__value">
-              Sole designer — problem framing from lived experience, flows, information
-              architecture, system logic, and UI.
+            <Icon name="user" className="snapshot__icon" />
+            <span className="snapshot__rowMain">
+              <span className="snapshot__label">My role</span>
+              <span className="snapshot__value">
+                Sole designer — problem framing from lived experience, flows, information
+                architecture, system logic, and UI.
+              </span>
             </span>
           </div>
           <div className="snapshot__row">
-            <span className="snapshot__label">Delivered</span>
-            <span className="snapshot__value">
-              Core flows, key screens with real states, and a slice of the design system.
+            <Icon name="package" className="snapshot__icon" />
+            <span className="snapshot__rowMain">
+              <span className="snapshot__label">Delivered</span>
+              <span className="snapshot__value">
+                Core flows, key screens with real states, and a slice of the design system.
+              </span>
             </span>
           </div>
           <div className="snapshot__row snapshot__row--wide">
-            <span className="snapshot__label">Expected impact — to validate</span>
-            <span className="snapshot__value">
-              Less information lost at handover; faster context pickup for the incoming shift.
-              <span style={{ color: "var(--stone)" }}> Hypotheses to test — no numbers until measured.</span>
+            <Icon name="target" className="snapshot__icon" />
+            <span className="snapshot__rowMain">
+              <span className="snapshot__label">Expected impact — to validate</span>
+              <span className="snapshot__value">
+                Less information lost at handover; faster context pickup for the incoming shift.
+                <span style={{ color: "var(--stone)" }}> Hypotheses to test — no numbers until measured.</span>
+              </span>
             </span>
           </div>
         </Reveal>
@@ -203,11 +219,12 @@ export default function ServiceOperationsCase() {
 
         <Reveal>
           <Text variant="h3" style={{ marginBottom: "var(--space-2)" }}>Constraints I designed for</Text>
-          <div className="def-list">
-            {constraints.map(([term, desc]) => (
-              <div className="def-item" key={term}>
-                <span className="def-item__term">{term}</span>
-                <span className="def-item__desc">{desc}</span>
+          <div className="def-list def-list--icon">
+            {constraints.map((c) => (
+              <div className="def-item" key={c.term}>
+                <Icon name={c.icon} className="def-item__icon" />
+                <span className="def-item__term">{c.term}</span>
+                <span className="def-item__desc">{c.desc}</span>
               </div>
             ))}
           </div>
