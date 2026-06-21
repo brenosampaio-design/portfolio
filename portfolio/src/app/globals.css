@@ -1027,10 +1027,6 @@ html {
   flex-direction: column;
 }
 .contact-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-6);
   padding-block: var(--space-5);
   border-top: 1px solid var(--mist);
   text-decoration: none;
@@ -1098,9 +1094,6 @@ html {
 
 .about-facts { display: flex; flex-direction: column; }
 .about-fact {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
   padding-block: var(--space-5);
   border-top: 1px solid var(--mist);
 }
@@ -1167,9 +1160,6 @@ html {
   border-top: 1px solid var(--mist);
 }
 .snapshot__row {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
   padding-block: var(--space-5);
   border-bottom: 1px solid var(--mist);
 }
