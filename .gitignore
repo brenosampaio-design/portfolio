@@ -12,3 +12,9 @@ breno-portfolio-snapshot.zip
 .DS_Store
 Thumbs.db
 portfolio/dev.log
+
+# Claude Code local state
+.claude/
+.claude.json
+*.ps1
+brand/
