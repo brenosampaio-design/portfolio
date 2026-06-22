@@ -4,6 +4,14 @@ import { Reveal } from "@/components/site/Reveal";
 import { Scramble } from "@/components/site/Scramble";
 import { Collapsible } from "@/components/site/Collapsible";
 import { Icon } from "@/components/site/Icon";
+import { DecisionsLedger } from "@/components/site/DecisionsLedger";
+import { BrowserFrame } from "@/components/site/BrowserFrame";
+import { PhoneFrame } from "@/components/site/PhoneFrame";
+import { DashboardPreview } from "@/components/site/DashboardPreview";
+import { MobileLog } from "@/components/site/MobileLog";
+import { UIStates } from "@/components/site/UIStates";
+import { ScatterFragments } from "@/components/site/ScatterFragments";
+import { FlowDiagram } from "@/components/site/FlowDiagram";
 
 export const metadata = {
   title: "Service Operations Dashboard",
@@ -80,6 +88,12 @@ export default function ServiceOperationsCase() {
             </Text>
           </Reveal>
         </div>
+
+        <Reveal delay={240} className="case-hero__visual">
+          <BrowserFrame url="operations.local/open-now">
+            <DashboardPreview />
+          </BrowserFrame>
+        </Reveal>
       </header>
 
       {/* ── Snapshot / TL;DR ─────────────────────────────────── */}
@@ -164,6 +178,10 @@ export default function ServiceOperationsCase() {
             properly logged. They rebuild context from fragments — and what doesn&rsquo;t get
             rebuilt, gets dropped.
           </p>
+        </Reveal>
+
+        <Reveal>
+          <ScatterFragments />
         </Reveal>
 
         <Reveal style={{ maxWidth: "var(--max-prose)", paddingBlock: "var(--space-6)" }}>
@@ -254,30 +272,13 @@ export default function ServiceOperationsCase() {
         </Reveal>
 
         <Reveal>
-          <Text variant="h3" style={{ marginBottom: "var(--space-6)" }}>Key design decisions</Text>
-          <div className="decision-grid">
-            {decisions.map((d, i) => (
-              <div className="decision" key={d.name}>
-                <span className="decision__index">{String(i + 1).padStart(2, "0")}</span>
-                <div className="decision__body">
-                  <span className="decision__name">{d.name}</span>
-                  <div className="decision__line">
-                    <span className="decision__tag">Problem</span>
-                    <span className="decision__text">{d.problem}</span>
-                  </div>
-                  <div className="decision__line">
-                    <span className="decision__tag">Decision</span>
-                    <span className="decision__text">{d.decision}</span>
-                  </div>
-                  <div className="decision__line">
-                    <span className="decision__tag">Trade-off</span>
-                    <span className="decision__text">{d.tradeoff}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <FlowDiagram />
         </Reveal>
+
+        <Reveal>
+          <Text variant="h3" style={{ marginBottom: "var(--space-8)" }}>Key design decisions</Text>
+        </Reveal>
+        <DecisionsLedger decisions={decisions} />
         </Collapsible>
       </section>
 
@@ -370,6 +371,29 @@ export default function ServiceOperationsCase() {
               </Text>
             </div>
           </div>
+        </Reveal>
+
+        {/* Mobile — the guided log on a phone, where speed matters most */}
+        <Reveal>
+          <Text variant="h3" style={{ marginBottom: "var(--space-6)" }}>On mobile — fast, guided logging</Text>
+          <div className="design-mobile">
+            <PhoneFrame>
+              <MobileLog />
+            </PhoneFrame>
+            <div className="design-mobile__note prose">
+              <p className="muted">
+                On the move, the same structured fields make logging a few taps, not a paragraph.
+                Quick picks over free text — so an entry made in ten seconds is still readable by
+                the next shift.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* The states a tired user actually hits — not just the happy path */}
+        <Reveal>
+          <Text variant="h3" style={{ marginBottom: "var(--space-6)" }}>States I designed for</Text>
+          <UIStates />
         </Reveal>
         </Collapsible>
       </section>
