@@ -11,6 +11,10 @@ import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
 import { ToTop } from "@/components/site/ToTop";
 import { Preloader } from "@/components/site/Preloader";
+import { profile } from "@/lib/content";
+
+const SHARE_DESCRIPTION =
+  "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.";
 
 export const metadata = {
   metadataBase: new URL("https://brenosampaio.com"),
@@ -22,9 +26,16 @@ export const metadata = {
     "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
   openGraph: {
     title: "Breno Sampayo — Product Designer with a technical edge",
-    description:
-      "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
+    description: SHARE_DESCRIPTION,
+    url: "https://brenosampaio.com",
+    siteName: "Breno Sampayo",
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Breno Sampayo — Product Designer with a technical edge",
+    description: SHARE_DESCRIPTION,
   },
 };
 
@@ -55,6 +66,29 @@ export default function RootLayout({ children }) {
 
       </head>
       <body>
+        {/* Structured data — lets search engines understand who this is when
+            someone searches the name. Built from the same real profile content. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: profile.name,
+              jobTitle: "Product Designer",
+              description: SHARE_DESCRIPTION,
+              url: "https://brenosampaio.com",
+              email: `mailto:${profile.email}`,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Valencia",
+                addressCountry: "ES",
+              },
+              knowsLanguage: profile.languages.map((l) => l.name),
+              sameAs: ["https://www.linkedin.com/in/brenosampayo"],
+            }),
+          }}
+        />
         {/* Enable JS-gated reveals before first paint — no flash for JS users,
             and no-JS visitors still get fully visible content. */}
         <Script id="js-flag" strategy="beforeInteractive">

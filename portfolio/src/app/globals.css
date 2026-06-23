@@ -20,6 +20,7 @@
 
   --paper: #FAFAFA; /* background — near-white neutral (was warm #F9F7F3) */
   --silk:  #F0F0F0; /* card surfaces — neutral step below paper */
+  --stone: #726E68; /* secondary text — darkened from DS #857F79 to clear WCAG AA (≈4.9:1 on paper) */
 }
 
 /*
