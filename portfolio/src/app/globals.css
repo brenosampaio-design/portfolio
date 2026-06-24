@@ -1724,9 +1724,10 @@ html {
 .triage-row__sep { color: var(--pebble); }
 
 /* System flow — channels → AI → human gate → response. Plays as a signal
-   travelling the pipeline: each card sits dim, then lights up in turn on the
-   site cadence (--d per step), the connector's fill draws toward the next card,
-   and the human gate is marked the moment it lights. Fires once, then settles. */
+   travelling the pipeline: each card sits dim, then lights up in turn (the JS
+   adds .lit per step on the site cadence), the connector fill draws toward the
+   next card (.drawn), and the human gate is marked the moment it lights. The
+   sequence is JS-orchestrated so it always plays cleanly. Fires once, settles. */
 .sysflow { display: flex; align-items: stretch; gap: var(--space-2); }
 .sysflow-node {
   flex: 1 1 0;
@@ -1738,19 +1739,19 @@ html {
   border: 1px solid var(--mist);
   border-radius: var(--radius-md);
   background: var(--paper);
-  opacity: 0.32;
+  opacity: 0.3;
   transition:
-    opacity var(--reveal-dur) var(--ease-reveal) var(--d, 0ms),
-    box-shadow var(--reveal-dur) var(--ease-reveal) var(--d, 0ms),
-    border-color var(--reveal-dur) var(--ease-reveal) var(--d, 0ms);
+    opacity 0.55s var(--ease-reveal),
+    box-shadow 0.55s var(--ease-reveal),
+    border-color 0.55s var(--ease-reveal);
 }
-.sysflow.is-in .sysflow-node { opacity: 1; }
+.sysflow-node.lit { opacity: 1; }
 .sysflow-node__label { font-family: var(--font-sans); font-size: var(--text-small); font-weight: var(--weight-medium); color: var(--ink); }
 .sysflow-node__sub { font-family: var(--font-mono); font-size: var(--text-mono); letter-spacing: var(--tracking-mono); color: var(--stone); }
 .sysflow-node--gate { background: var(--clay-wash); }
 .sysflow-node--gate .sysflow-node__label,
 .sysflow-node--gate .sysflow-node__sub { color: var(--clay); }
-.sysflow.is-in .sysflow-node--gate { box-shadow: 0 0 0 1.5px var(--clay); border-color: var(--clay); }
+.sysflow-node--gate.lit { box-shadow: 0 0 0 1.5px var(--clay); border-color: var(--clay); }
 .sysflow__conn {
   position: relative;
   flex: 0 0 var(--space-6);
@@ -1765,12 +1766,12 @@ html {
   background: var(--clay);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.5s var(--ease-reveal) var(--d, 0ms);
+  transition: transform 0.45s var(--ease-reveal);
 }
-.sysflow.is-in .sysflow__conn::before { transform: scaleX(1); }
+.sysflow__conn.drawn::before { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) {
-  .sysflow-node, .sysflow.is-in .sysflow-node { opacity: 1; }
-  .sysflow__conn::before, .sysflow.is-in .sysflow__conn::before { transform: scaleX(1); }
+  .sysflow-node, .sysflow-node.lit { opacity: 1; }
+  .sysflow__conn::before, .sysflow__conn.drawn::before { transform: scaleX(1); }
 }
 
 /* Analysis panel — the signature screen */
@@ -1855,7 +1856,7 @@ html {
   .sysflow-node { flex: 0 0 auto; }
   .sysflow__conn { flex: 0 0 auto; width: 1.5px; height: var(--space-5); align-self: center; }
   .sysflow__conn::before { transform: scaleY(0); transform-origin: top center; }
-  .sysflow.is-in .sysflow__conn::before { transform: scaleY(1); }
+  .sysflow__conn.drawn::before { transform: scaleY(1); }
   .triage__head { flex-direction: column; gap: var(--space-2); }
 }
 

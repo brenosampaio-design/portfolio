@@ -9,10 +9,12 @@ import { SEQ_BEAT, SEQ_START } from "@/lib/motion";
  * passing the human approval gate. The gate is the marked node, not an
  * afterthought — it's the whole point.
  *
- * It plays as a sequence on enter: each card focuses in on the site's shared
- * cadence (SEQ_BEAT between steps, same as Approach/Process), and the connector
- * draws toward the next card at the half-beat, so the eye is led from one step
- * to the next. Fires once, then settles. Respects reduced motion.
+ * It plays as a signal travelling the pipeline: each card sits dim, then lights
+ * up in turn (SEQ_BEAT apart, the site cadence), the connector fill draws toward
+ * the next card at the half-beat, and the human gate is marked the moment it
+ * lights. The sequence is orchestrated in JS (deterministic) rather than via CSS
+ * transition-delays, so it always plays cleanly when the section comes into view.
+ * Fires once, then settles. Respects reduced motion.
  */
 const nodes = [
   { label: "Channels", sub: "WhatsApp · Email · Web", kind: "in" },
@@ -27,50 +29,64 @@ export function SystemFlow() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const cards = el.querySelectorAll(".sysflow-node");
+    const conns = el.querySelectorAll(".sysflow__conn");
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.classList.add("is-in");
+      cards.forEach((c) => c.classList.add("lit"));
+      conns.forEach((c) => c.classList.add("drawn"));
       return;
     }
-    // If it's already in view on mount, light it up directly — belt-and-braces
-    // so the sequence always plays even if the observer is slow to fire.
+
+    const timers = [];
+    let played = false;
+    const play = () => {
+      if (played) return;
+      played = true;
+      cards.forEach((card, i) => {
+        timers.push(setTimeout(() => card.classList.add("lit"), SEQ_START + i * SEQ_BEAT));
+        if (i < conns.length) {
+          timers.push(
+            setTimeout(() => conns[i].classList.add("drawn"), SEQ_START + i * SEQ_BEAT + Math.round(SEQ_BEAT / 2))
+          );
+        }
+      });
+    };
+
+    // If it's already comfortably in view on mount, play directly; otherwise
+    // wait until it scrolls into view.
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
-      el.classList.add("is-in");
-      return;
+    if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+      play();
+      return () => timers.forEach(clearTimeout);
     }
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            el.classList.add("is-in");
-            io.unobserve(el);
+            play();
+            io.disconnect();
           }
         });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.3 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      timers.forEach(clearTimeout);
+    };
   }, []);
 
   return (
     <div className="sysflow" ref={ref}>
       {nodes.map((n, i) => (
         <Fragment key={n.label}>
-          <div
-            className={`sysflow-node sysflow-node--${n.kind}`}
-            style={{ "--d": `${SEQ_START + i * SEQ_BEAT}ms` }}
-          >
+          <div className={`sysflow-node sysflow-node--${n.kind}`}>
             <span className="sysflow-node__label">{n.label}</span>
             <span className="sysflow-node__sub">{n.sub}</span>
           </div>
-          {i < nodes.length - 1 && (
-            <span
-              className="sysflow__conn"
-              aria-hidden="true"
-              style={{ "--d": `${SEQ_START + i * SEQ_BEAT + Math.round(SEQ_BEAT / 2)}ms` }}
-            />
-          )}
+          {i < nodes.length - 1 && <span className="sysflow__conn" aria-hidden="true" />}
         </Fragment>
       ))}
     </div>
