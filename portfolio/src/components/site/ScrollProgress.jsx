@@ -20,6 +20,7 @@ export function ScrollProgress() {
   const sectionsRef = useRef([]);
   const pillRef = useRef(null);
   const nameRef = useRef(null);
+  const activeRef = useRef(0);
   const [sections, setSections] = useState([]);
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState(null);
@@ -118,6 +119,47 @@ export function ScrollProgress() {
     window.addEventListener("resize", place);
     return () => window.removeEventListener("resize", place);
   }, [active, sections, entered]);
+
+  // Mirror the active index into a ref for the (non-React) swipe handlers.
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+
+  // Swipe the dock left/right to step between sections. A left swipe goes to the
+  // next section, right to the previous — reusing the exact tap path (a click on
+  // the target dot, which the smooth-scroll handler picks up).
+  useEffect(() => {
+    const pill = pillRef.current;
+    if (!pill) return;
+    let sx = 0;
+    let sy = 0;
+    let tracking = false;
+    const onStart = (e) => {
+      const t = e.touches[0];
+      sx = t.clientX;
+      sy = t.clientY;
+      tracking = true;
+    };
+    const onEnd = (e) => {
+      if (!tracking) return;
+      tracking = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - sx;
+      const dy = t.clientY - sy;
+      // Must be a deliberate, mostly-horizontal swipe — otherwise it's a tap/scroll.
+      if (Math.abs(dx) < 36 || Math.abs(dx) <= Math.abs(dy)) return;
+      const dots = pill.querySelectorAll(".case-dock__dot");
+      const dir = dx < 0 ? 1 : -1;
+      const target = Math.min(Math.max(activeRef.current + dir, 0), dots.length - 1);
+      if (target !== activeRef.current && dots[target]) dots[target].click();
+    };
+    pill.addEventListener("touchstart", onStart, { passive: true });
+    pill.addEventListener("touchend", onEnd, { passive: true });
+    return () => {
+      pill.removeEventListener("touchstart", onStart);
+      pill.removeEventListener("touchend", onEnd);
+    };
+  }, [sections]);
 
   const n = sections.length;
   if (n === 0) return null;
