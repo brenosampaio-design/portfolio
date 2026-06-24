@@ -3,20 +3,28 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 /*
- * Rail — a thin vertical timeline pinned to the left gutter (desktop). On first
- * load the line draws itself in top→bottom; a dot per section then fades in, and
- * the dot for the section you're reading fills + pulses with its label beside it.
+ * ScrollProgress — section navigation that adapts to the input.
  *
- * Each dot is an anchor, so hovering previews a section (its dot lights and the
- * label slides to it) and clicking smooth-scrolls there via the global hash
- * handler in SmoothScroll. Below the rail's breakpoint we fall back to a single
- * pulsing dot + label (mobile).
+ * Desktop (hover): a thin vertical timeline pinned to the left gutter. The line
+ * draws in, a dot per section fades in, the active dot fills + pulses with its
+ * label, and each dot is an anchor (hover previews, click smooth-scrolls).
+ *
+ * Touch (no hover): the rail can't be hovered, so navigation moves to a compact
+ * floating dock at the bottom — macOS-style. The pill stays small (just dots);
+ * the active section's name floats above the active dot and slides to follow it.
+ * The dock animates in on each route change and, like the header, its liquid
+ * glass flips dark over dark content (same data-nav-dark technique, watching the
+ * bottom band of the viewport where the dock sits). Respects reduced motion.
  */
 export function ScrollProgress() {
   const sectionsRef = useRef([]);
+  const pillRef = useRef(null);
+  const nameRef = useRef(null);
   const [sections, setSections] = useState([]);
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState(null);
+  const [entered, setEntered] = useState(false);
+  const [dark, setDark] = useState(false);
   const pathname = usePathname();
 
   // Collect sections whenever the route changes
@@ -64,10 +72,56 @@ export function ScrollProgress() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
+  // Dock entrance — replays its slide-up on every route change
+  useEffect(() => {
+    setEntered(false);
+    const t = setTimeout(() => setEntered(true), 280);
+    return () => clearTimeout(t);
+  }, [pathname]);
+
+  // Dock dark/light — same data-nav-dark intelligence as the header, but
+  // watching the BOTTOM band of the viewport (where the dock floats).
+  useEffect(() => {
+    const darkEls = document.querySelectorAll("[data-nav-dark]");
+    if (!darkEls.length) {
+      setDark(false);
+      return;
+    }
+    const intersecting = new Set();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) intersecting.add(e.target);
+          else intersecting.delete(e.target);
+        });
+        setDark(intersecting.size > 0);
+      },
+      { rootMargin: "-86% 0px -8px 0px", threshold: 0 }
+    );
+    darkEls.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [pathname]);
+
+  // Float the section name above the active dot (and slide it to follow)
+  useEffect(() => {
+    const pill = pillRef.current;
+    const name = nameRef.current;
+    if (!pill || !name) return;
+    const place = () => {
+      const dot = pill.querySelectorAll(".case-dock__dot")[active];
+      if (!dot) return;
+      const pr = pill.getBoundingClientRect();
+      const dr = dot.getBoundingClientRect();
+      name.style.left = `${dr.left - pr.left + dr.width / 2}px`;
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [active, sections, entered]);
+
   const n = sections.length;
   if (n === 0) return null;
   const posOf = (i) => (n > 1 ? (i / (n - 1)) * 100 : 0);
-  // Hovering a dot previews it; otherwise the rail tracks the section you're in.
   const shown = hovered != null ? hovered : active;
 
   return (
@@ -94,6 +148,26 @@ export function ScrollProgress() {
         <span className="rail-mini__dot" />
         <span className="rail-mini__label">{sections[active]?.label}</span>
       </div>
+
+      <nav
+        className={`case-dock${entered ? " is-in" : ""}${dark ? " case-dock--dark" : ""}`}
+        aria-label="Sections"
+      >
+        <div className="case-dock__pill" ref={pillRef}>
+          <span className="case-dock__name" ref={nameRef}>
+            {sections[active]?.label}
+          </span>
+          {sections.map((s, i) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className={`case-dock__dot${i === active ? " is-active" : ""}`}
+              aria-label={s.label}
+              aria-current={i === active ? "true" : undefined}
+            />
+          ))}
+        </div>
+      </nav>
     </>
   );
 }
