@@ -633,6 +633,15 @@ html {
   fill: currentColor;
   display: block;
   flex-shrink: 0;
+  transition: fill var(--duration-md) var(--ease);
+}
+/* Brand colour on hover — graphite at rest keeps the row calm; the logo lights
+   up in its own colour on intent (set per-icon via --icon-color). On touch
+   (no hover), JS adds .is-flash to each icon in turn as the row enters view,
+   so the colour arrives as a wave instead. */
+.toolkit__item:hover .toolkit__logo,
+.toolkit__item.is-flash .toolkit__logo {
+  fill: var(--icon-color, currentColor);
 }
 .toolkit__name {
   font-family: var(--font-sans);
