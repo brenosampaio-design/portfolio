@@ -11,6 +11,7 @@ import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
 import { ToTop } from "@/components/site/ToTop";
 import { Preloader } from "@/components/site/Preloader";
+import { Providers } from "@/context/AppContext";
 import { profile } from "@/lib/content";
 
 const SHARE_DESCRIPTION =
@@ -19,28 +20,27 @@ const SHARE_DESCRIPTION =
 export const metadata = {
   metadataBase: new URL("https://brenosampaio.com"),
   title: {
-    default: "Breno Sampayo — Product Designer with a technical edge",
-    template: "%s — Breno Sampayo",
+    default: "Breno Sampaio — Product Designer with a technical edge",
+    template: "%s — Breno Sampaio",
   },
-  description:
-    "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.",
+  description: SHARE_DESCRIPTION,
   openGraph: {
-    title: "Breno Sampayo — Product Designer with a technical edge",
+    title: "Breno Sampaio — Product Designer with a technical edge",
     description: SHARE_DESCRIPTION,
     url: "https://brenosampaio.com",
-    siteName: "Breno Sampayo",
+    siteName: "Breno Sampaio",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Breno Sampayo — Product Designer with a technical edge",
+    title: "Breno Sampaio — Product Designer with a technical edge",
     description: SHARE_DESCRIPTION,
   },
 };
 
 export const viewport = {
-  themeColor: "#F9F7F3",
+  themeColor: "#FAFAFA",
   width: "device-width",
   initialScale: 1,
 };
@@ -49,6 +49,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Reads localStorage('theme') or prefers-color-scheme before first paint
+            so the correct data-theme attribute is set with no visible flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme');var p=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(p?'dark':'light'));}catch(e){}})();`,
+          }}
+        />
         {/*
           Brand webfonts. The design system declares these via an @import in
           design-system/tokens/fonts.css (the canonical source). The bundler
@@ -63,11 +70,9 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
         />
-
       </head>
       <body>
-        {/* Structured data — lets search engines understand who this is when
-            someone searches the name. Built from the same real profile content. */}
+        {/* Structured data — lets search engines understand who this is. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -85,23 +90,24 @@ export default function RootLayout({ children }) {
                 addressCountry: "ES",
               },
               knowsLanguage: profile.languages.map((l) => l.name),
-              sameAs: ["https://www.linkedin.com/in/brenosampayo"],
+              sameAs: ["https://www.linkedin.com/in/brenosampaio"],
             }),
           }}
         />
-        {/* Enable JS-gated reveals before first paint — no flash for JS users,
-            and no-JS visitors still get fully visible content. */}
+        {/* Enable JS-gated reveals before first paint. */}
         <Script id="js-flag" strategy="beforeInteractive">
           {`document.documentElement.classList.add('js')`}
         </Script>
-        <Preloader />
-        <SmoothScroll />
-        <ScrollProgress />
-        <a href="#main" className="skip-link">Skip to content</a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <ToTop />
+        <Providers>
+          <Preloader />
+          <SmoothScroll />
+          <ScrollProgress />
+          <a href="#main" className="skip-link">Skip to content</a>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+          <ToTop />
+        </Providers>
       </body>
     </html>
   );

@@ -2639,3 +2639,109 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .preloader__noise { animation: none; }
 }
+
+/* ── Dark mode ─────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --paper:       #0D1017;
+  --silk:        #161A24;
+  --mist:        #1E2433;
+  --pebble:      #2C3549;
+  --stone:       #8A91A8;
+  --graphite:    #B0B8CF;
+  --ink:         #E8ECF6;
+  --clay:        #7B95C4;
+  --clay-dark:   #9AADD8;
+  --clay-light:  #546880;
+  --clay-ring:   rgba(123, 149, 196, 0.20);
+  --clay-wash:   rgba(123, 149, 196, 0.08);
+  --grid-dot:    rgba(255, 255, 255, 0.025);
+}
+
+/* Dock — dark-glass base in dark mode */
+[data-theme="dark"] .dock {
+  background: rgba(13, 16, 23, 0.65);
+  -webkit-backdrop-filter: blur(48px) saturate(160%) brightness(85%);
+  backdrop-filter: blur(48px) saturate(160%) brightness(85%);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 16px 64px rgba(0, 0, 0, 0.40),
+    0  4px 16px rgba(0, 0, 0, 0.28),
+    inset 0  1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.24);
+}
+
+[data-theme="dark"] .dock::before {
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.03) 35%,
+    transparent 65%
+  );
+}
+
+/* Slightly deeper glass when header scrolls over dark portrait sections */
+[data-theme="dark"] .site-header--dark .dock {
+  background: rgba(13, 16, 23, 0.82);
+}
+
+/* ── Header controls: theme toggle + lang switcher ── */
+.dock__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--graphite);
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: color var(--duration-sm) var(--ease), background var(--duration-sm) var(--ease);
+  flex-shrink: 0;
+}
+.theme-btn:hover {
+  color: var(--ink);
+  background: var(--clay-wash);
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.lang-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--stone);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 3px;
+  line-height: 1;
+  transition: color var(--duration-sm) var(--ease), background var(--duration-sm) var(--ease);
+}
+.lang-btn:hover { color: var(--ink); }
+.lang-btn.is-active {
+  color: var(--clay);
+  background: var(--clay-wash);
+}
+
+/* Case study docks in dark mode */
+[data-theme="dark"] .case-dock__pill {
+  background: rgba(13, 16, 23, 0.72);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+[data-theme="dark"] .case-dock__name {
+  background: rgba(13, 16, 23, 0.80);
+  border-color: rgba(255, 255, 255, 0.10);
+}

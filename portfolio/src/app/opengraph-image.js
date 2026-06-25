@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 // Social share card (LinkedIn / WhatsApp / X). Same restraint as the site:
 // cold paper, charcoal ink, one slate accent in Cormorant italic. 1200×630.
-export const alt = "Breno Sampayo — Product designer with a technical edge";
+export const alt = "Breno Sampaio — Product designer with a technical edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

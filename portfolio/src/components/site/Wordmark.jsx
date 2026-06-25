@@ -18,7 +18,7 @@ export function Wordmark() {
     <Link
       href="/"
       className="wordmark"
-      aria-label="Breno Sampayo — home"
+      aria-label="Breno Sampaio — home"
       ref={ref}
       onMouseEnter={replay}
     >
