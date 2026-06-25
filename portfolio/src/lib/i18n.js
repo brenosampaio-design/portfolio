@@ -173,15 +173,15 @@ const es = {
   availability: "Disponible",
 
   hero: {
-    title:  "Diseñador de producto con perspectiva *técnica*.",
+    title:  "Product designer con perspectiva *técnica*.",
     lead:   "Diseño herramientas operativas para equipos de servicio — y me importa cómo se construyen.",
-    cta1:   "Ver trabajo seleccionado",
+    cta1:   "Ver trabajos seleccionados",
     cta2:   "Conocer mi enfoque",
   },
 
   work: {
-    eyebrow:    "Trabajo seleccionado",
-    heading:    "Trabajo seleccionado",
+    eyebrow:    "Trabajos seleccionados",
+    heading:    "Trabajos seleccionados",
     subheading: "Dos casos completos — el problema primero.",
     more:       "Más casos de estudio en proceso — piezas honestas valen más que una galería rellena.",
   },
@@ -195,19 +195,19 @@ const es = {
   process: {
     eyebrow:    "Proceso",
     heading:    "Un proceso claro. Construido para el *impacto*.",
-    subheading: "Una forma estructurada de convertir la complejidad operativa en claridad. Cada paso se apoya en el anterior — útil, usable y listo para lanzar.",
+    subheading: "Una forma estructurada de convertir la complejidad operativa en claridad. Cada paso se apoya en el anterior — útil, usable y listo para entregar.",
   },
 
   principles: {
     eyebrow:    "Principios",
-    heading:    "Decisiones guiadas. *Impacto real*.",
+    heading:    "Elecciones que guían. *Impacto real*.",
     subheading: "Estos principios dan forma a mi manera de pensar, diseñar y colaborar. No son reglas, sino una brújula para un trabajo con sentido.",
   },
 
   about: {
     eyebrow: "Sobre Breno",
-    heading: "Diseñador de producto con mentalidad *estratégica* y *operativa*.",
-    lead:    "Ayudo a equipos a transformar la complejidad en claridad e ideas en productos que crean valor. Mi trabajo está en la intersección de estrategia, experiencia y ejecución.",
+    heading: "Product designer con mentalidad *estratégica* y *operativa*.",
+    lead:    "Ayudo a equipos a convertir la complejidad en claridad e ideas en productos que crean valor. Mi trabajo está en la intersección de estrategia, experiencia y ejecución.",
     cta:     "Leer la historia completa",
     facts: {
       basedIn:       "Ubicación",
@@ -222,7 +222,7 @@ const es = {
   contact: {
     eyebrow:   "Conectemos",
     heading:   "Creemos productos con *claridad* y *propósito*.",
-    body:      "Actualmente estoy disponible para nuevas oportunidades. Si el problema es real, me gustaría escucharlo.",
+    body:      "Estoy disponible para nuevas oportunidades. Si el problema es real, me gustaría escucharlo.",
     email:     "Correo",
     location:  "Ubicación",
     localTime: "Hora local",
@@ -230,13 +230,13 @@ const es = {
 
   footer: {
     location:  "Valencia, España · trabajo remoto",
-    elsewhere: "En otros lados",
+    elsewhere: "En otras redes",
     tagline:   "El buen diseño es silencioso, pero deja huella.",
   },
 
   aboutPage: {
     eyebrow:    "Sobre Breno",
-    heading:    "Diseñador de producto con mentalidad *estratégica* y *operativa*.",
+    heading:    "Product designer con mentalidad *estratégica* y *operativa*.",
     lead:       "Llegué al diseño desde dentro de la operación, no desde fuera mirando hacia adentro — y así sigo trabajando.",
     downloadCv: "Descargar CV",
     facts: {
@@ -252,13 +252,13 @@ const es = {
     storyEyebrow: "El camino",
     storyHeading: "De gestionar operaciones a *diseñarlas*.",
     story: [
-      "Durante años mi trabajo fue la operación en sí — operaciones de servicio, recepción de hotel, trabajo por turnos, el front y back office donde las cosas realmente suceden. Era la persona que tomaba un turno con la mitad del contexto perdido, o que lo entregaba esperando que nada se escapara.",
-      "Ahí fue donde aprendí lo que el software le hace a las personas bajo presión. Una buena herramienta desaparece y te deja hacer el trabajo. Una mala se convierte en una cosa más que gestionar. Empecé a diseñar porque quería construir la primera.",
-      "Hoy trabajo como diseñador de producto con sensibilidad hacia la implementación: pienso en sistemas, construyo y uso sistemas de diseño, y trabajo con IA para avanzar más rápido en investigación, estructura e iteración — manteniendo el criterio de diseño como propio. Obtuve el Google UX Design Certificate por el camino, pero la base son los años que pasé dentro de los problemas que ahora diseño.",
+      "Durante años mi trabajo fue la operación en sí — operaciones de servicio, recepción de hotel, trabajo por turnos, el front y back office donde las cosas realmente pasan. Era la persona que tomaba un turno con la mitad del contexto faltando, o que lo entregaba esperando que nada se escapara.",
+      "Ahí aprendí lo que el software le hace a las personas bajo presión. Una buena herramienta desaparece y te deja hacer el trabajo. Una mala se convierte en una cosa más que gestionar. Empecé a diseñar porque quería construir la primera.",
+      "Hoy trabajo como product designer con sensibilidad hacia la implementación: pienso en sistemas, construyo y uso design systems, y trabajo con IA para avanzar más rápido en investigación, estructura e iteración — manteniendo mi propio criterio de diseño. Obtuve el Google UX Design Certificate por el camino, pero la base son los años que pasé dentro de los problemas que ahora diseño.",
       "Leo y trabajo en portugués (nativo), español (fluido), francés (profesional), italiano (intermedio) e inglés. Estoy basado en {location}, trabajando de forma remota, y actualmente en transición — abierto a roles de producto y colaboraciones donde los problemas son reales.",
     ],
-    ctaWork:    "Ver trabajo seleccionado",
-    ctaContact: "Ponerse en contacto",
+    ctaWork:    "Ver trabajos seleccionados",
+    ctaContact: "Escribir",
   },
 
   labels: {
@@ -286,13 +286,13 @@ const es = {
     {
       slug: "service-operations", category: "Caso conceptual",
       title: "Service Operations Dashboard",
-      problem: "Una vista operativa de lo abierto al cambio de turno, para que la información deje de perderse entre herramientas, papel y memoria.",
-      role: "Diseñador único", year: "2026", href: "/work/service-operations",
+      problem: "Una vista operativa de lo que está abierto al cambio de turno, para que la información deje de perderse entre herramientas, papel y memoria.",
+      role: "Diseñador en solitario", year: "2026", href: "/work/service-operations",
     },
     {
       slug: "triageai", category: "Caso conceptual", title: "TriageAI",
-      problem: "Ingesta de solicitudes multilingüe controlada por humanos — la IA estructura y prioriza, un humano aprueba cada respuesta que sale.",
-      role: "Diseñador único", year: "2026", href: "/work/triageai",
+      problem: "Gestión de solicitudes multilingüe controlada por personas — la IA estructura y prioriza, un humano aprueba cada respuesta antes de enviarla.",
+      role: "Diseñador en solitario", year: "2026", href: "/work/triageai",
     },
     {
       category: "Próximamente", title: "Trabajo operativo",
@@ -301,26 +301,26 @@ const es = {
     },
     {
       category: "Próximamente", title: "Sistemas de diseño",
-      problem: "Un caso centrado en sistemas ya viene — componentes, tokens y las reglas entre ellos.",
+      problem: "Un caso centrado en sistemas en camino — componentes, tokens y las reglas entre ellos.",
       role: "Documentando", upcoming: true,
     },
   ],
 
   approachItems: [
-    { title: "Entender el trabajo en profundidad", description: "Comienzo dentro de la operación — comportamientos, restricciones y dónde las cosas realmente fallan — antes de proponer nada." },
+    { title: "Entender el trabajo en profundidad", description: "Empiezo dentro de la operación — comportamientos, restricciones y dónde las cosas realmente fallan — antes de proponer nada." },
     { title: "Anclar en el contexto real", description: "Alineo cada decisión con cómo funciona realmente el negocio y qué es viable, no con cómo queda en una presentación." },
     { title: "Pensar en sistemas, no en pantallas", description: "Diseño la estructura primero — arquitectura de información, flujos, estados y reglas — para que se mantenga coherente a medida que crece." },
-    { title: "Diseñar con claridad y contención", description: "Simplifico sin simplificar de más. Jerarquía, contenido e interacción sobre decoración — claro, no ingenioso." },
-    { title: "Construir pensando en la implementación", description: "Diseño sabiendo que tiene que funcionar, y trabajo con ingeniería en los casos extremos y el handoff para que se construya bien." },
+    { title: "Diseñar con claridad y contención", description: "Simplifico sin empobrecer. Jerarquía, contenido e interacción sobre decoración — claro, no ingenioso." },
+    { title: "Construir pensando en la implementación", description: "Diseño sabiendo que tiene que funcionar, y trabajo con ingeniería en los casos límite y el handoff para que se construya bien." },
   ],
 
   processSteps: [
-    { title: "Descubrir", icon: "search",       description: "Entender la operación, las personas y las restricciones antes de proponer nada.",                        items: ["Hablar con quienes hacen el trabajo", "Mapear dónde vive la información", "Encontrar los puntos de fallo", "Separar evidencia de suposición"] },
-    { title: "Definir",   icon: "frame",        description: "Convertir el caos en un problema claro que vale la pena resolver, con alcance explícito.",              items: ["Definir el problema real", "Establecer qué entra y qué queda fuera", "Nombrar las restricciones", "Decidir cómo se ve el éxito"] },
-    { title: "Sistemas",  icon: "sitemap",      description: "Diseñar la estructura antes que las pantallas — las reglas que mantienen la coherencia.",               items: ["Arquitectura de información", "Flujos principales", "Estados y reglas", "Tokens y componentes"] },
-    { title: "Interfaz",  icon: "layout",       description: "Hacerlo claro, rápido y honesto — diseñado para el peor momento, no para la demo.",                    items: ["Jerarquía y contraste", "Guiado sobre libre", "Todos los estados, no solo el camino feliz", "Lenguaje claro"] },
-    { title: "Validar",   icon: "check-circle", description: "Testear los supuestos con personas reales e iterar en lo que falla.",                                  items: ["Mostrar a usuarios reales", "Observar comportamientos, no opiniones", "Iterar en lo que falla", "Mantener lo que funciona"] },
-    { title: "Entregar",  icon: "send",         description: "Hacer el handoff para que se construya como se diseñó — build-aware, con los casos extremos documentados.", items: ["Specs conscientes del build", "Trabajar con ingeniería", "Casos extremos documentados", "Apoyo durante la implementación"] },
+    { title: "Descubrir", icon: "search",       description: "Entender la operación, las personas y las restricciones antes de proponer nada.",         items: ["Hablar con quienes hacen el trabajo", "Mapear dónde vive la información", "Encontrar los puntos de fallo", "Separar evidencia de suposición"] },
+    { title: "Definir",   icon: "frame",        description: "Convertir el caos en un problema claro que vale la pena resolver, con alcance explícito.", items: ["Definir el problema real", "Establecer qué entra y qué queda fuera", "Nombrar las restricciones", "Decidir cómo se ve el éxito"] },
+    { title: "Sistemas",  icon: "sitemap",      description: "Diseñar la estructura antes que las pantallas — las reglas que mantienen la coherencia.",   items: ["Arquitectura de información", "Flujos principales", "Estados y reglas", "Tokens y componentes"] },
+    { title: "Interfaz",  icon: "layout",       description: "Hacerlo claro, rápido y honesto — diseñado para el peor momento, no para la demo.",         items: ["Jerarquía y contraste", "Guiado, no libre", "Todos los estados, no solo el camino feliz", "Lenguaje claro"] },
+    { title: "Validar",   icon: "check-circle", description: "Probar los supuestos con personas reales e iterar en lo que falla.",                        items: ["Mostrarlo a usuarios reales", "Observar comportamientos, no opiniones", "Iterar en lo que falla", "Mantener lo que funciona"] },
+    { title: "Entregar",  icon: "send",         description: "Hacer el handoff para que se construya como se diseñó, con los casos límite documentados.",  items: ["Specs orientadas al build", "Trabajar con ingeniería", "Casos límite documentados", "Acompañar durante la implementación"] },
   ],
 
   principlesItems: [
@@ -329,7 +329,7 @@ const es = {
     { annotation: "渋 shibui", principle: "Contención con intención",      description: "Elijo menos, pero con precisión — la contención es una característica, no una carencia." },
     { annotation: "",         principle: "Diseñar para el peor momento",  description: "La prueba real no es la demo — es una persona cansada a las 3am. Diseño para ellos." },
     { annotation: "",         principle: "Pensamiento sistémico",         description: "Veo el todo y diseño cada parte para que pertenezca y sea coherente." },
-    { annotation: "",         principle: "Craft consciente del build",    description: "Me importa cómo se construye, porque eso decide si se entrega como fue diseñado." },
+    { annotation: "",         principle: "Craft consciente de la implementación", description: "Me importa cómo se construye, porque eso decide si se entrega como fue diseñado." },
   ],
 };
 
@@ -339,7 +339,7 @@ const fr = {
   availability: "Disponible",
 
   hero: {
-    title:  "Designer produit avec une sensibilité *technique*.",
+    title:  "Product designer avec une sensibilité *technique*.",
     lead:   "Je conçois des outils opérationnels pour les équipes de service — et je me soucie de la façon dont ils sont construits.",
     cta1:   "Voir les travaux",
     cta2:   "Découvrir mon approche",
@@ -349,7 +349,7 @@ const fr = {
     eyebrow:    "Travaux sélectionnés",
     heading:    "Travaux sélectionnés",
     subheading: "Deux études de cas complètes — le problème avant tout.",
-    more:       "D'autres études de cas en cours — des pièces honnêtes valent mieux qu'une grille garnie.",
+    more:       "D'autres études de cas en cours — des pièces honnêtes valent mieux qu'une grille gonflée.",
   },
 
   approach: {
@@ -366,13 +366,13 @@ const fr = {
 
   principles: {
     eyebrow:    "Principes",
-    heading:    "Des choix guidés. *Un impact réel*.",
+    heading:    "Des choix qui guident. *Un impact réel*.",
     subheading: "Ces principes façonnent ma façon de penser, de concevoir et de collaborer. Pas des règles, mais une boussole pour un travail qui a du sens.",
   },
 
   about: {
     eyebrow: "À propos de Breno",
-    heading: "Designer produit avec une vision *stratégique* et *opérationnelle*.",
+    heading: "Product designer avec une vision *stratégique* et *opérationnelle*.",
     lead:    "J'aide les équipes à transformer la complexité en clarté et les idées en produits qui créent de la valeur. Mon travail se situe à l'intersection de la stratégie, de l'expérience et de l'exécution.",
     cta:     "Lire l'histoire complète",
     facts: {
@@ -402,7 +402,7 @@ const fr = {
 
   aboutPage: {
     eyebrow:    "À propos de Breno",
-    heading:    "Designer produit avec une vision *stratégique* et *opérationnelle*.",
+    heading:    "Product designer avec une vision *stratégique* et *opérationnelle*.",
     lead:       "Je suis venu au design depuis l'intérieur des opérations, pas de l'extérieur — et c'est encore ainsi que je travaille.",
     downloadCv: "Télécharger le CV",
     facts: {
@@ -418,9 +418,9 @@ const fr = {
     storyEyebrow: "Le parcours",
     storyHeading: "De la gestion des opérations à leur *conception*.",
     story: [
-      "Pendant des années, mon travail c'était l'opération elle-même — la réception d'hôtel, le travail en équipe, les shifts, le front et back office là où les choses se passent vraiment. J'étais la personne qui prenait un shift avec la moitié du contexte manquant, ou qui le remettait en espérant que rien ne tombe entre les mailles.",
+      "Pendant des années, mon travail, c'était l'opération elle-même — la réception d'hôtel, le travail en équipe, les shifts, le front et back office là où les choses se passent vraiment. J'étais la personne qui prenait un shift avec la moitié du contexte manquant, ou qui le remettait en espérant que rien ne passe entre les mailles.",
       "C'est là que j'ai appris ce que le logiciel fait aux gens sous pression. Un bon outil disparaît et vous laisse faire le travail. Un mauvais devient une chose de plus à gérer. J'ai commencé à concevoir parce que je voulais construire le premier.",
-      "Aujourd'hui, je travaille comme designer produit avec une sensibilité à l'implémentation : je pense en systèmes, je construis et utilise des systèmes de design, et je travaille avec l'IA pour avancer plus vite dans la recherche, la structure et l'itération — tout en gardant le jugement design qui m'appartient. J'ai obtenu le Google UX Design Certificate en chemin, mais la fondation c'est les années passées à l'intérieur des problèmes que je conçois maintenant.",
+      "Aujourd'hui, je travaille comme product designer avec une sensibilité à l'implémentation : je pense en systèmes, je construis et utilise des systèmes de design, et je travaille avec l'IA pour avancer plus vite dans la recherche, la structure et l'itération — tout en gardant le jugement design qui m'appartient. J'ai obtenu le Google UX Design Certificate en chemin, mais le fondement, c'est les années passées à l'intérieur des problèmes que je conçois maintenant.",
       "Je lis et travaille en portugais (langue maternelle), espagnol (courant), français (professionnel), italien (intermédiaire) et anglais. Je suis basé à {location}, en télétravail, et actuellement en transition — ouvert aux rôles produit et aux collaborations où les problèmes sont réels.",
     ],
     ctaWork:    "Voir les travaux",
@@ -453,12 +453,12 @@ const fr = {
       slug: "service-operations", category: "Cas conceptuel",
       title: "Service Operations Dashboard",
       problem: "Une vue opérationnelle de ce qui est ouvert à la passation de poste, pour que l'information cesse de se perdre entre les outils, le papier et la mémoire.",
-      role: "Designer unique", year: "2026", href: "/work/service-operations",
+      role: "Seul designer", year: "2026", href: "/work/service-operations",
     },
     {
       slug: "triageai", category: "Cas conceptuel", title: "TriageAI",
-      problem: "Ingestion multilingue contrôlée par l'humain — l'IA structure et priorise, un humain approuve chaque réponse qui sort.",
-      role: "Designer unique", year: "2026", href: "/work/triageai",
+      problem: "Gestion multilingue des demandes avec contrôle humain — l'IA structure et priorise, un humain valide chaque réponse avant envoi.",
+      role: "Seul designer", year: "2026", href: "/work/triageai",
     },
     {
       category: "Bientôt disponible", title: "Travail opérationnel",
@@ -481,21 +481,21 @@ const fr = {
   ],
 
   processSteps: [
-    { title: "Découvrir", icon: "search",       description: "Comprendre l'opération, les personnes et les contraintes avant de proposer quoi que ce soit.",              items: ["Parler aux gens qui font le travail", "Cartographier où vit l'information", "Trouver les points de rupture", "Séparer preuves et suppositions"] },
-    { title: "Cadrer",    icon: "frame",        description: "Transformer le chaos en un problème clair qui vaut la peine d'être résolu, avec un périmètre explicite.",   items: ["Définir le vrai problème", "Établir ce qui est dedans et dehors", "Nommer les contraintes", "Décider à quoi ressemble le succès"] },
-    { title: "Systèmes",  icon: "sitemap",      description: "Concevoir la structure avant les écrans — les règles qui maintiennent la cohérence.",                       items: ["Architecture de l'information", "Flux principaux", "États et règles", "Tokens et composants"] },
-    { title: "Interface", icon: "layout",       description: "Le rendre clair, rapide et honnête — conçu pour le pire moment, pas pour la démo.",                        items: ["Hiérarchie et contraste", "Guidé plutôt que libre", "Tous les états, pas seulement le bon chemin", "Langage simple"] },
-    { title: "Valider",   icon: "check-circle", description: "Tester les hypothèses avec de vraies personnes et itérer sur ce qui casse.",                               items: ["Le mettre devant de vrais utilisateurs", "Observer les comportements, pas les opinions", "Itérer sur ce qui casse", "Garder ce qui tient"] },
-    { title: "Livrer",    icon: "send",         description: "Faire le handoff pour que ça soit construit comme conçu — build-aware, avec les cas limites écrits.",       items: ["Specs conscientes du build", "Travailler avec l'ingénierie", "Cas limites documentés", "Support pendant l'implémentation"] },
+    { title: "Découvrir", icon: "search",       description: "Comprendre l'opération, les personnes et les contraintes avant de proposer quoi que ce soit.",            items: ["Parler aux gens qui font le travail", "Cartographier où vit l'information", "Trouver les points de rupture", "Séparer preuves et suppositions"] },
+    { title: "Cadrer",    icon: "frame",        description: "Transformer le chaos en un problème clair qui vaut la peine d'être résolu, avec un périmètre explicite.", items: ["Définir le vrai problème", "Établir ce qui est dedans et dehors", "Nommer les contraintes", "Décider à quoi ressemble le succès"] },
+    { title: "Systèmes",  icon: "sitemap",      description: "Concevoir la structure avant les écrans — les règles qui maintiennent la cohérence.",                     items: ["Architecture de l'information", "Flux principaux", "États et règles", "Tokens et composants"] },
+    { title: "Interface", icon: "layout",       description: "Le rendre clair, rapide et honnête — conçu pour le pire moment, pas pour la démo.",                      items: ["Hiérarchie et contraste", "Guidé plutôt que libre", "Tous les états, pas seulement le bon chemin", "Langage simple"] },
+    { title: "Valider",   icon: "check-circle", description: "Tester les hypothèses avec de vraies personnes et itérer sur ce qui casse.",                             items: ["Le mettre devant de vrais utilisateurs", "Observer les comportements, pas les opinions", "Itérer sur ce qui casse", "Garder ce qui tient"] },
+    { title: "Livrer",    icon: "send",         description: "Faire le handoff pour que ça soit construit comme conçu, avec les cas limites documentés.",               items: ["Spécifications orientées build", "Travailler avec l'ingénierie", "Cas limites documentés", "Support pendant l'implémentation"] },
   ],
 
   principlesItems: [
-    { annotation: "間 ma",    principle: "Clarté sur le bruit",          description: "J'enlève ce qui est inutile pour que ce qui compte puisse s'exprimer." },
-    { annotation: "",         principle: "L'utilité avant tout",         description: "Je conçois avec un but, en résolvant de vrais problèmes pour de vraies personnes." },
-    { annotation: "渋 shibui", principle: "Retenue avec intention",       description: "Je choisis moins, mais avec précision — la retenue est une qualité, pas un manque." },
+    { annotation: "間 ma",    principle: "Clarté sur le bruit",           description: "J'enlève ce qui est inutile pour que ce qui compte puisse s'exprimer." },
+    { annotation: "",         principle: "L'utilité avant tout",          description: "Je conçois avec un but, en résolvant de vrais problèmes pour de vraies personnes." },
+    { annotation: "渋 shibui", principle: "Retenue avec intention",        description: "Je choisis moins, mais avec précision — la retenue est une qualité, pas un manque." },
     { annotation: "",         principle: "Concevoir pour le pire moment", description: "Le vrai test n'est pas la démo — c'est une personne fatiguée à 3h du matin. Je conçois pour elle." },
-    { annotation: "",         principle: "Pensée systémique",            description: "Je vois l'ensemble, puis je conçois chaque partie pour qu'elle appartienne et reste cohérente." },
-    { annotation: "",         principle: "Craft conscient du build",     description: "Je me soucie de la façon dont c'est construit, parce que c'est ce qui décide si ça est livré comme conçu." },
+    { annotation: "",         principle: "Pensée systémique",             description: "Je vois l'ensemble, puis je conçois chaque partie pour qu'elle appartienne et reste cohérente." },
+    { annotation: "",         principle: "Craft conscient de l'implémentation", description: "Je me soucie de la façon dont c'est construit, parce que c'est ce qui décide si c'est livré comme conçu." },
   ],
 };
 

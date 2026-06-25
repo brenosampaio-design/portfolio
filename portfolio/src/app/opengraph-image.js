@@ -19,7 +19,7 @@ async function loadFont(family, text) {
 }
 
 export default async function Image() {
-  const sans = "Product designer with a edge. BRENO SAMPAYO brenosampaio.com · Valencia, Spain";
+  const sans = "Product designer with a technical edge. BRENO SAMPAIO brenosampaio.com · Valencia, Spain";
 
   let fonts;
   try {
@@ -54,7 +54,7 @@ export default async function Image() {
         <div style={{ display: "flex", alignItems: "center" }}>
           <div style={{ width: 28, height: 2, backgroundColor: "#3C4A63", marginRight: 18 }} />
           <div style={{ display: "flex", fontSize: 24, fontWeight: 500, letterSpacing: 8, color: "#3C4A63" }}>
-            BRENO SAMPAYO
+            BRENO SAMPAIO
           </div>
         </div>
 
