@@ -125,6 +125,7 @@ export function ServiceOperationsContent() {
       {/* ── Role, scope & constraints ────────────────────────── */}
       <section id="sec-scope" data-label="Scope" className="container section case-section" aria-labelledby="scope">
         <Collapsible
+          defaultOpen
           header={
             <div className="case-section__head">
               <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.scope} />
@@ -169,6 +170,7 @@ export function ServiceOperationsContent() {
       {/* ── Process ──────────────────────────────────────────── */}
       <section id="sec-process" data-label="Process" className="container section case-section" aria-labelledby="process">
         <Collapsible
+          defaultOpen
           header={
             <div className="case-section__head">
               <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.process} />
@@ -203,6 +205,7 @@ export function ServiceOperationsContent() {
       {/* ── The design & system ──────────────────────────────── */}
       <section id="sec-design" data-label="Design" className="container section case-section" aria-labelledby="design">
         <Collapsible
+          defaultOpen
           header={
             <div className="case-section__head">
               <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.design} />
@@ -299,6 +302,7 @@ export function ServiceOperationsContent() {
       {/* ── Outcome & reflection ─────────────────────────────── */}
       <section id="sec-outcome" data-label="Outcome" className="container section case-section" aria-labelledby="outcome">
         <Collapsible
+          defaultOpen
           header={
             <div className="case-section__head">
               <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.outcome} />

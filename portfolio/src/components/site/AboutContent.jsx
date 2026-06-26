@@ -6,7 +6,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { Scramble } from "@/components/site/Scramble";
 import { profile } from "@/lib/content";
 import { useLang } from "@/context/AppContext";
-import { getT, renderTitle } from "@/lib/i18n";
+import { getT } from "@/lib/i18n";
+import { renderTitle } from "@/lib/renderTitle";
 
 export function AboutContent() {
   const { lang } = useLang();
