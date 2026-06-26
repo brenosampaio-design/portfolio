@@ -27,6 +27,7 @@ export function ScrollProgress() {
   const [entered, setEntered] = useState(false);
   const [dark, setDark] = useState(false);
   const pathname = usePathname();
+  const isCaseStudy = pathname.startsWith("/work/");
 
   // Collect sections whenever the route changes
   useEffect(() => {
@@ -168,7 +169,7 @@ export function ScrollProgress() {
 
   return (
     <>
-      <nav className="rail" aria-hidden="true">
+      <nav className="rail" aria-hidden="true" style={isCaseStudy ? { display: "none" } : undefined}>
         <span className="rail__line" />
         {sections.map((s, i) => (
           <a
@@ -186,13 +187,13 @@ export function ScrollProgress() {
         </span>
       </nav>
 
-      <div className="rail-mini" aria-hidden="true">
+      <div className="rail-mini" aria-hidden="true" style={isCaseStudy ? { display: "none" } : undefined}>
         <span className="rail-mini__dot" />
         <span className="rail-mini__label">{sections[active]?.label}</span>
       </div>
 
       <nav
-        className={`case-dock${entered ? " is-in" : ""}${dark ? " case-dock--dark" : ""}`}
+        className={`case-dock${entered ? " is-in" : ""}${dark ? " case-dock--dark" : ""}${isCaseStudy ? " case-dock--case" : ""}`}
         aria-label="Sections"
       >
         <div className="case-dock__pill" ref={pillRef}>

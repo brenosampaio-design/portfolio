@@ -1,6 +1,7 @@
-﻿// ── Translations — EN / ES / FR ──────────────────────────────────────────
+﻿// ── Translations ─────────────────────────────────────────────────────────
 // *word* inside a string = <span className="accent"> (italic serif).
 // Japanese annotations (間, 渋) stay unchanged across languages.
+import { createElement } from 'react';
 
 const en = {
   nav: { work: "Work", about: "About", approach: "Approach", contact: "Contact" },
@@ -985,10 +986,9 @@ const fr = {
 export const i18n = { en, es, fr };
 export function getT(lang) { return i18n[lang] || i18n.en; }
 
-// Splits "*word*" markers into [before, accent, after] fragments for rendering.
 export function renderTitle(str) {
   const parts = str.split(/\*([^*]+)\*/);
   return parts.map((p, i) =>
-    i % 2 === 0 ? p : <span key={i} className="accent">{p}</span>
+    i % 2 === 0 ? p : createElement('span', { key: i, className: 'accent' }, p)
   );
 }

@@ -306,6 +306,12 @@ html {
   .rail-mini { display: none; }
   .case-dock { display: block; }
 }
+
+/* Case study pages — dock shows on all devices (rail is hidden via inline style in ScrollProgress) */
+.case-dock--case {
+  display: block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .case-dock {
     transition: none;

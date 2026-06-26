@@ -13,7 +13,8 @@ import { LocationTime } from "@/components/site/LocationTime";
 import { LocalTime } from "@/components/site/LocalTime";
 import { profile } from "@/lib/content";
 import { useLang } from "@/context/AppContext";
-import { getT, renderTitle } from "@/lib/i18n";
+import { getT } from "@/lib/i18n";
+import { renderTitle } from "@/lib/renderTitle";
 
 export function HomeContent() {
   const { lang } = useLang();
