@@ -1,6 +1,7 @@
 # Generated / heavy — regenerate at home with `npm install` / `npm run build`
 portfolio/node_modules/
 portfolio/.next/
+portfolio/tmp/
 portfolio/out/
 portfolio/build/
 
