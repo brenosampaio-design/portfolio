@@ -37,20 +37,6 @@ export const projects = [
     year: "2026",
     href: "/work/triageai",
   },
-  {
-    category: "Coming soon",
-    title: "Operational work",
-    problem: "Turning years of real service-operations work into proper case studies.",
-    role: "Documenting",
-    upcoming: true,
-  },
-  {
-    category: "Coming soon",
-    title: "Design systems",
-    problem: "A systems-focused case is on the way — components, tokens and the rules between them.",
-    role: "Documenting",
-    upcoming: true,
-  },
 ];
 
 // Process — Breno's own working method (not the mockup's copy). Problem-first,

@@ -32,7 +32,7 @@ function MoonIcon() {
 export function Header() {
   const headerRef = useRef(null);
   const { theme, toggle } = useTheme();
-  const { lang, setLang } = useLang();
+  const { lang } = useLang();
   const t = getT(lang);
 
   useEffect(() => {
@@ -94,18 +94,6 @@ export function Header() {
             {theme === "dark" ? <SunIcon /> : <MoonIcon />}
           </button>
 
-          <div className="lang-switcher" role="group" aria-label="Language">
-            {["en", "es", "fr"].map((l) => (
-              <button
-                key={l}
-                className={`lang-btn${lang === l ? " is-active" : ""}`}
-                onClick={() => setLang(l)}
-                aria-pressed={lang === l}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </header>

@@ -129,16 +129,6 @@ const en = {
       problem: "Human-controlled AI intake for multilingual requests — AI structures and ranks, a human approves every reply that goes out.",
       role: "Sole designer", year: "2026", href: "/work/triageai",
     },
-    {
-      category: "Coming soon", title: "Operational work",
-      problem: "Turning years of real service-operations work into proper case studies.",
-      role: "Documenting", upcoming: true,
-    },
-    {
-      category: "Coming soon", title: "Design systems",
-      problem: "A systems-focused case is on the way — components, tokens and the rules between them.",
-      role: "Documenting", upcoming: true,
-    },
   ],
 
   approachItems: [
@@ -230,7 +220,7 @@ const en = {
         tradeoffs:  { label: "Trade-offs & next steps.", text: "I kept this concept focused on the handover problem. Analytics, reporting and PMS integration were deliberately left out — they matter, but building them before validating the core flow would add complexity the product hasn’t earned yet. The next step is testing the guided log and the “open now” view with a real shift, then deciding what to build around them." },
         reflection: { label: "Reflection.", text: "Designing for tired people at 3am taught me that UX isn’t about making things pretty or modern. Sometimes the best design is the one that reduces mental effort, removes ambiguity, and helps a person do the right thing even when they’re at their limit." },
         different:  { label: "What I’d do differently.", text: "If I were to redo this, I’d test the logging flow first, before investing in the dashboard — the dashboard assumes adoption that the log hasn’t proven yet. Starting with the smallest testable unit would validate the core behaviour earlier and inform whether the full view earns its complexity." },
-        ai:         { label: "On AI-assisted workflow.", text: "I used AI to move faster through research synthesis, structuring the case, and iterating on copy and layout. The problem framing, the design decisions and their trade-offs, and the judgment on what to leave out stayed mine. AI compressed the busywork — it didn’t make the calls." },
+        ai:         { label: "On AI-assisted workflow.", text: "I used Claude to move faster through structuring the case, iterating on copy, and refining how I described the problem. Specifically: drafting section text, iterating on the language of design decisions, and checking the framing of operational constraints. What stayed mine: the framing rooted in lived operational experience, the system logic and information architecture, the trade-off decisions on what was essential vs. what added complexity without earned benefit, and the judgment on what to cut. AI compressed the writing work — every design decision reflected here was mine." },
       },
       constraints: [
         { icon: "globe",    term: "Multilingual teams",           desc: "Staff and guests may speak ES, PT, FR or EN — the interface has to stay simple, objective and unambiguous across languages." },
@@ -297,7 +287,7 @@ const en = {
         impact:     { label: "Expected impact — to validate.", text: "Urgent cases picked up faster; fewer requests lost across channels and languages; more consistent replies; fewer wrong responses reaching customers, because low-confidence items are caught. Hypotheses, not results." },
         tradeoffs:  { label: "Trade-offs & next steps.", text: "I kept this focused on the triage-and-approve loop. Auto-resolution, analytics dashboards and CRM integration were left out on purpose — they matter, but automating further before proving people trust the confidence signals would build speed on an unverified foundation. Next: test the confidence signals and the approval gate with a real team, and check whether the explanation and back-translation layer actually makes verification faster." },
         reflection: { label: "Reflection.", text: "Designing AI well isn’t about making it look magical — it’s about keeping a human in control of decisions that reach real people, especially across languages where a wrong word lands differently. The honesty about when the AI is unsure is the design, not a flaw in it." },
-        ai:         { label: "On AI-assisted workflow.", text: "I used AI to move faster through research synthesis, structuring the case, and iterating on copy and layout. The framing, the interaction model, the trade-offs and what to leave out stayed mine. AI compressed the busywork — it didn’t make the calls." },
+        ai:         { label: "On AI-assisted workflow.", text: "I used Claude to move faster through research synthesis, structuring the case, and iterating on copy. Specifically: drafting the evidence framing, stress-testing the interaction model logic in writing, and iterating the language on each design decision. What stayed mine: the problem framing, the human-in-the-loop model itself, the trade-off calls on what to include vs. leave out, and the judgment on when the concept was done. AI compressed the writing work — it didn’t make the design calls." },
       },
       constraints: [
         { icon: "alert",        term: "The AI will be wrong sometimes", desc: "A triage tool that hides that is dangerous. Wrong classifications have to be visible and easy to catch, not buried under a confident UI." },
@@ -311,6 +301,7 @@ const en = {
         { name: "Nothing leaves without a human. The default action is review, not send.", problem: "Full automation is faster, but a wrong auto-reply — wrong language, tone, or answer — is expensive and hard to walk back.", decision: "The AI drafts and proposes; it never sends. A human approves every outgoing reply. The primary action is review, not send.", tradeoff: "Gave up end-to-end automation speed for control and reversibility. One wrong send to a customer outweighs the seconds saved by automating it away." },
         { name: "The AI explains itself in a glance, so the human verifies instead of re-reading.", problem: "A human can’t approve what they can’t understand. A black box forces blind trust or a full re-read — which kills the time the tool was meant to save.", decision: "Each case shows why: detected language, intent, what triggered the urgency, and what’s still missing. Verification becomes a glance.", tradeoff: "Gave up screen simplicity for an explanation layer. More on screen — but it’s what makes fast, confident approval possible." },
         { name: "Language is detected and made explicit, and the reviewer can verify across it.", problem: "A reviewer may not read the customer’s language well. Approving a reply you can’t fully read is blind trust wearing a different hat.", decision: "Detect and label the language. Show the drafted reply in the customer’s language alongside a back-translation in the reviewer’s, so meaning and tone are verified before approval.", tradeoff: "More interface, more processing per case. But approving a message you can’t read defeats the whole human-control principle — so the cost is worth it." },
+        { name: "Confidence signals are designed for color blindness — status is never communicated by color alone.", problem: "Confidence levels expressed only through color (yellow = low, green = high) are invisible to color-blind reviewers and fail WCAG 2.1 AA — a serious problem for a tool whose entire purpose is to catch errors before they reach a customer.", decision: "Each confidence signal pairs a text label and icon with a color token that meets 4.5:1 minimum contrast ratio on all background combinations. Status is always communicated through label + icon + color — never color alone.", tradeoff: "More tokens to keep consistent across the design system. Worth it: a triage tool the reviewer can’t reliably read defeats the whole point of surfacing AI uncertainty." },
       ],
       evidence: [
         { num: 65, prefix: "~", suffix: "%", desc: "of customers now expect faster responses than they did five years ago." },
@@ -455,16 +446,6 @@ const es = {
       slug: "triageai", category: "Caso conceptual", title: "TriageAI",
       problem: "Gestión de solicitudes multilingüe controlada por personas — la IA estructura y prioriza, un humano aprueba cada respuesta antes de enviarla.",
       role: "Diseñador en solitario", year: "2026", href: "/work/triageai",
-    },
-    {
-      category: "Próximamente", title: "Trabajo operativo",
-      problem: "Años de trabajo real en operaciones de servicio convertidos en casos de estudio.",
-      role: "Documentando", upcoming: true,
-    },
-    {
-      category: "Próximamente", title: "Sistemas de diseño",
-      problem: "Un caso centrado en sistemas en camino — componentes, tokens y las reglas entre ellos.",
-      role: "Documentando", upcoming: true,
     },
   ],
 
@@ -782,16 +763,6 @@ const fr = {
       slug: "triageai", category: "Cas conceptuel", title: "TriageAI",
       problem: "Gestion multilingue des demandes avec contrôle humain — l'IA structure et priorise, un humain valide chaque réponse avant envoi.",
       role: "Seul designer", year: "2026", href: "/work/triageai",
-    },
-    {
-      category: "Bientôt disponible", title: "Travail opérationnel",
-      problem: "Des années de vrai travail en opérations de service transformées en études de cas.",
-      role: "En cours", upcoming: true,
-    },
-    {
-      category: "Bientôt disponible", title: "Systèmes de design",
-      problem: "Un cas centré sur les systèmes arrive — composants, tokens et les règles entre eux.",
-      role: "En cours", upcoming: true,
     },
   ],
 
