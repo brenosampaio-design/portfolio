@@ -19,7 +19,7 @@ async function loadFont(family, text) {
 }
 
 export default async function Image() {
-  const sans = "Product designer with a technical edge. BRENO SAMPAIO brenosampaio.com · Valencia, Spain";
+  const sans = "Product designer with a technical edge. BRENO SAMPAIO brenosampaio.vercel.app · Valencia, Spain";
 
   let fonts;
   try {
@@ -69,7 +69,7 @@ export default async function Image() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 26, color: "#857F79" }}>
-          <div style={{ display: "flex" }}>brenosampaio.com</div>
+          <div style={{ display: "flex" }}>brenosampaio.vercel.app</div>
           <div style={{ display: "flex" }}>Valencia, Spain</div>
         </div>
       </div>
