@@ -1,0 +1,84 @@
+{
+  "$description": "Semantic tokens — Light mode. All values are aliases to primitives. Consume these, never primitives directly.",
+  "color": {
+    "action": {
+      "primary":       { "$type": "color", "$value": "{terracota.500}", "$description": "Primary CTA background — #9C3B31" },
+      "primary-hover": { "$type": "color", "$value": "{terracota.400}", "$description": "Hover — #B04234" },
+      "primary-active":{ "$type": "color", "$value": "{terracota.600}", "$description": "Active / pressed" },
+      "primary-text":  { "$type": "color", "$value": "{white}",        "$description": "Text on primary action bg" },
+      "secondary":     { "$type": "color", "$value": "{terracota.50}", "$description": "Ghost/outlined action bg" },
+      "secondary-text":{ "$type": "color", "$value": "{terracota.600}","$description": "Text on secondary action" },
+      "destructive":   { "$type": "color", "$value": "{error.500}",    "$description": "Destructive action bg" },
+      "destructive-text":{ "$type": "color","$value": "{white}",       "$description": "Text on destructive action" },
+      "disabled":      { "$type": "color", "$value": "{neutral.200}",  "$description": "Disabled action bg" },
+      "disabled-text": { "$type": "color", "$value": "{neutral.400}",  "$description": "Text on disabled action" }
+    },
+    "surface": {
+      "page":      { "$type": "color", "$value": "{sand.50}",     "$description": "Desktop manager canvas — #F9F7F3" },
+      "field":     { "$type": "color", "$value": "{neutral.50}",  "$description": "Field mobile canvas — #F4F5F6 (cold, high contrast sun)" },
+      "elevated":  { "$type": "color", "$value": "{white}",       "$description": "Cards, modals, overlays" },
+      "sunken":    { "$type": "color", "$value": "{sand.100}",    "$description": "Input bg, code blocks, sunken areas" },
+      "overlay":   { "$type": "color", "$value": "{neutral.900}", "$description": "Scrim / modal backdrop (use at opacity 0.5)" },
+      "inverse":   { "$type": "color", "$value": "{neutral.900}", "$description": "Tooltip, dark snackbar bg" }
+    },
+    "text": {
+      "primary":     { "$type": "color", "$value": "{neutral.900}",  "$description": "Primary body text — #111216" },
+      "secondary":   { "$type": "color", "$value": "{neutral.600}",  "$description": "Captions, metadata, supporting text" },
+      "tertiary":    { "$type": "color", "$value": "{neutral.400}",  "$description": "Placeholder, ghost" },
+      "disabled":    { "$type": "color", "$value": "{neutral.300}",  "$description": "Disabled text" },
+      "inverse":     { "$type": "color", "$value": "{white}",        "$description": "Text on dark / inverse surfaces" },
+      "on-action":   { "$type": "color", "$value": "{white}",        "$description": "Text that lives on an action-colored bg" },
+      "link":        { "$type": "color", "$value": "{info.500}",     "$description": "Hyperlinks" },
+      "link-hover":  { "$type": "color", "$value": "{info.400}",     "$description": "Hyperlink hover" },
+      "error":       { "$type": "color", "$value": "{error.700}",    "$description": "Error messages" },
+      "success":     { "$type": "color", "$value": "{sage.700}",     "$description": "Success messages" },
+      "warning":     { "$type": "color", "$value": "{warning.700}",  "$description": "Warning messages" }
+    },
+    "border": {
+      "default":  { "$type": "color", "$value": "{neutral.200}", "$description": "Default component border" },
+      "subtle":   { "$type": "color", "$value": "{neutral.100}", "$description": "Very subtle, decorative borders" },
+      "strong":   { "$type": "color", "$value": "{neutral.400}", "$description": "Prominent borders, active tab" },
+      "focus":    { "$type": "color", "$value": "{terracota.500}", "$description": "Focus ring — matches primary action" },
+      "error":    { "$type": "color", "$value": "{error.500}",   "$description": "Error state border" },
+      "success":  { "$type": "color", "$value": "{sage.500}",    "$description": "Success state border" },
+      "disabled": { "$type": "color", "$value": "{neutral.200}", "$description": "Disabled border" }
+    },
+    "feedback": {
+      "error-bg":      { "$type": "color", "$value": "{error.50}",    "$description": "Error alert background" },
+      "error-border":  { "$type": "color", "$value": "{error.200}",   "$description": "Error alert border" },
+      "error-text":    { "$type": "color", "$value": "{error.700}",   "$description": "Error alert body text" },
+      "error-icon":    { "$type": "color", "$value": "{error.500}",   "$description": "Error icon fill" },
+      "warning-bg":    { "$type": "color", "$value": "{warning.50}",  "$description": "Warning alert background" },
+      "warning-border":{ "$type": "color", "$value": "{warning.200}", "$description": "Warning alert border" },
+      "warning-text":  { "$type": "color", "$value": "{warning.700}", "$description": "Warning alert body text" },
+      "warning-icon":  { "$type": "color", "$value": "{warning.500}", "$description": "Warning icon fill" },
+      "success-bg":    { "$type": "color", "$value": "{sage.50}",     "$description": "Success alert background" },
+      "success-border":{ "$type": "color", "$value": "{sage.200}",    "$description": "Success alert border" },
+      "success-text":  { "$type": "color", "$value": "{sage.700}",    "$description": "Success alert body text" },
+      "success-icon":  { "$type": "color", "$value": "{sage.500}",    "$description": "Success icon fill" },
+      "info-bg":       { "$type": "color", "$value": "{info.50}",     "$description": "Info alert background" },
+      "info-border":   { "$type": "color", "$value": "{info.200}",    "$description": "Info alert border" },
+      "info-text":     { "$type": "color", "$value": "{info.700}",    "$description": "Info alert body text" },
+      "info-icon":     { "$type": "color", "$value": "{info.500}",    "$description": "Info icon fill" }
+    },
+    "connectivity": {
+      "offline-bg":       { "$type": "color", "$value": "{neutral.200}",  "$description": "Offline indicator bg — neutral, no alarm" },
+      "offline-text":     { "$type": "color", "$value": "{neutral.700}",  "$description": "Offline state message" },
+      "offline-icon":     { "$type": "color", "$value": "{neutral.500}",  "$description": "Offline icon — dimmed WiFi" },
+      "syncing-bg":       { "$type": "color", "$value": "{info.50}",      "$description": "Syncing bg — active but not alarming" },
+      "syncing-text":     { "$type": "color", "$value": "{info.700}",     "$description": "Syncing state message" },
+      "syncing-icon":     { "$type": "color", "$value": "{info.500}",     "$description": "Syncing spinner icon" },
+      "reconnecting-bg":  { "$type": "color", "$value": "{warning.50}",   "$description": "Reconnecting bg — requires awareness" },
+      "reconnecting-text":{ "$type": "color", "$value": "{warning.700}",  "$description": "Reconnecting state message" },
+      "reconnecting-icon":{ "$type": "color", "$value": "{warning.500}",  "$description": "Reconnecting retry icon" }
+    }
+  },
+  "shadow": {
+    "none": { "$type": "shadow", "$value": "none" },
+    "xs": { "$type": "shadow", "$value": "0 1px 2px 0 rgba(17,18,22,0.04)" },
+    "sm": { "$type": "shadow", "$value": "0 1px 3px 0 rgba(17,18,22,0.08), 0 1px 2px -1px rgba(17,18,22,0.04)" },
+    "md": { "$type": "shadow", "$value": "0 4px 6px -1px rgba(17,18,22,0.08), 0 2px 4px -2px rgba(17,18,22,0.04)" },
+    "lg": { "$type": "shadow", "$value": "0 10px 15px -3px rgba(17,18,22,0.08), 0 4px 6px -4px rgba(17,18,22,0.04)" },
+    "xl": { "$type": "shadow", "$value": "0 20px 25px -5px rgba(17,18,22,0.10), 0 8px 10px -6px rgba(17,18,22,0.04)" }
+  }
+}

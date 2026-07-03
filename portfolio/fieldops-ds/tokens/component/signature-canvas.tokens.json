@@ -1,0 +1,26 @@
+{
+  "$description": "SignatureCanvas tokens. One-handed 6\" use. Captures {dataUrl, timestamp, deviceId}.",
+  "signature-canvas": {
+    "bg":              { "$type": "color", "$value": "{white}" },
+    "border":          { "$type": "color", "$value": "{color.border.default}" },
+    "border-active":   { "$type": "color", "$value": "{color.border.focus}" },
+    "radius":          { "$type": "dimension", "$value": "{radius.sm}" },
+    "stroke-color":    { "$type": "color", "$value": "{neutral.900}", "$description": "Ink color — max contrast on white" },
+    "stroke-width":    { "$type": "dimension", "$value": "2px" },
+    "width":           { "$type": "dimension", "$value": "100%", "$description": "Full container width — one-hand thumb reach" },
+    "height":          { "$type": "dimension", "$value": "160px", "$description": "Optimized for 6\" one-handed sign area" },
+    "label-font-size": { "$type": "dimension", "$value": "{font.size.12}" },
+    "label-color":     { "$type": "color", "$value": "{color.text.secondary}" },
+    "placeholder-text":{ "$type": "color", "$value": "{neutral.300}", "$description": "Sign here guide text" },
+    "clear-btn": {
+      "color":  { "$type": "color", "$value": "{neutral.500}" },
+      "hover":  { "$type": "color", "$value": "{error.500}" },
+      "size":   { "$type": "dimension", "$value": "{spacing.12}", "$description": "48px — gloved tap target" }
+    },
+    "metadata": {
+      "font-size":    { "$type": "dimension", "$value": "{font.size.11}" },
+      "font-family":  { "$value": "{font.family.mono}", "$description": "Timestamp + deviceId in mono" },
+      "color":        { "$type": "color", "$value": "{color.text.tertiary}" }
+    }
+  }
+}

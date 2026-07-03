@@ -1,0 +1,36 @@
+{
+  "$description": "AlertBanner tokens. Full-width system messages — not inline validation.",
+  "alert-banner": {
+    "radius":    { "$type": "dimension", "$value": "{radius.sm}" },
+    "padding-x": { "$type": "dimension", "$value": "{spacing.4}" },
+    "padding-y": { "$type": "dimension", "$value": "{spacing.3}" },
+    "icon-size": { "$type": "dimension", "$value": "20px" },
+    "icon-gap":  { "$type": "dimension", "$value": "{spacing.3}" },
+    "font-size": { "$type": "dimension", "$value": "{font.size.14}" },
+    "error": {
+      "bg":       { "$type": "color", "$value": "{color.feedback.error-bg}" },
+      "border":   { "$type": "color", "$value": "{color.feedback.error-border}" },
+      "text":     { "$type": "color", "$value": "{color.feedback.error-text}" },
+      "icon":     { "$type": "color", "$value": "{color.feedback.error-icon}" },
+      "border-l": { "$type": "dimension", "$value": "3px" }
+    },
+    "warning": {
+      "bg":       { "$type": "color", "$value": "{color.feedback.warning-bg}" },
+      "border":   { "$type": "color", "$value": "{color.feedback.warning-border}" },
+      "text":     { "$type": "color", "$value": "{color.feedback.warning-text}" },
+      "icon":     { "$type": "color", "$value": "{color.feedback.warning-icon}" }
+    },
+    "success": {
+      "bg":       { "$type": "color", "$value": "{color.feedback.success-bg}" },
+      "border":   { "$type": "color", "$value": "{color.feedback.success-border}" },
+      "text":     { "$type": "color", "$value": "{color.feedback.success-text}" },
+      "icon":     { "$type": "color", "$value": "{color.feedback.success-icon}" }
+    },
+    "info": {
+      "bg":       { "$type": "color", "$value": "{color.feedback.info-bg}" },
+      "border":   { "$type": "color", "$value": "{color.feedback.info-border}" },
+      "text":     { "$type": "color", "$value": "{color.feedback.info-text}" },
+      "icon":     { "$type": "color", "$value": "{color.feedback.info-icon}" }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans":  { "$value": ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+                 "$description": "UI sans. Ubiquity = maximum legibility. No compromise for distinctiveness." },
+      "serif": { "$value": ["Lora", "Georgia", "Times New Roman", "serif"],
+                 "$description": "Display serif. Warm, intellectual. Restricted to ≥24px desktop headings only." },
+      "mono":  { "$value": ["JetBrains Mono", "Fira Code", "Cascadia Code", "ui-monospace", "monospace"],
+                 "$description": "Data mono. Order IDs, coordinates, timestamps, device IDs." }
+    },
+    "size": {
+      "$type": "dimension",
+      "11": { "$value": "11px", "$description": "Caption — metadata, timestamps (min field)" },
+      "12": { "$value": "12px", "$description": "Label SM" },
+      "14": { "$value": "14px", "$description": "Body MD — field secondary text (min field body)" },
+      "16": { "$value": "16px", "$description": "Body LG — field primary text" },
+      "20": { "$value": "20px", "$description": "Heading 4" },
+      "24": { "$value": "24px", "$description": "Heading 3" },
+      "32": { "$value": "32px", "$description": "Heading 2" },
+      "48": { "$value": "48px", "$description": "Heading 1 — serif on desktop" },
+      "96": { "$value": "96px", "$description": "Display — cover only" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular":  { "$value": 400 },
+      "medium":   { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold":     { "$value": 700 }
+    },
+    "lineHeight": {
+      "$type": "number",
+      "none":     { "$value": 1,    "$description": "Display headings" },
+      "tight":    { "$value": 1.1,  "$description": "Large headings" },
+      "snug":     { "$value": 1.25, "$description": "H2, H3" },
+      "normal":   { "$value": 1.5,  "$description": "Body text" },
+      "relaxed":  { "$value": 1.625 }
+    },
+    "letterSpacing": {
+      "$type": "dimension",
+      "tighter": { "$value": "-0.03em", "$description": "Display headings" },
+      "tight":   { "$value": "-0.02em", "$description": "H1, H2" },
+      "snug":    { "$value": "-0.01em", "$description": "H3, H4" },
+      "normal":  { "$value": "0em" },
+      "wide":    { "$value": "0.01em",  "$description": "Labels, captions (improves readability at small sizes)" },
+      "wider":   { "$value": "0.02em" },
+      "widest":  { "$value": "0.05em",  "$description": "Overline / eyebrow text" }
+    }
+  }
+}

@@ -1,0 +1,919 @@
+{
+  "name": "FieldOps Design System",
+  "philosophy": "FieldOps is built for technicians who work with their hands, not at desks. Every decision in this system serves one user in one moment: a gloved hand holding a phone in a dim equipment room, needing to log a diagnosis and move on. The palette is earthy — warm neutrals drawn from terracotta, clay, and sage — because field work is material work. Typography runs three registers: Literata carries editorial weight at display sizes for status moments and headings; Manrope handles all functional UI and body text with humanist clarity; Geist Mono locks in precision for every ID, ETA, timestamp, and code. Spacing is generous at touch targets and disciplined at data density. Offline is the default state, not an exception — the system never communicates absence, only action. Nothing here decorates; everything informs.",
+  "colorTokens": {
+    "primitives": [
+      {
+        "name": "neutral-50",
+        "hex": "#F9F7F3",
+        "r": 249,
+        "g": 247,
+        "b": 243,
+        "usage": "Warmest canvas surface — barely-there warmth, not beige"
+      },
+      {
+        "name": "neutral-100",
+        "hex": "#F2EFE9",
+        "r": 242,
+        "g": 239,
+        "b": 233,
+        "usage": "Card surfaces, elevated backgrounds"
+      },
+      {
+        "name": "neutral-150",
+        "hex": "#EAE6DE",
+        "r": 234,
+        "g": 230,
+        "b": 222,
+        "usage": "Hover backgrounds on cards"
+      },
+      {
+        "name": "neutral-200",
+        "hex": "#E0DBCF",
+        "r": 224,
+        "g": 219,
+        "b": 207,
+        "usage": "Borders, dividers, input strokes"
+      },
+      {
+        "name": "neutral-300",
+        "hex": "#C8C2B4",
+        "r": 200,
+        "g": 194,
+        "b": 180,
+        "usage": "Strong dividers, inactive tab strokes"
+      },
+      {
+        "name": "neutral-400",
+        "hex": "#ADA69B",
+        "r": 173,
+        "g": 166,
+        "b": 155,
+        "usage": "Placeholder text, disabled icons"
+      },
+      {
+        "name": "neutral-500",
+        "hex": "#8A8278",
+        "r": 138,
+        "g": 130,
+        "b": 120,
+        "usage": "Muted text, secondary labels"
+      },
+      {
+        "name": "neutral-600",
+        "hex": "#6B6460",
+        "r": 107,
+        "g": 100,
+        "b": 96,
+        "usage": "Secondary body text, subdued labels"
+      },
+      {
+        "name": "neutral-700",
+        "hex": "#4D4844",
+        "r": 77,
+        "g": 72,
+        "b": 68,
+        "usage": "Body text on light surfaces"
+      },
+      {
+        "name": "neutral-800",
+        "hex": "#322F2B",
+        "r": 50,
+        "g": 47,
+        "b": 43,
+        "usage": "Headings, primary text"
+      },
+      {
+        "name": "neutral-900",
+        "hex": "#1C1A18",
+        "r": 28,
+        "g": 26,
+        "b": 24,
+        "usage": "Near-black for top-priority content, nav backgrounds"
+      },
+      {
+        "name": "clay-50",
+        "hex": "#FBF0EC",
+        "r": 251,
+        "g": 240,
+        "b": 236,
+        "usage": "Clay tint surface — critical/urgent backgrounds"
+      },
+      {
+        "name": "clay-200",
+        "hex": "#EDBBAB",
+        "r": 237,
+        "g": 187,
+        "b": 171,
+        "usage": "Clay subtle border, icon tint in error states"
+      },
+      {
+        "name": "clay-500",
+        "hex": "#B55C3E",
+        "r": 181,
+        "g": 92,
+        "b": 62,
+        "usage": "Primary brand accent — terracotta clay, critical/urgent, destructive CTA"
+      },
+      {
+        "name": "clay-700",
+        "hex": "#8B3E27",
+        "r": 139,
+        "g": 62,
+        "b": 39,
+        "usage": "Clay pressed state, critical dark text on clay-50"
+      },
+      {
+        "name": "sage-50",
+        "hex": "#EBF3EE",
+        "r": 235,
+        "g": 243,
+        "b": 238,
+        "usage": "Success/complete tint background"
+      },
+      {
+        "name": "sage-200",
+        "hex": "#A8C9B3",
+        "r": 168,
+        "g": 201,
+        "b": 179,
+        "usage": "Sage subtle border"
+      },
+      {
+        "name": "sage-500",
+        "hex": "#4F7D63",
+        "r": 79,
+        "g": 125,
+        "b": 99,
+        "usage": "Active/complete/success signal — dusty eucalyptus green"
+      },
+      {
+        "name": "sage-700",
+        "hex": "#365544",
+        "r": 54,
+        "g": 85,
+        "b": 68,
+        "usage": "Sage pressed state, success dark text on sage-50"
+      },
+      {
+        "name": "amber-50",
+        "hex": "#FBF3E8",
+        "r": 251,
+        "g": 243,
+        "b": 232,
+        "usage": "Warning/in-transit tint background"
+      },
+      {
+        "name": "amber-200",
+        "hex": "#EAC88A",
+        "r": 234,
+        "g": 200,
+        "b": 138,
+        "usage": "Amber subtle border"
+      },
+      {
+        "name": "amber-500",
+        "hex": "#C17F2A",
+        "r": 193,
+        "g": 127,
+        "b": 42,
+        "usage": "Transit/warning/in-progress signal — warm earthy amber"
+      },
+      {
+        "name": "amber-700",
+        "hex": "#8C5A18",
+        "r": 140,
+        "g": 90,
+        "b": 24,
+        "usage": "Amber pressed state, warning dark text on amber-50"
+      },
+      {
+        "name": "white",
+        "hex": "#FFFFFF",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "usage": "Pure white — signature canvas, modals, top cards needing maximum contrast"
+      },
+      {
+        "name": "black",
+        "hex": "#0D0C0B",
+        "r": 13,
+        "g": 12,
+        "b": 11,
+        "usage": "Warm near-black, never pure #000000"
+      }
+    ],
+    "semantic": [
+      {
+        "name": "color-canvas",
+        "primitiveRef": "neutral-50",
+        "hex": "#F9F7F3",
+        "r": 249,
+        "g": 247,
+        "b": 243,
+        "usage": "Page/screen background — the warm ground everything sits on"
+      },
+      {
+        "name": "color-surface",
+        "primitiveRef": "white",
+        "hex": "#FFFFFF",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "usage": "Card and panel surface — sits above canvas"
+      },
+      {
+        "name": "color-surface-raised",
+        "primitiveRef": "neutral-100",
+        "hex": "#F2EFE9",
+        "r": 242,
+        "g": 239,
+        "b": 233,
+        "usage": "Raised surface inside a card (section headers, grouped fields)"
+      },
+      {
+        "name": "color-surface-sunken",
+        "primitiveRef": "neutral-150",
+        "hex": "#EAE6DE",
+        "r": 234,
+        "g": 230,
+        "b": 222,
+        "usage": "Pressed/hover state, read-only input backgrounds"
+      },
+      {
+        "name": "color-nav-bg",
+        "primitiveRef": "neutral-900",
+        "hex": "#1C1A18",
+        "r": 28,
+        "g": 26,
+        "b": 24,
+        "usage": "Bottom nav bar background — dark anchors the screen"
+      },
+      {
+        "name": "color-text-primary",
+        "primitiveRef": "neutral-800",
+        "hex": "#322F2B",
+        "r": 50,
+        "g": 47,
+        "b": 43,
+        "usage": "Primary body text, headings on canvas/surface"
+      },
+      {
+        "name": "color-text-secondary",
+        "primitiveRef": "neutral-700",
+        "hex": "#4D4844",
+        "r": 77,
+        "g": 72,
+        "b": 68,
+        "usage": "Supporting text, field labels, secondary data"
+      },
+      {
+        "name": "color-text-muted",
+        "primitiveRef": "neutral-500",
+        "hex": "#8A8278",
+        "r": 138,
+        "g": 130,
+        "b": 120,
+        "usage": "Placeholder text, timestamps, de-emphasized metadata"
+      },
+      {
+        "name": "color-text-inverse",
+        "primitiveRef": "white",
+        "hex": "#FFFFFF",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "usage": "Text on dark surfaces — nav bar, primary CTA buttons"
+      },
+      {
+        "name": "color-text-on-clay",
+        "primitiveRef": "white",
+        "hex": "#FFFFFF",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "usage": "Text on clay-500 backgrounds — badge labels, button labels"
+      },
+      {
+        "name": "color-text-on-sage",
+        "primitiveRef": "white",
+        "hex": "#FFFFFF",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "usage": "Text on sage-500 backgrounds — confirmed/success button labels"
+      },
+      {
+        "name": "color-border",
+        "primitiveRef": "neutral-200",
+        "hex": "#E0DBCF",
+        "r": 224,
+        "g": 219,
+        "b": 207,
+        "usage": "Default border for inputs, cards, dividers"
+      },
+      {
+        "name": "color-border-strong",
+        "primitiveRef": "neutral-300",
+        "hex": "#C8C2B4",
+        "r": 200,
+        "g": 194,
+        "b": 180,
+        "usage": "Focused input border, active tab underline"
+      },
+      {
+        "name": "color-border-focus",
+        "primitiveRef": "clay-500",
+        "hex": "#B55C3E",
+        "r": 181,
+        "g": 92,
+        "b": 62,
+        "usage": "Focused field ring — brand clay pulls attention to active input"
+      },
+      {
+        "name": "color-interactive",
+        "primitiveRef": "clay-500",
+        "hex": "#B55C3E",
+        "r": 181,
+        "g": 92,
+        "b": 62,
+        "usage": "Primary interactive color — buttons, links, active indicators"
+      },
+      {
+        "name": "color-interactive-hover",
+        "primitiveRef": "clay-700",
+        "hex": "#8B3E27",
+        "r": 139,
+        "g": 62,
+        "b": 39,
+        "usage": "Hover/pressed state of primary interactive"
+      },
+      {
+        "name": "color-status-active",
+        "primitiveRef": "sage-500",
+        "hex": "#4F7D63",
+        "r": 79,
+        "g": 125,
+        "b": 99,
+        "usage": "EM CAMPO — technician is on site and working"
+      },
+      {
+        "name": "color-status-active-bg",
+        "primitiveRef": "sage-50",
+        "hex": "#EBF3EE",
+        "r": 235,
+        "g": 243,
+        "b": 238,
+        "usage": "EM CAMPO badge background"
+      },
+      {
+        "name": "color-status-transit",
+        "primitiveRef": "amber-500",
+        "hex": "#C17F2A",
+        "r": 193,
+        "g": 127,
+        "b": 42,
+        "usage": "EM TRÂNSITO — technician is en route"
+      },
+      {
+        "name": "color-status-transit-bg",
+        "primitiveRef": "amber-50",
+        "hex": "#FBF3E8",
+        "r": 251,
+        "g": 243,
+        "b": 232,
+        "usage": "EM TRÂNSITO badge background"
+      },
+      {
+        "name": "color-status-paused",
+        "primitiveRef": "clay-500",
+        "hex": "#B55C3E",
+        "r": 181,
+        "g": 92,
+        "b": 62,
+        "usage": "PAUSADO — blocked, waiting for material or approval"
+      },
+      {
+        "name": "color-status-paused-bg",
+        "primitiveRef": "clay-50",
+        "hex": "#FBF0EC",
+        "r": 251,
+        "g": 240,
+        "b": 236,
+        "usage": "PAUSADO badge background"
+      },
+      {
+        "name": "color-status-done",
+        "primitiveRef": "neutral-500",
+        "hex": "#8A8278",
+        "r": 138,
+        "g": 130,
+        "b": 120,
+        "usage": "CONCLUÍDO — closed orders, de-emphasized"
+      },
+      {
+        "name": "color-status-done-bg",
+        "primitiveRef": "neutral-150",
+        "hex": "#EAE6DE",
+        "r": 234,
+        "g": 230,
+        "b": 222,
+        "usage": "CONCLUÍDO badge background"
+      },
+      {
+        "name": "color-status-urgent",
+        "primitiveRef": "clay-700",
+        "hex": "#8B3E27",
+        "r": 139,
+        "g": 62,
+        "b": 39,
+        "usage": "URGENTE accent bar on OrderCard — darker clay for maximum urgency signal"
+      },
+      {
+        "name": "color-critical",
+        "primitiveRef": "clay-500",
+        "hex": "#B55C3E",
+        "r": 181,
+        "g": 92,
+        "b": 62,
+        "usage": "Destructive actions, overdue, blocking errors"
+      },
+      {
+        "name": "color-critical-subtle",
+        "primitiveRef": "clay-50",
+        "hex": "#FBF0EC",
+        "r": 251,
+        "g": 240,
+        "b": 236,
+        "usage": "Error field backgrounds, inline validation error surfaces"
+      },
+      {
+        "name": "color-success",
+        "primitiveRef": "sage-500",
+        "hex": "#4F7D63",
+        "r": 79,
+        "g": 125,
+        "b": 99,
+        "usage": "Confirmation, step complete, sign-off CTA"
+      },
+      {
+        "name": "color-success-subtle",
+        "primitiveRef": "sage-50",
+        "hex": "#EBF3EE",
+        "r": 235,
+        "g": 243,
+        "b": 238,
+        "usage": "Completed step backgrounds, success inline notice"
+      },
+      {
+        "name": "color-warning",
+        "primitiveRef": "amber-500",
+        "hex": "#C17F2A",
+        "r": 193,
+        "g": 127,
+        "b": 42,
+        "usage": "Caution states, connectivity warn, at-risk timers"
+      },
+      {
+        "name": "color-warning-subtle",
+        "primitiveRef": "amber-50",
+        "hex": "#FBF3E8",
+        "r": 251,
+        "g": 243,
+        "b": 232,
+        "usage": "Warning inline notice background"
+      },
+      {
+        "name": "color-offline",
+        "primitiveRef": "neutral-600",
+        "hex": "#6B6460",
+        "r": 107,
+        "g": 100,
+        "b": 96,
+        "usage": "OfflineIndicator text — calm, not alarming, saving locally"
+      },
+      {
+        "name": "color-syncing",
+        "primitiveRef": "amber-500",
+        "hex": "#C17F2A",
+        "r": 193,
+        "g": 127,
+        "b": 42,
+        "usage": "OfflineIndicator syncing state — warm activity signal"
+      },
+      {
+        "name": "color-progress-fill",
+        "primitiveRef": "clay-500",
+        "hex": "#B55C3E",
+        "r": 181,
+        "g": 92,
+        "b": 62,
+        "usage": "GuidedStep progress bar fill — brand clay shows advancement"
+      },
+      {
+        "name": "color-progress-track",
+        "primitiveRef": "neutral-200",
+        "hex": "#E0DBCF",
+        "r": 224,
+        "g": 219,
+        "b": 207,
+        "usage": "GuidedStep progress bar track background"
+      }
+    ]
+  },
+  "typeScale": [
+    {
+      "name": "display-2xl",
+      "family": "Literata",
+      "style": "Bold",
+      "size": 48,
+      "lineHeight": 1.1,
+      "letterSpacing": -0.02,
+      "usage": "PauseHero heading (OS PAUSADA), large numeric data moments on dashboard KPI cards"
+    },
+    {
+      "name": "display-xl",
+      "family": "Literata",
+      "style": "Bold",
+      "size": 36,
+      "lineHeight": 1.15,
+      "letterSpacing": -0.015,
+      "usage": "Screen-level status announcement, major step transitions — only one per screen"
+    },
+    {
+      "name": "display-lg",
+      "family": "Literata",
+      "style": "Bold",
+      "size": 28,
+      "lineHeight": 1.2,
+      "letterSpacing": -0.01,
+      "usage": "Section hero headings, GuidedStep screen title, card modal headers"
+    },
+    {
+      "name": "heading-lg",
+      "family": "Manrope",
+      "style": "Bold",
+      "size": 20,
+      "lineHeight": 1.3,
+      "letterSpacing": -0.005,
+      "usage": "Top-level screen headings (Lista de Ordens, Diagnóstico), sidebar group headers"
+    },
+    {
+      "name": "heading-md",
+      "family": "Manrope",
+      "style": "Bold",
+      "size": 17,
+      "lineHeight": 1.35,
+      "letterSpacing": 0,
+      "usage": "Card primary identifier (customer name, OS title), section subheadings"
+    },
+    {
+      "name": "heading-sm",
+      "family": "Manrope",
+      "style": "SemiBold",
+      "size": 14,
+      "lineHeight": 1.4,
+      "letterSpacing": 0,
+      "usage": "Card secondary title, sub-section labels, form field group headers"
+    },
+    {
+      "name": "label-lg",
+      "family": "Manrope",
+      "style": "SemiBold",
+      "size": 16,
+      "lineHeight": 1.25,
+      "letterSpacing": 0.005,
+      "usage": "Primary CTA button text, major action labels — 56px+ touch target buttons"
+    },
+    {
+      "name": "label-md",
+      "family": "Manrope",
+      "style": "SemiBold",
+      "size": 13,
+      "lineHeight": 1.3,
+      "letterSpacing": 0.02,
+      "usage": "Status badge labels (EM CAMPO, PAUSADO), tab pill labels, secondary button text, field labels"
+    },
+    {
+      "name": "label-sm",
+      "family": "Manrope",
+      "style": "SemiBold",
+      "size": 11,
+      "lineHeight": 1.3,
+      "letterSpacing": 0.04,
+      "usage": "Metadata micro-labels (PASSO 2 DE 4, count bubbles), uppercase step annotations"
+    },
+    {
+      "name": "body-lg",
+      "family": "Manrope",
+      "style": "Regular",
+      "size": 16,
+      "lineHeight": 1.55,
+      "letterSpacing": 0,
+      "usage": "Textarea content (diagnosis notes), form input text — 16px minimum prevents iOS auto-zoom"
+    },
+    {
+      "name": "body-md",
+      "family": "Manrope",
+      "style": "Regular",
+      "size": 14,
+      "lineHeight": 1.5,
+      "letterSpacing": 0,
+      "usage": "Card body content (address, service description, activity log entries), checklist item text"
+    },
+    {
+      "name": "body-sm",
+      "family": "Manrope",
+      "style": "Regular",
+      "size": 13,
+      "lineHeight": 1.5,
+      "letterSpacing": 0,
+      "usage": "Supporting metadata, SummaryCard data rows, notification banner body, timestamp strings"
+    },
+    {
+      "name": "mono-lg",
+      "family": "Geist Mono",
+      "style": "Medium",
+      "size": 20,
+      "lineHeight": 1.4,
+      "letterSpacing": -0.01,
+      "usage": "PauseHero elapsed timer display, large OS number/ID in hero moments"
+    },
+    {
+      "name": "mono-md",
+      "family": "Geist Mono",
+      "style": "Medium",
+      "size": 14,
+      "lineHeight": 1.4,
+      "letterSpacing": 0,
+      "usage": "TimerStrip running time, ETA values on OrderCard, OS IDs, sync progress counts"
+    },
+    {
+      "name": "mono-sm",
+      "family": "Geist Mono",
+      "style": "Medium",
+      "size": 12,
+      "lineHeight": 1.4,
+      "letterSpacing": 0.01,
+      "usage": "Inline technical codes, part numbers, coordinates, small timestamp badges"
+    }
+  ],
+  "spacingScale": [
+    {
+      "token": "space-1",
+      "value": 4
+    },
+    {
+      "token": "space-2",
+      "value": 8
+    },
+    {
+      "token": "space-3",
+      "value": 12
+    },
+    {
+      "token": "space-4",
+      "value": 16
+    },
+    {
+      "token": "space-5",
+      "value": 20
+    },
+    {
+      "token": "space-6",
+      "value": 24
+    },
+    {
+      "token": "space-8",
+      "value": 32
+    },
+    {
+      "token": "space-10",
+      "value": 40
+    },
+    {
+      "token": "space-12",
+      "value": 48
+    },
+    {
+      "token": "space-14",
+      "value": 56
+    },
+    {
+      "token": "space-16",
+      "value": 64
+    },
+    {
+      "token": "space-20",
+      "value": 80
+    }
+  ],
+  "radiusScale": [
+    {
+      "token": "radius-xs",
+      "value": 2
+    },
+    {
+      "token": "radius-sm",
+      "value": 4
+    },
+    {
+      "token": "radius-md",
+      "value": 6
+    },
+    {
+      "token": "radius-lg",
+      "value": 10
+    },
+    {
+      "token": "radius-xl",
+      "value": 14
+    },
+    {
+      "token": "radius-2xl",
+      "value": 20
+    },
+    {
+      "token": "radius-full",
+      "value": 9999
+    }
+  ],
+  "shadows": [
+    {
+      "name": "shadow-sm",
+      "y": 1,
+      "blur": 3,
+      "spread": 0,
+      "opacity": 0.05,
+      "usage": "Resting OrderCards, SummaryCard, FormField inputs on canvas — barely-there lift, keeps cards scannable without heaviness"
+    },
+    {
+      "name": "shadow-md",
+      "y": 2,
+      "blur": 8,
+      "spread": 0,
+      "opacity": 0.08,
+      "usage": "GuidedStep card container, raised panels in dashboard, active/focused input state ring shadow supplement"
+    },
+    {
+      "name": "shadow-lg",
+      "y": 4,
+      "blur": 16,
+      "spread": -2,
+      "opacity": 0.12,
+      "usage": "Bottom sheet overlays, SignatureCanvas container, PauseHero card, OfflineIndicator when escalated to inline notice"
+    }
+  ],
+  "components": [
+    {
+      "name": "StatusBadge",
+      "variants": [
+        "em-campo/md: sage-50 bg, sage-500 text, label-md SemiBold, 4px h-pad, 2px v-pad, radius-full, optional sage-500 dot 6px",
+        "em-campo/sm: same palette, label-sm, condensed padding 3px/1px",
+        "em-transito/md: amber-50 bg, amber-700 text, amber-500 dot",
+        "em-transito/sm: same palette, label-sm",
+        "pausado/md: clay-50 bg, clay-700 text, clay-500 dot",
+        "pausado/sm: same palette, label-sm",
+        "concluido/md: neutral-150 bg, neutral-600 text, neutral-400 dot",
+        "concluido/sm: same palette, label-sm",
+        "urgente/md: clay-500 bg, white text, no dot — filled pill for maximum urgency signal",
+        "offline/sm: neutral-200 bg, neutral-600 text — appears in OfflineIndicator slot only"
+      ],
+      "description": "Color-coded status pill used in OrderCards, PauseHero, and nav. Always pairs semantic color fill or border with a short label in label-md/sm SemiBold — never color alone, never label alone. Minimum height 24px (md), 20px (sm). Dot indicator is 6px circle, matches text color. md variant minimum touch target: not independently tappable — sits inside a card. All text must clear 4.5:1 on their background; clay-700 on clay-50 clears 7:1 for outdoor use."
+    },
+    {
+      "name": "Button",
+      "variants": [
+        "primary/default: clay-500 bg, white label-lg, radius-md, height 56px, full-width on mobile, horizontal pad space-6",
+        "primary/hover: clay-700 bg, white label-lg — darker clay on press",
+        "primary/pressed: clay-700 bg, shadow-sm inset 0 1px 2px rgba(0,0,0,0.15)",
+        "primary/disabled: neutral-300 bg, neutral-500 text, no interaction",
+        "primary-success/default: sage-500 bg, white label-lg, height 56px — for Confirmar Fechamento CTA only",
+        "primary-success/hover: sage-700 bg",
+        "secondary/default: white bg, clay-500 border 1.5px, clay-500 label-lg, height 52px, radius-md",
+        "secondary/hover: clay-50 bg, clay-500 border",
+        "secondary/disabled: neutral-100 bg, neutral-300 border, neutral-400 text",
+        "ghost/default: transparent bg, no border, clay-500 label-md, height 44px minimum — for inline actions like Re-sign",
+        "ghost/hover: clay-50 bg, radius-sm",
+        "destructive/default: white bg, clay-500 border 1.5px, clay-700 label-md, height 48px — Cancel OS, Reschedule",
+        "destructive/hover: clay-50 bg",
+        "destructive/pressed-confirm: clay-500 bg, white label-md — second tap needed; button state change IS the first confirmation step",
+        "icon-button: 44x44px minimum tap target, icon 20x20px centered, ghost style, radius-md"
+      ],
+      "description": "All primary CTAs are full-width on mobile at 56px height (space-14) — gloved-thumb safe. Primary and primary-success use clay-500 and sage-500 respectively as the sole color-personality buttons. Destructive actions require two-tap confirmation: first tap transitions button to clay-500 filled state, second tap executes — this positional shift (label changes, color fills) is the confirmation mechanism, not an alert dialog. Minimum tap target for all buttons: 44px height (space-12) with invisible extension if visual is smaller. Letter spacing on label-lg at button size: 0.005em."
+    },
+    {
+      "name": "OrderCard",
+      "variants": [
+        "standard: white bg, shadow-sm, radius-lg, 16px pad (space-4), 4px left accent bar in status color",
+        "urgent: clay-700 4px left accent bar, urgente StatusBadge top-right, otherwise identical structure",
+        "in-transit: amber-500 4px left accent bar, em-transito StatusBadge",
+        "active: sage-500 4px left accent bar, em-campo StatusBadge",
+        "paused: clay-500 4px left accent bar, pausado StatusBadge",
+        "pressed/active-state: neutral-150 bg, shadow removed — feedback on tap",
+        "skeleton: three neutral-200 placeholder bars at exact row heights, single 2s opacity pulse animation"
+      ],
+      "description": "The central mobile scanning unit. Strict three-data-point discipline: (1) StatusBadge top-right + left accent bar — status readable in 0.5s; (2) heading-md customer name + body-sm address below — identity readable in 0.5s; (3) mono-md ETA or scheduled time bottom-right — timing readable in 0.5s. Nothing else surfaces at the list level. Full card height: 88px minimum, 96px comfortable. Tap target is the entire card. 8px vertical gap between cards. Status accent bar is 4px wide, full card height, flush left, radius-sm on right edge only. The eye path is deterministic: top-left (name) → top-right (status) → bottom-right (time)."
+    },
+    {
+      "name": "FormField",
+      "variants": [
+        "text-input/default: white bg, neutral-200 border 1px, radius-md, height 52px, body-lg text, label above (body-sm SemiBold label-md color), space-2 gap label-to-input",
+        "text-input/focused: clay-500 border 1.5px, shadow-md supplemental glow rgba(181,92,62,0.08)",
+        "text-input/filled: neutral-200 border, body-lg clay-800 text",
+        "text-input/error: clay-500 border 1.5px, clay-50 bg, clay-700 body-sm error message below with clay-500 icon 14px",
+        "text-input/disabled: neutral-100 bg, neutral-300 border, neutral-400 text, no interaction",
+        "text-input/required: label has clay-500 asterisk suffix — required fields always labeled, never discovered on submit",
+        "textarea/default: same as text-input but min-height 120px, resize none on mobile, body-lg text",
+        "textarea/focused: clay-500 border 1.5px",
+        "textarea/conditional-hidden: display:none until trigger field answer matches condition — appears with 0.15s fade-in, no layout shift (conditional fields always reserve space via visibility:hidden before trigger)",
+        "checkbox/default: 22x22px touch area visual, 44x44px tap target, neutral-200 border 1.5px, radius-sm, unchecked state",
+        "checkbox/checked: clay-500 bg, white checkmark 14px, radius-sm",
+        "checkbox/disabled: neutral-100 bg, neutral-300 border",
+        "checklist-item/default: horizontal row — checkbox left, body-md text, space-3 gap, full-width tap target 48px height",
+        "checklist-item/checked: body-md text neutral-400 (de-emphasis), checkbox checked state",
+        "photo-upload-tile/empty: neutral-100 bg, neutral-300 border 1px dashed, radius-md, 80x80px, camera icon neutral-400 20px centered",
+        "photo-upload-tile/filled: thumbnail image, radius-md, remove affordance: clay-500 circle 20px with white X top-right corner",
+        "photo-upload-tile/add: neutral-200 bg, clay-500 plus icon 20px — appears after all fill slots used"
+      ],
+      "description": "Labels always sit above inputs, never floating inside — floating labels fail when field is filled and label visually merges with value. Input height 52px minimum for glove clearance (4px above Apple's 48px minimum). Font size 16px minimum in all inputs to prevent iOS auto-zoom. Required fields show clay-500 asterisk at label level — technicians discover requirements before they touch the field, not after. Conditional fields fade in at 150ms, never cause layout jump. Error states show red-family (clay) border + background tint + message below — never just color alone. Photo grid uses 2-column layout inside GuidedStep card; each tile 80px square."
+    },
+    {
+      "name": "ProgressStep",
+      "variants": [
+        "progress-bar/default: neutral-200 track, clay-500 fill, height 4px, radius-full, width 100% of parent",
+        "progress-bar/complete: sage-500 fill — final step or all steps done",
+        "step-dot/incomplete: 8px circle, neutral-300 fill",
+        "step-dot/current: 10px circle, clay-500 fill, white 4px inner dot — size increase signals active",
+        "step-dot/complete: 8px circle, sage-500 fill, white check 6px",
+        "step-counter/label: label-sm Manrope SemiBold, neutral-500 color, uppercase, letter-spacing 0.04em — 'PASSO 2 DE 4'",
+        "step-title/label: heading-md or display-lg Manrope Bold, color-text-primary — the current step name",
+        "full-header-group: step-counter label + step-title + progress bar + dot row — stacked with space-2 gaps, full bleed top of GuidedStep screen"
+      ],
+      "description": "The GuidedStep header communicates two things simultaneously: absolute position (Passo 2 de 4) and relative progress (bar fill at 50%). Step dots provide at-a-glance waypoint map. The progress bar is 4px tall — enough to be scannable, not so thick it dominates. Dot row sits below the bar with space-2 gap. Current dot is 10px vs 8px for inactive — the size delta is the active signal, not just color. Complete dots turn sage to distinguish done-steps from upcoming steps. The entire header group has 16px left/right margin, 20px top padding from status bar, 16px bottom padding before card content."
+    },
+    {
+      "name": "NavigationBar",
+      "variants": [
+        "top-bar/standard: white bg, height 56px, back-chevron ghost icon-button left (44x44), heading-md title center, optional right action ghost icon-button",
+        "top-bar/transparent: no bg, title and icons in white — used over PauseHero dark sections",
+        "bottom-nav/default: neutral-900 bg, height 64px + safe-area-bottom, horizontal flex with space-between, 4 icon+label slots",
+        "bottom-nav/item-active: clay-500 icon + label-sm clay-500 text",
+        "bottom-nav/item-inactive: neutral-500 icon + label-sm neutral-500 text",
+        "bottom-nav/offline-slot: replaces one nav slot or sits as a persistent strip above nav icons — OfflineIndicator component",
+        "status-bar-area: 44px height reserved, no custom content — system status bar passthrough"
+      ],
+      "description": "Top nav bar uses white surface with shadow-sm to separate from canvas. Back arrow is always a ghost icon-button with 44x44 tap target. Title uses heading-md centered. Right action slot optional — used for filter (Lista de Ordens) or overflow menu. Bottom nav is dark (neutral-900) anchoring the screen spatially — primary actions belong here per thumb-zone rule. Nav icons are 24x24px with 44px tap targets. The OfflineIndicator lives either as a persistent strip above the nav items or replaces the least-used slot — implementation choice, but it must always be visible when offline/syncing without overlapping primary actions."
+    },
+    {
+      "name": "TabChip",
+      "variants": [
+        "active: clay-500 bg, white label-md SemiBold, radius-full, height 36px, h-pad space-4, optional white count bubble",
+        "inactive: neutral-100 bg, neutral-600 label-md, radius-full, height 36px, h-pad space-4, optional neutral-500 count bubble",
+        "inactive/hover: neutral-150 bg",
+        "count-bubble/active: white bg, clay-500 label-sm — sits right of label with space-1 gap",
+        "count-bubble/inactive: neutral-200 bg, neutral-600 label-sm",
+        "tab-row: horizontal scroll, space-2 gap between chips, 16px left-pad, 8px top/bottom pad, white bg or canvas bg"
+      ],
+      "description": "Filter tabs for job queue (Todas / Em Campo / Em Trânsito / Pausadas). Active tab uses filled clay-500 — the brand accent signals the user's current view clearly. Count bubbles sit inline right of the label, not as superscript badges, keeping the layout stable when counts change. Tab row is horizontally scrollable on mobile — do not truncate labels. Minimum chip width: 68px. Height: 36px with 44px invisible tap target via top/bottom padding. Chips flow left to right in frequency order: Todas first, then status-specific."
+    },
+    {
+      "name": "OfflineIndicator",
+      "variants": [
+        "offline/default: neutral-500 icon (cloud with down-slash 16px) + body-sm 'Salvando localmente' neutral-600 text — calm, no alarm",
+        "syncing/default: amber-500 rotating upload icon 16px + body-sm 'Enviando...' amber-700 text — warm activity signal",
+        "reconnecting/default: neutral-400 pulsing dot 8px + body-sm 'Reconectando...' neutral-500 text — minimal, no anxiety",
+        "all states: horizontal flex row, space-1 gap icon-to-text, height 28px, fits in nav or strip above nav",
+        "escalated/inline-notice: InlineNotice component activated only when a specific GuidedStep requires real-time validation — this is separate from the always-visible nav indicator"
+      ],
+      "description": "The OfflineIndicator communicates what IS happening, not what is absent. Never uses red. Never says 'Sem conexão' or 'Offline'. The three states use: neutral tone for saving locally (calm, trustworthy), amber for active upload (warm activity), muted neutral for reconnecting (unhurried). The escalation to InlineNotice only fires when a specific step gates on real-time validation — this is rare. In normal offline use, the nav indicator is the sole communication channel. Icon size 16px, text body-sm. The full indicator component sits in the BottomNav above the icon row or replaces a secondary nav slot."
+    },
+    {
+      "name": "Avatar",
+      "variants": [
+        "initials/sm: 28px circle, neutral-200 bg, neutral-700 label-sm — for activity log entries",
+        "initials/md: 36px circle, clay-50 bg, clay-700 label-sm SemiBold — technician assignment on OrderCard detail",
+        "initials/lg: 48px circle, clay-500 bg, white label-md SemiBold — technician header in PauseHero detail card",
+        "initials/xl: 64px circle, clay-500 bg, white heading-md Bold — profile or user switcher context",
+        "photo/md: 36px circle, image fill, clay-500 border 1.5px — when photo is available",
+        "photo/lg: 48px circle, image fill, clay-500 border 2px",
+        "online-dot: 8px circle, sage-500 fill, white border 2px — bottom-right of avatar when technician is reachable",
+        "offline-dot: 8px circle, neutral-400 fill, white border 2px"
+      ],
+      "description": "Avatars represent technicians in dispatch view, detail cards, and activity logs. Initials variant uses two-character uppercase from name. Color palette for initials backgrounds can rotate across a set of warm-tinted primitives (clay-50, amber-50, sage-50, neutral-150) to differentiate multiple technicians at a glance — clay-500 is reserved for the primary/self technician. Minimum touch target if tappable: 44px with invisible extension. Tap reveals technician detail sheet (bottom sheet, not navigation)."
+    },
+    {
+      "name": "SignatureCanvas",
+      "variants": [
+        "empty/default: white bg, neutral-200 border 1px, radius-md, full usable width (calc(100% - 32px)), height 200px minimum, baseline guide (neutral-200 1px line at 75% height), body-sm neutral-400 italic instruction text 'Assine acima' centered above baseline",
+        "has-strokes: same container, strokes rendered in neutral-900 at 2px weight, smooth SVG paths — no jagged pixel rendering",
+        "re-sign: ghost Button below canvas, label 'Limpar e assinar novamente', clay-500 text, 44px height, full width — never an X on the canvas itself",
+        "confirmed: sage-50 bg, sage-500 border 1.5px, sage-500 checkmark 20px top-right corner of container",
+        "error/unsigned: clay-500 border 1.5px, clay-50 bg, 'Assinatura obrigatória' body-sm clay-700 below canvas",
+        "landscape-hint: optional body-sm neutral-500 hint text 'Gire o dispositivo para uma área maior' — appears only if viewport height < 600px"
+      ],
+      "description": "SignatureCanvas is always a GuidedStep — it appears sequenced after the last documentation step, never launched by a button mid-flow. Full usable width: 100% of screen minus 32px horizontal margin (16px each side). Minimum height 200px; 240px preferred. Baseline guide at 75% canvas height gives the signing hand a reference line without constraining it. The Re-sign affordance is a clearly labeled ghost Button below the canvas — the word 'Limpar' makes the action explicit and recoverable. Stroke rendering uses smooth path interpolation (Catmull-Rom or similar) — raw touchmove coordinates produce jagged lines. Canvas listens for touchstart/touchmove/touchend; no stylus pressure required but pressure data can weight stroke width if available."
+    }
+  ]
+}

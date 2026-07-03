@@ -1,0 +1,41 @@
+{
+  "$description": "Button component tokens. Tap target enforced at 48px min height for field use.",
+  "button": {
+    "primary": {
+      "bg":             { "$type": "color", "$value": "{color.action.primary}" },
+      "bg-hover":       { "$type": "color", "$value": "{color.action.primary-hover}" },
+      "bg-active":      { "$type": "color", "$value": "{color.action.primary-active}" },
+      "bg-disabled":    { "$type": "color", "$value": "{color.action.disabled}" },
+      "text":           { "$type": "color", "$value": "{color.action.primary-text}" },
+      "text-disabled":  { "$type": "color", "$value": "{color.action.disabled-text}" },
+      "border":         { "$type": "color", "$value": "transparent" },
+      "radius":         { "$type": "dimension", "$value": "{radius.none}", "$description": "Square = tool, not toy" },
+      "height":         { "$type": "dimension", "$value": "{spacing.12}", "$description": "48px — gloved hand minimum" },
+      "height-sm":      { "$type": "dimension", "$value": "{spacing.10}", "$description": "40px — desktop admin only (NOT field)" },
+      "padding-x":      { "$type": "dimension", "$value": "{spacing.5}" },
+      "padding-x-sm":   { "$type": "dimension", "$value": "{spacing.4}" },
+      "font-size":      { "$type": "dimension", "$value": "{font.size.16}" },
+      "font-weight":    { "$type": "fontWeight", "$value": "{font.weight.semibold}" },
+      "icon-size":      { "$type": "dimension", "$value": "20px" },
+      "icon-gap":       { "$type": "dimension", "$value": "{spacing.2}" }
+    },
+    "secondary": {
+      "bg":            { "$type": "color", "$value": "transparent" },
+      "bg-hover":      { "$type": "color", "$value": "{color.action.secondary}" },
+      "border":        { "$type": "color", "$value": "{color.action.primary}" },
+      "border-hover":  { "$type": "color", "$value": "{color.action.primary-hover}" },
+      "text":          { "$type": "color", "$value": "{color.action.secondary-text}" },
+      "text-hover":    { "$type": "color", "$value": "{color.action.primary}" }
+    },
+    "ghost": {
+      "bg":       { "$type": "color", "$value": "transparent" },
+      "bg-hover": { "$type": "color", "$value": "{color.surface.sunken}" },
+      "text":     { "$type": "color", "$value": "{color.text.primary}" }
+    },
+    "destructive": {
+      "bg":      { "$type": "color", "$value": "{color.action.destructive}" },
+      "text":    { "$type": "color", "$value": "{color.action.destructive-text}" },
+      "bg-hover":{ "$type": "color", "$value": "{error.400}" }
+    }
+  }
+}

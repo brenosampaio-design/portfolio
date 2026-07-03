@@ -1,0 +1,313 @@
+/**
+ * FieldOps Design System — CSS Custom Properties
+ * Version 1.0.0 · Breno Sampaio
+ *
+ * Import in your HTML/CSS:
+ *   @import url('./fieldops-ds-tokens.css');
+ *   or link: <link rel="stylesheet" href="fieldops-ds-tokens.css">
+ *
+ * Fonts required:
+ *   Literata  — https://fonts.google.com/specimen/Literata
+ *   Manrope   — https://fonts.google.com/specimen/Manrope
+ *   Geist Mono — https://vercel.com/font
+ */
+
+/* ─────────────────────────────────────────────────────────────
+   PRIMITIVE COLORS
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* Neutral */
+  --fo-neutral-50:  #f9f7f3;
+  --fo-neutral-100: #f2ede6;
+  --fo-neutral-200: #e7e1d7;
+  --fo-neutral-300: #d4cfc7;
+  --fo-neutral-400: #b8b2a8;
+  --fo-neutral-500: #979088;
+  --fo-neutral-600: #797368;
+  --fo-neutral-700: #5a5347;
+  --fo-neutral-800: #3d3730;
+  --fo-neutral-900: #1a1510;
+
+  /* Clay — urgent / paused / critical */
+  --fo-clay-50:  #fdf0f0;
+  --fo-clay-100: #f9d9d9;
+  --fo-clay-200: #f0b5b5;
+  --fo-clay-300: #e48888;
+  --fo-clay-400: #d46060;
+  --fo-clay-500: #b84848;
+  --fo-clay-600: #963030;
+  --fo-clay-700: #741818;
+  --fo-clay-800: #4f0f0f;
+  --fo-clay-900: #300808;
+
+  /* Sage — active / success / confirmed */
+  --fo-sage-50:  #eef4eb;
+  --fo-sage-100: #d9ebd3;
+  --fo-sage-200: #b4d9a8;
+  --fo-sage-300: #89c278;
+  --fo-sage-400: #6bae58;
+  --fo-sage-500: #5e7a52;
+  --fo-sage-600: #4a6440;
+  --fo-sage-700: #374e30;
+  --fo-sage-800: #243820;
+  --fo-sage-900: #142010;
+
+  /* Amber — in transit / warning */
+  --fo-amber-50:  #fdf6e3;
+  --fo-amber-100: #faecc6;
+  --fo-amber-200: #f5d98c;
+  --fo-amber-300: #f0c455;
+  --fo-amber-400: #e8b030;
+  --fo-amber-500: #a87a20;
+  --fo-amber-600: #856018;
+  --fo-amber-700: #624810;
+  --fo-amber-800: #403008;
+  --fo-amber-900: #201804;
+
+  /* Terracotta — brand / interactive */
+  --fo-terracotta-50:  #fdf2ec;
+  --fo-terracotta-100: #fae3d4;
+  --fo-terracotta-200: #f4c4a8;
+  --fo-terracotta-300: #eca07c;
+  --fo-terracotta-400: #e0805c;
+  --fo-terracotta-500: #b05c3a;
+  --fo-terracotta-600: #8a4028;
+  --fo-terracotta-700: #682c18;
+  --fo-terracotta-800: #461c0c;
+  --fo-terracotta-900: #240e04;
+
+  /* ─────────────────────────────────────────────────────────────
+     SEMANTIC COLORS
+     ───────────────────────────────────────────────────────────── */
+
+  /* Surfaces */
+  --fo-color-canvas:        var(--fo-neutral-50);   /* Page / frame background */
+  --fo-color-surface:       #ffffff;                /* Card / panel background */
+  --fo-color-surface-muted: var(--fo-neutral-100);  /* Dimmed / disabled surface */
+  --fo-color-surface-shell: var(--fo-neutral-900);  /* App shell, topbar, sidebar */
+
+  /* Text */
+  --fo-color-text-primary:   #2d2a26;               /* Main body — warm dark, not pure black */
+  --fo-color-text-secondary: var(--fo-neutral-600); /* Supporting, labels */
+  --fo-color-text-muted:     var(--fo-neutral-500); /* Placeholder, hint, timestamp */
+  --fo-color-text-inverse:   var(--fo-neutral-50);  /* On dark shell backgrounds */
+  --fo-color-text-disabled:  var(--fo-neutral-400); /* Disabled form fields */
+
+  /* Borders */
+  --fo-color-border:        var(--fo-neutral-200);  /* Default hairline */
+  --fo-color-border-strong: var(--fo-neutral-300);  /* Focused input, strong divider */
+  --fo-color-border-muted:  var(--fo-neutral-100);  /* Subtle inner dividers */
+
+  /* Interactive (brand / CTA) */
+  --fo-color-interactive:        var(--fo-terracotta-500);
+  --fo-color-interactive-hover:  var(--fo-terracotta-600);
+  --fo-color-interactive-active: var(--fo-terracotta-700);
+  --fo-color-interactive-subtle: var(--fo-terracotta-50);
+  --fo-color-interactive-text:   #ffffff;
+
+  /* Status — Active (Em campo) */
+  --fo-color-status-active:      var(--fo-sage-500);
+  --fo-color-status-active-bg:   var(--fo-sage-50);
+  --fo-color-status-active-text: var(--fo-sage-700);
+
+  /* Status — Paused (Pausado) */
+  --fo-color-status-paused:      var(--fo-clay-500);
+  --fo-color-status-paused-bg:   var(--fo-clay-50);
+  --fo-color-status-paused-text: var(--fo-clay-700);
+
+  /* Status — Transit (Em trânsito) */
+  --fo-color-status-transit:      var(--fo-amber-500);
+  --fo-color-status-transit-bg:   var(--fo-amber-50);
+  --fo-color-status-transit-text: var(--fo-amber-700);
+
+  /* Status — Done (Concluído) */
+  --fo-color-status-done:      var(--fo-neutral-700);
+  --fo-color-status-done-bg:   var(--fo-neutral-100);
+  --fo-color-status-done-text: var(--fo-neutral-800);
+
+  /* Offline states */
+  --fo-color-offline:       var(--fo-neutral-400);  /* Neutral — no alarm */
+  --fo-color-syncing:       var(--fo-amber-500);    /* Uploading */
+  --fo-color-reconnecting:  var(--fo-sage-500);     /* Positive direction */
+
+  /* ─────────────────────────────────────────────────────────────
+     TYPOGRAPHY
+     ───────────────────────────────────────────────────────────── */
+
+  --fo-font-display: 'Literata', Georgia, 'Times New Roman', serif;
+  --fo-font-ui:      'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fo-font-mono:    'Geist Mono', 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Display scale — Literata */
+  --fo-type-display-2xl-size:    48px;
+  --fo-type-display-2xl-leading: 50px;
+  --fo-type-display-2xl-weight:  700;
+  --fo-type-display-2xl-tracking: -0.02em;
+
+  --fo-type-display-xl-size:    40px;
+  --fo-type-display-xl-leading: 44px;
+  --fo-type-display-xl-weight:  700;
+  --fo-type-display-xl-tracking: -0.015em;
+
+  --fo-type-display-lg-size:    32px;
+  --fo-type-display-lg-leading: 36px;
+  --fo-type-display-lg-weight:  700;
+  --fo-type-display-lg-tracking: -0.01em;
+
+  --fo-type-display-md-size:    24px;
+  --fo-type-display-md-leading: 28px;
+  --fo-type-display-md-weight:  700;
+  --fo-type-display-md-tracking: -0.005em;
+
+  --fo-type-display-sm-size:    20px;
+  --fo-type-display-sm-leading: 24px;
+  --fo-type-display-sm-weight:  600;
+  --fo-type-display-sm-tracking: 0em;
+
+  /* Heading scale — Manrope */
+  --fo-type-heading-lg-size:    17px;
+  --fo-type-heading-lg-leading: 22px;
+  --fo-type-heading-lg-weight:  700;
+
+  --fo-type-heading-md-size:    15px;
+  --fo-type-heading-md-leading: 20px;
+  --fo-type-heading-md-weight:  700;
+
+  --fo-type-heading-sm-size:    13px;
+  --fo-type-heading-sm-leading: 18px;
+  --fo-type-heading-sm-weight:  600;
+
+  /* Label scale — Manrope */
+  --fo-type-label-lg-size:    15px;
+  --fo-type-label-lg-leading: 20px;
+  --fo-type-label-lg-weight:  600;
+
+  --fo-type-label-md-size:    13px;
+  --fo-type-label-md-leading: 18px;
+  --fo-type-label-md-weight:  600;
+
+  --fo-type-label-sm-size:      10px;  /* ALL-CAPS overlines only */
+  --fo-type-label-sm-leading:   14px;
+  --fo-type-label-sm-weight:    700;
+  --fo-type-label-sm-tracking:  0.06em;
+
+  /* Body scale — Manrope */
+  --fo-type-body-lg-size:    15px;
+  --fo-type-body-lg-leading: 22px;
+  --fo-type-body-lg-weight:  400;
+
+  --fo-type-body-md-size:    13px;
+  --fo-type-body-md-leading: 20px;
+  --fo-type-body-md-weight:  400;
+
+  --fo-type-body-sm-size:    11px;
+  --fo-type-body-sm-leading: 16px;
+  --fo-type-body-sm-weight:  400;
+
+  /* Mono scale — Geist Mono */
+  --fo-type-mono-lg-size:    14px;
+  --fo-type-mono-lg-leading: 20px;
+  --fo-type-mono-lg-weight:  700;
+
+  --fo-type-mono-md-size:    12px;
+  --fo-type-mono-md-leading: 18px;
+  --fo-type-mono-md-weight:  500;
+
+  --fo-type-mono-sm-size:    10px;
+  --fo-type-mono-sm-leading: 14px;
+  --fo-type-mono-sm-weight:  500;
+
+  /* ─────────────────────────────────────────────────────────────
+     SPACING (4px base grid)
+     ───────────────────────────────────────────────────────────── */
+
+  --fo-space-1:  4px;
+  --fo-space-2:  8px;
+  --fo-space-3:  12px;
+  --fo-space-4:  16px;
+  --fo-space-5:  20px;
+  --fo-space-6:  24px;
+  --fo-space-8:  32px;
+  --fo-space-10: 40px;
+  --fo-space-11: 44px;  /* Minimum touch target — gloved hands */
+  --fo-space-12: 48px;  /* Large touch target / nav bar height */
+  --fo-space-16: 64px;
+  --fo-space-20: 80px;
+
+  /* ─────────────────────────────────────────────────────────────
+     BORDER RADIUS
+     ───────────────────────────────────────────────────────────── */
+
+  --fo-radius-xs:   2px;
+  --fo-radius-sm:   4px;
+  --fo-radius-md:   6px;
+  --fo-radius-lg:   10px;
+  --fo-radius-xl:   14px;
+  --fo-radius-2xl:  20px;
+  --fo-radius-full: 9999px;
+
+  /* ─────────────────────────────────────────────────────────────
+     SHADOWS / ELEVATION
+     ───────────────────────────────────────────────────────────── */
+
+  --fo-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --fo-shadow-sm: 0 1px 4px 0 rgba(0, 0, 0, 0.06);
+  --fo-shadow-md: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  --fo-shadow-lg: 0 4px 16px -2px rgba(0, 0, 0, 0.10);
+  --fo-shadow-xl: 0 8px 32px -4px rgba(0, 0, 0, 0.12);
+
+  /* ─────────────────────────────────────────────────────────────
+     COMPONENT TOKENS
+     ───────────────────────────────────────────────────────────── */
+
+  /* Touch targets */
+  --fo-touch-min: 44px;  /* Non-negotiable: gloved hands on Android */
+
+  /* Buttons */
+  --fo-btn-height-sm:  36px;
+  --fo-btn-height-md:  44px;
+  --fo-btn-height-lg:  52px;
+  --fo-btn-px-sm:      12px;
+  --fo-btn-px-md:      16px;
+  --fo-btn-px-lg:      20px;
+  --fo-btn-radius-sm:  var(--fo-radius-md);
+  --fo-btn-radius-md:  8px;
+  --fo-btn-radius-lg:  var(--fo-radius-lg);
+
+  /* Inputs */
+  --fo-input-height:   52px;  /* Tall for gloved-hand accuracy */
+  --fo-input-radius:   var(--fo-radius-xl);
+  --fo-input-px:       14px;
+
+  /* Cards */
+  --fo-card-radius:    12px;
+  --fo-card-padding:   var(--fo-space-4);
+
+  /* Order cards */
+  --fo-order-card-width:      342px;  /* 390 screen - 2×24 margin */
+  --fo-order-card-radius:     12px;
+  --fo-order-accent-width:    3px;
+
+  /* Navigation bar */
+  --fo-nav-height:     56px;
+
+  /* Avatars */
+  --fo-avatar-sm:      24px;
+  --fo-avatar-md:      32px;
+  --fo-avatar-lg:      40px;
+
+  /* Z-index layers */
+  --fo-z-base:     0;
+  --fo-z-raised:   10;
+  --fo-z-sticky:   100;
+  --fo-z-overlay:  200;
+  --fo-z-modal:    300;
+  --fo-z-toast:    400;
+
+  /* Transitions */
+  --fo-transition-fast:   120ms ease;
+  --fo-transition-base:   200ms ease;
+  --fo-transition-slow:   350ms ease;
+}

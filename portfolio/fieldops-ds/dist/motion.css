@@ -1,0 +1,280 @@
+/*
+  FieldOps Design System — motion.css
+  Generated from tokens/primitive/motion.tokens.json
+                 tokens/semantic/motion.tokens.json
+                 tokens/component/motion.tokens.json
+
+  Do not edit directly — edit the .tokens.json source files.
+
+  Architecture:
+    1. Primitive   --fo-p-dur-*   --fo-p-ease-*
+    2. Semantic    --fo-motion-dur-*   --fo-motion-ease-*
+    3. Component   --fo-{component}-*-dur   --fo-{component}-*-ease
+
+  Field constraint: every value here has been validated against
+  "operator under task pressure on a mid-range Android at 60 Hz".
+  When in doubt, shorter wins.
+*/
+
+/* ─────────────────────────────────────────────────────────────
+   LAYER 1 — PRIMITIVE DURATIONS
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --fo-p-dur-0:   0ms;
+  --fo-p-dur-50:  50ms;
+  --fo-p-dur-100: 100ms;
+  --fo-p-dur-150: 150ms;
+  --fo-p-dur-200: 200ms;
+  --fo-p-dur-250: 250ms;
+  --fo-p-dur-300: 300ms;
+  --fo-p-dur-400: 400ms;
+  --fo-p-dur-500: 500ms;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAYER 1 — PRIMITIVE EASINGS
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Raw linear — only for progress/loaders */
+  --fo-p-ease-linear:        cubic-bezier(0.00, 0.00, 1.00, 1.00);
+
+  /* Standard workhorse — asymmetric, fast out / slow settle */
+  --fo-p-ease-standard:      cubic-bezier(0.20, 0.00, 0.00, 1.00);
+
+  /* Enter — decelerating arrival. Material M3 Decelerate. */
+  --fo-p-ease-enter:         cubic-bezier(0.00, 0.00, 0.20, 1.00);
+
+  /* Exit — accelerating departure. Material M3 Accelerate. */
+  --fo-p-ease-exit:          cubic-bezier(0.30, 0.00, 1.00, 1.00);
+
+  /* Spring snappy — Framer stiffness:400 damping:28. ~8% overshoot. */
+  --fo-p-ease-spring-snappy: cubic-bezier(0.34, 1.56, 0.64, 1.00);
+
+  /* Spring gentle — Framer stiffness:260 damping:28. No overshoot. */
+  --fo-p-ease-spring-gentle: cubic-bezier(0.16, 1.00, 0.30, 1.00);
+
+  /* Bounce subtle — Framer stiffness:300 damping:20. ~3% overshoot. */
+  --fo-p-ease-bounce-subtle: cubic-bezier(0.34, 1.20, 0.64, 1.00);
+
+  /* Decelerate — aggressive. Elements from off-screen. */
+  --fo-p-ease-decelerate:    cubic-bezier(0.00, 0.00, 0.35, 1.00);
+
+  /* Accelerate — aggressive. Exits only. */
+  --fo-p-ease-accelerate:    cubic-bezier(0.65, 0.00, 1.00, 1.00);
+
+  /* Sharp — blunt snap. System alerts, connectivity state changes. */
+  --fo-p-ease-sharp:         cubic-bezier(0.30, 0.00, 0.80, 0.15);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAYER 2 — SEMANTIC DURATION ALIASES
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --fo-motion-dur-instant:    var(--fo-p-dur-0);    /* Reduced-motion target, focus rings */
+  --fo-motion-dur-micro:      var(--fo-p-dur-100);  /* Tap feedback, toggle snap */
+  --fo-motion-dur-fast:       var(--fo-p-dur-150);  /* Hover states, badge color swap */
+  --fo-motion-dur-respond:    var(--fo-p-dur-200);  /* Standard interactive response */
+  --fo-motion-dur-transition: var(--fo-p-dur-250);  /* Tooltip, dropdown, short accordion */
+  --fo-motion-dur-enter:      var(--fo-p-dur-300);  /* Sheet/modal/alert entering screen */
+  --fo-motion-dur-layout:     var(--fo-p-dur-400);  /* GuidedStep advance, list reorder */
+  --fo-motion-dur-narrative:  var(--fo-p-dur-500);  /* Completion celebration — sparingly */
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAYER 2 — SEMANTIC EASING ALIASES
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --fo-motion-ease-default:   var(--fo-p-ease-standard);
+  --fo-motion-ease-enter:     var(--fo-p-ease-enter);
+  --fo-motion-ease-exit:      var(--fo-p-ease-exit);
+  --fo-motion-ease-confirm:   var(--fo-p-ease-spring-snappy);
+  --fo-motion-ease-settle:    var(--fo-p-ease-spring-gentle);
+  --fo-motion-ease-appear:    var(--fo-p-ease-bounce-subtle);
+  --fo-motion-ease-alert:     var(--fo-p-ease-sharp);
+  --fo-motion-ease-progress:  var(--fo-p-ease-linear);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LAYER 3 — COMPONENT MOTION TOKENS
+   ───────────────────────────────────────────────────────────── */
+
+/* Button */
+:root {
+  --fo-btn-press-dur:          var(--fo-motion-dur-micro);
+  --fo-btn-press-ease:         var(--fo-motion-ease-default);
+  --fo-btn-focus-ring-dur:     var(--fo-motion-dur-instant);
+  --fo-btn-loading-enter-dur:  var(--fo-motion-dur-respond);
+  --fo-btn-loading-enter-ease: var(--fo-motion-ease-enter);
+  --fo-btn-loading-spin-dur:   800ms;
+  --fo-btn-loading-spin-ease:  var(--fo-motion-ease-progress);
+  --fo-btn-loading-exit-dur:   var(--fo-motion-dur-fast);
+  --fo-btn-loading-exit-ease:  var(--fo-motion-ease-exit);
+  --fo-btn-disabled-dur:       var(--fo-motion-dur-fast);
+  --fo-btn-disabled-ease:      var(--fo-motion-ease-default);
+}
+
+/* Input */
+:root {
+  --fo-input-focus-dur:          var(--fo-motion-dur-respond);
+  --fo-input-focus-ease:         var(--fo-motion-ease-default);
+  --fo-input-focus-ring-dur:     var(--fo-motion-dur-instant);
+  --fo-input-label-float-dur:    var(--fo-motion-dur-respond);
+  --fo-input-label-float-ease:   var(--fo-motion-ease-settle);
+  --fo-input-error-text-dur:     var(--fo-motion-dur-transition);
+  --fo-input-error-text-ease:    var(--fo-motion-ease-enter);
+  --fo-input-error-border-dur:   var(--fo-motion-dur-fast);
+  --fo-input-error-border-ease:  var(--fo-motion-ease-alert);
+  --fo-input-error-exit-dur:     var(--fo-motion-dur-fast);
+  --fo-input-error-exit-ease:    var(--fo-motion-ease-exit);
+}
+
+/* StatusBadge */
+:root {
+  --fo-badge-mount-dur:          var(--fo-motion-dur-micro);
+  --fo-badge-mount-ease:         var(--fo-motion-ease-appear);
+  --fo-badge-swap-exit-dur:      75ms;
+  --fo-badge-swap-exit-ease:     var(--fo-motion-ease-exit);
+  --fo-badge-swap-enter-dur:     var(--fo-motion-dur-fast);
+  --fo-badge-swap-enter-ease:    var(--fo-motion-ease-enter);
+  --fo-badge-pulse-dur:          2000ms;
+  --fo-badge-pulse-ease:         var(--fo-motion-ease-progress);
+}
+
+/* AlertBanner */
+:root {
+  --fo-alert-enter-transform-dur:  var(--fo-motion-dur-enter);
+  --fo-alert-enter-transform-ease: var(--fo-motion-ease-enter);
+  --fo-alert-enter-opacity-dur:    var(--fo-motion-dur-respond);
+  --fo-alert-enter-opacity-ease:   var(--fo-motion-ease-enter);
+  --fo-alert-exit-transform-dur:   var(--fo-motion-dur-respond);
+  --fo-alert-exit-transform-ease:  var(--fo-motion-ease-exit);
+  --fo-alert-exit-opacity-dur:     var(--fo-motion-dur-fast);
+  --fo-alert-exit-opacity-ease:    var(--fo-motion-ease-exit);
+  --fo-alert-icon-error-dur:       var(--fo-motion-dur-micro);
+  --fo-alert-icon-error-ease:      var(--fo-motion-ease-alert);
+  --fo-alert-icon-success-dur:     var(--fo-motion-dur-micro);
+  --fo-alert-icon-success-ease:    var(--fo-motion-ease-confirm);
+}
+
+/* OrderCard */
+:root {
+  --fo-card-hover-dur:             var(--fo-motion-dur-fast);
+  --fo-card-hover-ease:            var(--fo-motion-ease-default);
+  --fo-card-press-dur:             var(--fo-motion-dur-micro);
+  --fo-card-press-ease:            var(--fo-motion-ease-default);
+  --fo-card-reorder-dur:           var(--fo-motion-dur-layout);
+  --fo-card-reorder-ease:          var(--fo-motion-ease-settle);
+  --fo-card-reorder-stagger:       20ms;
+  --fo-card-priority-flash-dur:    600ms;
+  --fo-card-priority-flash-ease:   var(--fo-motion-ease-progress);
+  --fo-card-sync-pulse-dur:        var(--fo-badge-pulse-dur);
+  --fo-card-sync-pulse-ease:       var(--fo-motion-ease-progress);
+}
+
+/* GuidedStep */
+:root {
+  --fo-step-unlock-dur:            var(--fo-motion-dur-respond);
+  --fo-step-unlock-ease:           var(--fo-motion-ease-default);
+  --fo-step-block-dur:             var(--fo-motion-dur-fast);
+  --fo-step-block-ease:            var(--fo-motion-ease-alert);
+  --fo-step-complete-check-dur:    var(--fo-motion-dur-respond);
+  --fo-step-complete-check-ease:   var(--fo-motion-ease-confirm);
+  --fo-step-complete-connector-dur:     var(--fo-motion-dur-transition);
+  --fo-step-complete-connector-ease:    var(--fo-motion-ease-settle);
+  --fo-step-complete-connector-delay:   150ms;
+  --fo-step-complete-next-dur:     var(--fo-motion-dur-enter);
+  --fo-step-complete-next-ease:    var(--fo-motion-ease-enter);
+  --fo-step-complete-next-delay:   400ms;
+}
+
+/* OfflineIndicator */
+:root {
+  --fo-offline-transition-dur:     var(--fo-motion-dur-respond);
+  --fo-offline-transition-ease:    var(--fo-motion-ease-alert);
+  --fo-offline-label-swap-dur:     100ms;
+  --fo-offline-spin-dur:           1200ms;
+  --fo-offline-spin-ease:          var(--fo-motion-ease-progress);
+  --fo-offline-breathe-dur:        1400ms;
+  --fo-offline-breathe-ease:       var(--fo-motion-ease-progress);
+}
+
+/* SignatureCanvas */
+:root {
+  --fo-sig-mount-dur:              var(--fo-motion-dur-respond);
+  --fo-sig-mount-ease:             var(--fo-motion-ease-enter);
+  --fo-sig-confirm-check-dur:      var(--fo-motion-dur-respond);
+  --fo-sig-confirm-check-ease:     var(--fo-motion-ease-confirm);
+  --fo-sig-dim-dur:                var(--fo-motion-dur-fast);
+  --fo-sig-dim-ease:               var(--fo-motion-ease-default);
+  --fo-sig-panel-slide-dur:        var(--fo-motion-dur-enter);
+  --fo-sig-panel-slide-ease:       var(--fo-motion-ease-settle);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   KEYFRAME DEFINITIONS
+   ───────────────────────────────────────────────────────────── */
+
+/* Universal spinner — used by Button.loading and OfflineIndicator.syncing */
+@keyframes fo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* OfflineIndicator reconnecting — breath pulse */
+@keyframes fo-breathe {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* StatusBadge / OrderCard sync-pending pulse */
+@keyframes fo-sync-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* OrderCard priority flash — one-shot */
+@keyframes fo-priority-flash {
+  0%   { background-color: transparent; }
+  30%  { background-color: var(--fo-p-warning-50, #FFF7ED); }
+  100% { background-color: transparent; }
+}
+
+/* GuidedStep connector fill */
+@keyframes fo-connector-fill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PREFERS-REDUCED-MOTION — OVERRIDE BLOCK
+   Must be at end of file to ensure specificity.
+   ───────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Collapse all semantic durations to instant */
+    --fo-motion-dur-micro:      var(--fo-p-dur-0);
+    --fo-motion-dur-fast:       var(--fo-p-dur-0);
+    --fo-motion-dur-respond:    var(--fo-p-dur-0);
+    --fo-motion-dur-transition: var(--fo-p-dur-0);
+    --fo-motion-dur-enter:      var(--fo-p-dur-0);
+    --fo-motion-dur-layout:     var(--fo-p-dur-0);
+    --fo-motion-dur-narrative:  var(--fo-p-dur-0);
+
+    /* Collapse all easings to standard (no spring/bounce) */
+    --fo-motion-ease-confirm:   var(--fo-p-ease-standard);
+    --fo-motion-ease-settle:    var(--fo-p-ease-standard);
+    --fo-motion-ease-appear:    var(--fo-p-ease-standard);
+  }
+
+  /* Kill all continuous animations */
+  @keyframes fo-spin      { from { transform: rotate(0deg);   } to { transform: rotate(0deg);   } }
+  @keyframes fo-breathe   { from { opacity: 1; } to { opacity: 1; } }
+  @keyframes fo-sync-pulse{ from { opacity: 1; } to { opacity: 1; } }
+  @keyframes fo-priority-flash  { from { } to { } }
+  @keyframes fo-connector-fill  { from { transform: scaleY(1); } to { transform: scaleY(1); } }
+}

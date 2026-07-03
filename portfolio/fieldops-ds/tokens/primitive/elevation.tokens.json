@@ -1,0 +1,20 @@
+{
+  "$description": "Elevation tokens — z-index scale and semantic shadow levels. Components must alias through --fo-elevation-* semantic tokens, never reference raw shadows directly.",
+  "z-index": {
+    "ground":   { "$type": "number", "$value": 0,   "$description": "Baseline — static layout content, page canvas, OrderCard grid" },
+    "raised":   { "$type": "number", "$value": 10,  "$description": "Raised interactive — sticky column headers, pinned summary rows, floating action labels" },
+    "sticky":   { "$type": "number", "$value": 100, "$description": "Sticky chrome — top app bar, bottom nav bar, persistent GuidedStep progress header" },
+    "dropdown": { "$type": "number", "$value": 200, "$description": "Ephemeral menus — OrderCard action menus, filter dropdowns, select options, AlertBanner pinned" },
+    "overlay":  { "$type": "number", "$value": 300, "$description": "Scrim layer — modal backdrop, sheet backdrop" },
+    "modal":    { "$type": "number", "$value": 400, "$description": "Modal sheets — SignatureCanvas full-sheet, GuidedStep blocking modal, conflict resolution panel" },
+    "toast":    { "$type": "number", "$value": 500, "$description": "Toast / snackbar — transient alerts that must clear modal content" },
+    "tooltip":  { "$type": "number", "$value": 600, "$description": "Tooltip — must pierce everything including toasts" },
+    "system":   { "$type": "number", "$value": 700, "$description": "System level — OfflineIndicator in reconnecting state, critical error banners that block all interaction" }
+  },
+  "elevation": {
+    "ground":   { "$type": "shadow", "$value": "none",                                                                                          "$description": "Page canvas, static content, disabled components, sunken inputs. No visual lift." },
+    "raised":   { "$type": "shadow", "$value": "0 1px 2px 0 rgba(17,18,22,0.04)",                                                              "$description": "OrderCard resting, StatusBadge container, GuidedStep items. White surface creates visible lift." },
+    "floating": { "$type": "shadow", "$value": "0 1px 3px 0 rgba(17,18,22,0.08), 0 1px 2px -1px rgba(17,18,22,0.04)",                         "$description": "Dropdowns, tooltips, OfflineIndicator fixed-positioned, command palette. Noticeably elevated." },
+    "system":   { "$type": "shadow", "$value": "0 4px 6px -1px rgba(17,18,22,0.08), 0 2px 4px -2px rgba(17,18,22,0.04)",                      "$description": "Modals, SignatureCanvas sheet, OfflineIndicator reconnecting state. Outdoor sun legibility — shadow must be distinguishable at 50k lux." }
+  }
+}

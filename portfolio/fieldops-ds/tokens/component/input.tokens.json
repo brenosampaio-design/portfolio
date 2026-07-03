@@ -1,0 +1,27 @@
+{
+  "$description": "Input component tokens. Field-first: large touch target, high contrast placeholder.",
+  "input": {
+    "bg":              { "$type": "color", "$value": "{color.surface.elevated}" },
+    "bg-disabled":     { "$type": "color", "$value": "{color.surface.sunken}" },
+    "border":          { "$type": "color", "$value": "{color.border.default}" },
+    "border-hover":    { "$type": "color", "$value": "{color.border.strong}" },
+    "border-focus":    { "$type": "color", "$value": "{color.border.focus}" },
+    "border-error":    { "$type": "color", "$value": "{color.border.error}" },
+    "border-disabled": { "$type": "color", "$value": "{color.border.disabled}" },
+    "text":            { "$type": "color", "$value": "{color.text.primary}" },
+    "placeholder":     { "$type": "color", "$value": "{color.text.tertiary}" },
+    "label":           { "$type": "color", "$value": "{color.text.secondary}" },
+    "helper":          { "$type": "color", "$value": "{color.text.secondary}" },
+    "helper-error":    { "$type": "color", "$value": "{color.text.error}" },
+    "icon":            { "$type": "color", "$value": "{neutral.400}" },
+    "icon-focus":      { "$type": "color", "$value": "{color.action.primary}" },
+    "radius":          { "$type": "dimension", "$value": "{radius.sm}" },
+    "height":          { "$type": "dimension", "$value": "{spacing.12}", "$description": "48px field tap target" },
+    "height-sm":       { "$type": "dimension", "$value": "{spacing.10}", "$description": "40px desktop only" },
+    "padding-x":       { "$type": "dimension", "$value": "{spacing.4}" },
+    "padding-y":       { "$type": "dimension", "$value": "{spacing.3}" },
+    "font-size":       { "$type": "dimension", "$value": "{font.size.16}" },
+    "focus-ring-width":{ "$type": "dimension", "$value": "2px" },
+    "focus-ring-offset":{ "$type": "dimension", "$value": "2px" }
+  }
+}

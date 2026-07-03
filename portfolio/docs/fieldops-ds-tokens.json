@@ -1,0 +1,241 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$metadata": {
+    "name": "FieldOps Design System",
+    "version": "1.0.0",
+    "description": "Tokens for FieldOps — field service operations tool, mobile-first, Android, offline-first.",
+    "author": "Breno Sampaio",
+    "fonts": ["Literata (display)", "Manrope (UI)", "Geist Mono (technical)"]
+  },
+
+  "color": {
+    "primitive": {
+      "neutral": {
+        "50":  { "$type": "color", "$value": "#f9f7f3", "$description": "Canvas — warm paper white" },
+        "100": { "$type": "color", "$value": "#f2ede6", "$description": "Muted surface" },
+        "200": { "$type": "color", "$value": "#e7e1d7", "$description": "Default border" },
+        "300": { "$type": "color", "$value": "#d4cfc7", "$description": "Strong border" },
+        "400": { "$type": "color", "$value": "#b8b2a8", "$description": "Disabled / icon placeholder" },
+        "500": { "$type": "color", "$value": "#979088", "$description": "Text muted" },
+        "600": { "$type": "color", "$value": "#797368", "$description": "Text secondary" },
+        "700": { "$type": "color", "$value": "#5a5347", "$description": "Text done / completed" },
+        "800": { "$type": "color", "$value": "#3d3730", "$description": "Text strong" },
+        "900": { "$type": "color", "$value": "#1a1510", "$description": "Shell / topbar / darkest" }
+      },
+      "clay": {
+        "50":  { "$type": "color", "$value": "#fdf0f0", "$description": "Paused / critical — background tint" },
+        "100": { "$type": "color", "$value": "#f9d9d9" },
+        "200": { "$type": "color", "$value": "#f0b5b5" },
+        "300": { "$type": "color", "$value": "#e48888" },
+        "400": { "$type": "color", "$value": "#d46060" },
+        "500": { "$type": "color", "$value": "#b84848", "$description": "Paused / critical — primary" },
+        "600": { "$type": "color", "$value": "#963030" },
+        "700": { "$type": "color", "$value": "#741818" },
+        "800": { "$type": "color", "$value": "#4f0f0f" },
+        "900": { "$type": "color", "$value": "#300808" }
+      },
+      "sage": {
+        "50":  { "$type": "color", "$value": "#eef4eb", "$description": "Active / success — background tint" },
+        "100": { "$type": "color", "$value": "#d9ebd3" },
+        "200": { "$type": "color", "$value": "#b4d9a8" },
+        "300": { "$type": "color", "$value": "#89c278" },
+        "400": { "$type": "color", "$value": "#6bae58" },
+        "500": { "$type": "color", "$value": "#5e7a52", "$description": "Active / success — primary" },
+        "600": { "$type": "color", "$value": "#4a6440" },
+        "700": { "$type": "color", "$value": "#374e30" },
+        "800": { "$type": "color", "$value": "#243820" },
+        "900": { "$type": "color", "$value": "#142010" }
+      },
+      "amber": {
+        "50":  { "$type": "color", "$value": "#fdf6e3", "$description": "In transit / warning — background tint" },
+        "100": { "$type": "color", "$value": "#faecc6" },
+        "200": { "$type": "color", "$value": "#f5d98c" },
+        "300": { "$type": "color", "$value": "#f0c455" },
+        "400": { "$type": "color", "$value": "#e8b030" },
+        "500": { "$type": "color", "$value": "#a87a20", "$description": "In transit / warning — primary" },
+        "600": { "$type": "color", "$value": "#856018" },
+        "700": { "$type": "color", "$value": "#624810" },
+        "800": { "$type": "color", "$value": "#403008" },
+        "900": { "$type": "color", "$value": "#201804" }
+      },
+      "terracotta": {
+        "50":  { "$type": "color", "$value": "#fdf2ec", "$description": "Brand — lightest tint" },
+        "100": { "$type": "color", "$value": "#fae3d4" },
+        "200": { "$type": "color", "$value": "#f4c4a8" },
+        "300": { "$type": "color", "$value": "#eca07c" },
+        "400": { "$type": "color", "$value": "#e0805c" },
+        "500": { "$type": "color", "$value": "#b05c3a", "$description": "Brand / interactive — primary" },
+        "600": { "$type": "color", "$value": "#8a4028" },
+        "700": { "$type": "color", "$value": "#682c18" },
+        "800": { "$type": "color", "$value": "#461c0c" },
+        "900": { "$type": "color", "$value": "#240e04" }
+      }
+    },
+
+    "semantic": {
+      "canvas":         { "$type": "color", "$value": "{color.primitive.neutral.50}",    "$description": "Page / frame background" },
+      "surface":        { "$type": "color", "$value": "#ffffff",                         "$description": "Card / panel background" },
+      "surface-muted":  { "$type": "color", "$value": "{color.primitive.neutral.100}",   "$description": "Dimmed / disabled surface" },
+      "surface-shell":  { "$type": "color", "$value": "{color.primitive.neutral.900}",   "$description": "App shell, topbar, sidebar" },
+
+      "text-primary":   { "$type": "color", "$value": "#2d2a26",                         "$description": "Main body text — warm dark, not pure black" },
+      "text-secondary": { "$type": "color", "$value": "{color.primitive.neutral.600}",   "$description": "Supporting text, labels" },
+      "text-muted":     { "$type": "color", "$value": "{color.primitive.neutral.500}",   "$description": "Placeholder, hint, timestamp" },
+      "text-inverse":   { "$type": "color", "$value": "{color.primitive.neutral.50}",    "$description": "Text on dark shell background" },
+
+      "border":         { "$type": "color", "$value": "{color.primitive.neutral.200}",   "$description": "Default hairline — cards, inputs, dividers" },
+      "border-strong":  { "$type": "color", "$value": "{color.primitive.neutral.300}",   "$description": "Emphasized border — focused input, strong divider" },
+
+      "interactive":          { "$type": "color", "$value": "{color.primitive.terracotta.500}", "$description": "Brand CTA, links, accent — the one color with personality" },
+      "interactive-hover":    { "$type": "color", "$value": "{color.primitive.terracotta.600}", "$description": "Pressed / hover state of interactive" },
+      "interactive-subtle":   { "$type": "color", "$value": "{color.primitive.terracotta.50}",  "$description": "Interactive background tint" },
+
+      "status-active":      { "$type": "color", "$value": "{color.primitive.sage.500}",    "$description": "Em campo — technician actively working" },
+      "status-active-bg":   { "$type": "color", "$value": "{color.primitive.sage.50}",     "$description": "Em campo badge background" },
+      "status-active-text": { "$type": "color", "$value": "{color.primitive.sage.700}",    "$description": "Em campo badge text (AAA on sage-50)" },
+
+      "status-paused":      { "$type": "color", "$value": "{color.primitive.clay.500}",    "$description": "Pausado — blocked, needs attention" },
+      "status-paused-bg":   { "$type": "color", "$value": "{color.primitive.clay.50}",     "$description": "Pausado badge background" },
+      "status-paused-text": { "$type": "color", "$value": "{color.primitive.clay.700}",    "$description": "Pausado badge text" },
+
+      "status-transit":      { "$type": "color", "$value": "{color.primitive.amber.500}",  "$description": "Em trânsito — technician traveling" },
+      "status-transit-bg":   { "$type": "color", "$value": "{color.primitive.amber.50}",   "$description": "Em trânsito badge background" },
+      "status-transit-text": { "$type": "color", "$value": "{color.primitive.amber.700}",  "$description": "Em trânsito badge text" },
+
+      "status-done":      { "$type": "color", "$value": "{color.primitive.neutral.700}",   "$description": "Concluído — order completed" },
+      "status-done-bg":   { "$type": "color", "$value": "{color.primitive.neutral.100}",   "$description": "Concluído badge background" },
+      "status-done-text": { "$type": "color", "$value": "{color.primitive.neutral.800}",   "$description": "Concluído badge text" },
+
+      "status-offline":  { "$type": "color", "$value": "{color.primitive.neutral.400}",    "$description": "Offline indicator — neutral, not alarming" },
+      "status-syncing":  { "$type": "color", "$value": "{color.primitive.amber.500}",      "$description": "Uploading / syncing indicator" },
+      "status-reconnecting": { "$type": "color", "$value": "{color.primitive.sage.500}",   "$description": "Reconnecting — positive direction" }
+    }
+  },
+
+  "typography": {
+    "family": {
+      "display": { "$type": "fontFamily", "$value": "Literata",    "$description": "Editorial / display — authority, large numbers, status moments" },
+      "ui":      { "$type": "fontFamily", "$value": "Manrope",     "$description": "All UI text — functional, warm, legible at small sizes" },
+      "mono":    { "$type": "fontFamily", "$value": "Geist Mono",  "$description": "Technical values — IDs, ETAs, codes, serial numbers" }
+    },
+    "scale": {
+      "display-2xl": { "$type": "typography", "$value": { "fontFamily": "Literata", "fontWeight": 700, "fontSize": "48px", "lineHeight": "50px", "letterSpacing": "-0.02em" }, "$description": "KPI hero numbers, large status figures" },
+      "display-xl":  { "$type": "typography", "$value": { "fontFamily": "Literata", "fontWeight": 700, "fontSize": "40px", "lineHeight": "44px", "letterSpacing": "-0.015em" }, "$description": "Dashboard KPI cards" },
+      "display-lg":  { "$type": "typography", "$value": { "fontFamily": "Literata", "fontWeight": 700, "fontSize": "32px", "lineHeight": "36px", "letterSpacing": "-0.01em" }, "$description": "Section titles, hero moments" },
+      "display-md":  { "$type": "typography", "$value": { "fontFamily": "Literata", "fontWeight": 700, "fontSize": "24px", "lineHeight": "28px", "letterSpacing": "-0.005em" }, "$description": "Page headings, paused state hero" },
+      "display-sm":  { "$type": "typography", "$value": { "fontFamily": "Literata", "fontWeight": 600, "fontSize": "20px", "lineHeight": "24px", "letterSpacing": "0" }, "$description": "Card headings, modal titles" },
+
+      "heading-lg":  { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 700, "fontSize": "17px", "lineHeight": "22px", "letterSpacing": "0" }, "$description": "Nav bar titles, modal headings" },
+      "heading-md":  { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 700, "fontSize": "15px", "lineHeight": "20px", "letterSpacing": "0" }, "$description": "Card headings, list section titles" },
+      "heading-sm":  { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 600, "fontSize": "13px", "lineHeight": "18px", "letterSpacing": "0" }, "$description": "Sub-headings, group labels" },
+
+      "label-lg":    { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 600, "fontSize": "15px", "lineHeight": "20px", "letterSpacing": "0" }, "$description": "Large CTA buttons" },
+      "label-md":    { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 600, "fontSize": "13px", "lineHeight": "18px", "letterSpacing": "0" }, "$description": "Default buttons, form labels" },
+      "label-sm":    { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 700, "fontSize": "10px", "lineHeight": "14px", "letterSpacing": "0.06em" }, "$description": "All-caps section overlines — ALWAYS uppercase" },
+
+      "body-lg":     { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 400, "fontSize": "15px", "lineHeight": "22px", "letterSpacing": "0" }, "$description": "Primary content, list items" },
+      "body-md":     { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 400, "fontSize": "13px", "lineHeight": "20px", "letterSpacing": "0" }, "$description": "Secondary content, descriptions, form help text" },
+      "body-sm":     { "$type": "typography", "$value": { "fontFamily": "Manrope", "fontWeight": 400, "fontSize": "11px", "lineHeight": "16px", "letterSpacing": "0" }, "$description": "Captions, timestamps, metadata" },
+
+      "mono-lg":     { "$type": "typography", "$value": { "fontFamily": "Geist Mono", "fontWeight": 700, "fontSize": "14px", "lineHeight": "20px", "letterSpacing": "0" }, "$description": "Prominent order IDs" },
+      "mono-md":     { "$type": "typography", "$value": { "fontFamily": "Geist Mono", "fontWeight": 500, "fontSize": "12px", "lineHeight": "18px", "letterSpacing": "0" }, "$description": "ETAs, codes, technical values" },
+      "mono-sm":     { "$type": "typography", "$value": { "fontFamily": "Geist Mono", "fontWeight": 500, "fontSize": "10px", "lineHeight": "14px", "letterSpacing": "0" }, "$description": "Character counts, small IDs, version numbers" }
+    }
+  },
+
+  "spacing": {
+    "1":  { "$type": "dimension", "$value": "4px",  "$description": "Micro gap" },
+    "2":  { "$type": "dimension", "$value": "8px",  "$description": "Compact gap" },
+    "3":  { "$type": "dimension", "$value": "12px", "$description": "Tight gap" },
+    "4":  { "$type": "dimension", "$value": "16px", "$description": "Default gap / inner padding" },
+    "5":  { "$type": "dimension", "$value": "20px", "$description": "Comfortable gap" },
+    "6":  { "$type": "dimension", "$value": "24px", "$description": "Component padding" },
+    "8":  { "$type": "dimension", "$value": "32px", "$description": "Section inner padding" },
+    "10": { "$type": "dimension", "$value": "40px", "$description": "Generous padding" },
+    "11": { "$type": "dimension", "$value": "44px", "$description": "MINIMUM TOUCH TARGET — gloved hands on Android" },
+    "12": { "$type": "dimension", "$value": "48px", "$description": "Large touch target / nav bar height" },
+    "16": { "$type": "dimension", "$value": "64px", "$description": "Section dividers" },
+    "20": { "$type": "dimension", "$value": "80px", "$description": "Page section spacing" }
+  },
+
+  "borderRadius": {
+    "xs":   { "$type": "dimension", "$value": "2px",    "$description": "Hairline rounding — accent bars, tags" },
+    "sm":   { "$type": "dimension", "$value": "4px",    "$description": "Subtle rounding — chips, tight elements" },
+    "md":   { "$type": "dimension", "$value": "6px",    "$description": "Default — buttons sm, inputs, small cards" },
+    "lg":   { "$type": "dimension", "$value": "10px",   "$description": "Cards, modals, panels" },
+    "xl":   { "$type": "dimension", "$value": "14px",   "$description": "Large cards, bottom sheets" },
+    "2xl":  { "$type": "dimension", "$value": "20px",   "$description": "Pills, floating chips, large badges" },
+    "full": { "$type": "dimension", "$value": "9999px", "$description": "Circles — avatars, status dots, toggle thumbs" }
+  },
+
+  "shadow": {
+    "xs": {
+      "$type": "shadow",
+      "$value": { "offsetX": "0", "offsetY": "1px", "blur": "2px", "spread": "0", "color": "rgba(0,0,0,0.04)" },
+      "$description": "Hairline lift — flat elements with subtle depth"
+    },
+    "sm": {
+      "$type": "shadow",
+      "$value": { "offsetX": "0", "offsetY": "1px", "blur": "4px", "spread": "0", "color": "rgba(0,0,0,0.06)" },
+      "$description": "Default card elevation — resting state"
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": { "offsetX": "0", "offsetY": "2px", "blur": "8px", "spread": "0", "color": "rgba(0,0,0,0.08)" },
+      "$description": "Raised card — active state, focused input, alerts panel"
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": { "offsetX": "0", "offsetY": "4px", "blur": "16px", "spread": "-2px", "color": "rgba(0,0,0,0.10)" },
+      "$description": "Floating panel — bottom sheet, modal"
+    },
+    "xl": {
+      "$type": "shadow",
+      "$value": { "offsetX": "0", "offsetY": "8px", "blur": "32px", "spread": "-4px", "color": "rgba(0,0,0,0.12)" },
+      "$description": "Prominent CTA button — sage/clay CTAs on key screens"
+    }
+  },
+
+  "component": {
+    "touchTarget": {
+      "minimum": { "$type": "dimension", "$value": "44px", "$description": "Non-negotiable for gloved hands on Android" }
+    },
+    "badge": {
+      "paddingHorizontal-sm": { "$type": "dimension", "$value": "8px" },
+      "paddingVertical-sm":   { "$type": "dimension", "$value": "3px" },
+      "paddingHorizontal-md": { "$type": "dimension", "$value": "10px" },
+      "paddingVertical-md":   { "$type": "dimension", "$value": "5px" },
+      "borderRadius": { "$type": "dimension", "$value": "9999px" }
+    },
+    "button": {
+      "height-sm":  { "$type": "dimension", "$value": "36px" },
+      "height-md":  { "$type": "dimension", "$value": "44px" },
+      "height-lg":  { "$type": "dimension", "$value": "52px" },
+      "paddingHorizontal-sm": { "$type": "dimension", "$value": "12px" },
+      "paddingHorizontal-md": { "$type": "dimension", "$value": "16px" },
+      "paddingHorizontal-lg": { "$type": "dimension", "$value": "20px" },
+      "borderRadius-sm": { "$type": "dimension", "$value": "6px" },
+      "borderRadius-md": { "$type": "dimension", "$value": "8px" },
+      "borderRadius-lg": { "$type": "dimension", "$value": "10px" }
+    },
+    "input": {
+      "height":       { "$type": "dimension", "$value": "52px",  "$description": "Tall for gloved-hand accuracy" },
+      "borderRadius": { "$type": "dimension", "$value": "10px" },
+      "paddingHorizontal": { "$type": "dimension", "$value": "14px" }
+    },
+    "orderCard": {
+      "width":       { "$type": "dimension", "$value": "342px", "$description": "390 screen - 2×24 margin" },
+      "borderRadius": { "$type": "dimension", "$value": "12px" },
+      "accentBarWidth": { "$type": "dimension", "$value": "3px" }
+    },
+    "navigationBar": {
+      "height": { "$type": "dimension", "$value": "56px" },
+      "borderRadius": { "$type": "dimension", "$value": "0px", "$description": "Full-width, no radius" }
+    },
+    "avatar": {
+      "size-sm": { "$type": "dimension", "$value": "24px" },
+      "size-md": { "$type": "dimension", "$value": "32px" },
+      "size-lg": { "$type": "dimension", "$value": "40px" }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$description": "FieldOps Motion Semantic Layer — named motion intents aliased to primitives. Engineers consume these tokens, never the primitives directly. Naming grammar: {what-happens}.{duration|easing}. Field principle: if in doubt, use a shorter duration. Operators' perception speed under task pressure compresses subjective time — a 300 ms animation feels like 500 ms on the bus.",
+
+  "motion": {
+
+    "duration": {
+      "$description": "Semantic duration aliases. Map to primitive duration scale.",
+
+      "instant":      { "$type": "duration", "$value": "{duration.0}",   "$description": "Reduced-motion target. Also: focus-ring appearance, skip-link reveal. Duration is literally 0 — no easing applied." },
+      "micro":        { "$type": "duration", "$value": "{duration.100}", "$description": "Tap feedback, toggle snap, checkbox fill. The sensation of hardware response." },
+      "fast":         { "$type": "duration", "$value": "{duration.150}", "$description": "Hover states, badge color swap, icon swap within a button." },
+      "respond":      { "$type": "duration", "$value": "{duration.200}", "$description": "The default interactive response. Button press, input focus ring, status pill change." },
+      "transition":   { "$type": "duration", "$value": "{duration.250}", "$description": "Small motion: tooltip appear, dropdown open, accordion expand (short content)." },
+      "enter":        { "$type": "duration", "$value": "{duration.300}", "$description": "Component entering the screen: sheet slides in, AlertBanner mounts, modal opens." },
+      "layout":       { "$type": "duration", "$value": "{duration.400}", "$description": "Layout-level changes: step advancement in GuidedStep, card reordering, list re-sort." },
+      "narrative":    { "$type": "duration", "$value": "{duration.500}", "$description": "Celebratory / onboarding only. Completion confetti, first-launch flow. Never in task flow." }
+    },
+
+    "easing": {
+      "$description": "Semantic easing aliases — use these names in component specs.",
+
+      "default":          { "$type": "cubicBezier", "$value": "{easing.standard}",      "$description": "Fallback for any transition without a specific intent." },
+      "enter":            { "$type": "cubicBezier", "$value": "{easing.enter}",          "$description": "Something arriving. Sheet, panel, modal, toast." },
+      "exit":             { "$type": "cubicBezier", "$value": "{easing.exit}",           "$description": "Something leaving. Always pair with a shorter duration than its enter." },
+      "confirm":          { "$type": "cubicBezier", "$value": "{easing.spring-snappy}",  "$description": "Success confirmation: step checkmark, button success state. One overshoot only." },
+      "settle":           { "$type": "cubicBezier", "$value": "{easing.spring-gentle}",  "$description": "Organic settle without drama: panel slides, sheet entries. No overshoot." },
+      "appear":           { "$type": "cubicBezier", "$value": "{easing.bounce-subtle}",  "$description": "Badge/chip appears in place (scale from 0). Lightweight pop." },
+      "alert":            { "$type": "cubicBezier", "$value": "{easing.sharp}",          "$description": "System-level state change: connectivity flip, critical error. Blunt — no charm." },
+      "progress":         { "$type": "cubicBezier", "$value": "{easing.linear}",         "$description": "Progress bars, loaders, spinner rotation. Linear only — easing on progress feels broken." }
+    },
+
+    "reduced-motion": {
+      "$description": "Rules for @media (prefers-reduced-motion: reduce). Not a token set — these are implementation rules.",
+      "strategy":       { "$value": "substitute",   "$description": "Do not simply remove motion. Substitute: fade opacity-only transitions (no translate/scale) at duration.instant. Connectivity indicators switch to color-only with no animation." },
+      "allowed":        { "$value": "opacity-fade", "$description": "The one animation class always permitted even under reduced-motion. Opacity change at instant or micro duration is imperceptible as motion but preserves temporal information." },
+      "forbidden":      { "$value": "translate, scale, rotate, spring-snappy, spring-gentle, bounce-subtle", "$description": "All spatial and spring-based animations are disabled." }
+    }
+  }
+}

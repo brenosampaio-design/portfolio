@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldOps Design System — v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+
+/* ── TOKENS ──────────────────────────────────────────────── */
+:root {
+  --n50:#f9f7f3; --n100:#f2ede6; --n200:#e7e1d7; --n300:#d4cfc7;
+  --n400:#b8b2a8; --n500:#979088; --n600:#797368; --n700:#5a5347;
+  --n800:#3d3730; --n900:#1a1510;
+
+  --cl50:#fdf0f0; --cl100:#f9d9d9; --cl300:#e48888;
+  --cl500:#b84848; --cl700:#741818; --cl900:#300808;
+
+  --sg50:#eef4eb; --sg100:#d9ebd3; --sg300:#89c278;
+  --sg500:#5e7a52; --sg700:#374e30; --sg900:#142010;
+
+  --am50:#fdf6e3; --am100:#faecc6; --am300:#f0c455;
+  --am500:#a87a20; --am700:#624810; --am900:#201804;
+
+  --tc50:#fdf2ec; --tc100:#fae3d4; --tc200:#f4c4a8;
+  --tc300:#eca07c; --tc400:#e0805c; --tc500:#b05c3a;
+  --tc600:#8a4028; --tc700:#682c18; --tc800:#461c0c;
+
+  --canvas: var(--n50);
+  --surface: #ffffff;
+  --surface-muted: var(--n100);
+  --shell: var(--n900);
+  --text1: #2d2a26;
+  --text2: var(--n600);
+  --text3: var(--n500);
+  --text-inv: var(--n50);
+  --border: var(--n200);
+  --border-str: var(--n300);
+
+  --interactive: var(--tc500);
+  --interactive-h: var(--tc600);
+
+  --font-d: 'Literata', Georgia, serif;
+  --font-ui: 'Manrope', system-ui, sans-serif;
+  --font-mo: ui-monospace, 'SFMono-Regular', monospace;
+
+  --r-xs:2px; --r-sm:4px; --r-md:6px; --r-lg:10px;
+  --r-xl:14px; --r-2xl:20px; --r-full:9999px;
+
+  --sh-xs:0 1px 2px rgba(0,0,0,.04);
+  --sh-sm:0 1px 4px rgba(0,0,0,.06);
+  --sh-md:0 2px 8px rgba(0,0,0,.08);
+  --sh-lg:0 4px 16px -2px rgba(0,0,0,.10);
+  --sh-xl:0 8px 32px -4px rgba(0,0,0,.12);
+}
+
+/* ── RESET ───────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-ui);
+  background: var(--canvas);
+  color: var(--text1);
+  line-height: 1.5;
+  font-size: 15px;
+}
+a { color: var(--interactive); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: var(--font-ui); cursor: default; border: none; }
+
+/* ── LAYOUT ──────────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.sidebar {
+  background: var(--shell);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 28px 0 40px;
+  border-right: 1px solid rgba(255,255,255,.05);
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+.sidebar-logo {
+  padding: 0 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 20px;
+}
+.sidebar-logo-title {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-inv);
+  letter-spacing: -.01em;
+}
+.sidebar-logo-sub {
+  font-size: 11px;
+  color: var(--n600);
+  margin-top: 3px;
+}
+
+.sidebar-group { margin-bottom: 24px; padding: 0 20px; }
+.sidebar-group-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--n700);
+  margin-bottom: 8px;
+}
+.sidebar-link {
+  display: block;
+  font-size: 13px;
+  color: var(--n500);
+  padding: 5px 0;
+  transition: color .15s;
+}
+.sidebar-link:hover { color: var(--text-inv); text-decoration: none; }
+.sidebar-link.active { color: var(--tc300); }
+
+/* ── MAIN ────────────────────────────────────────────────── */
+.main {
+  padding: 56px 64px 100px;
+  max-width: 900px;
+}
+
+/* ── SECTION ─────────────────────────────────────────────── */
+.ds-section {
+  margin-bottom: 80px;
+  scroll-margin-top: 32px;
+}
+.ds-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+.ds-title {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--text1);
+  margin-bottom: 6px;
+}
+.ds-desc {
+  font-size: 14px;
+  color: var(--text2);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 64px 0;
+}
+
+/* ── HEADER CARD ─────────────────────────────────────────── */
+.ds-cover {
+  background: var(--shell);
+  border-radius: 14px;
+  padding: 40px;
+  margin-bottom: 64px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.ds-cover-eyebrow {
+  font-family: var(--font-d);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--n700);
+  margin-bottom: 8px;
+}
+.ds-cover-title {
+  font-family: var(--font-d);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1;
+  color: var(--n50);
+  margin-bottom: 10px;
+}
+.ds-cover-sub {
+  font-size: 14px;
+  color: var(--n600);
+  margin-bottom: 28px;
+}
+.ds-cover-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 36px; }
+.ds-cover-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--r-full);
+  background: rgba(255,255,255,.06);
+  color: var(--tc300);
+}
+.ds-cover-stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.ds-cover-stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--n700);
+  margin-bottom: 6px;
+}
+.ds-cover-stat-val {
+  font-family: var(--font-d);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--n50);
+  line-height: 1;
+}
+.ds-cover-stat-note {
+  font-size: 11px;
+  color: var(--n700);
+  margin-top: 4px;
+}
+
+/* ── SWATCHES ────────────────────────────────────────────── */
+.swatch-row { display: flex; gap: 4px; align-items: flex-end; margin-bottom: 6px; }
+.swatch-item { flex: 1; }
+.swatch-block { border-radius: 6px; }
+.swatch-label {
+  font-size: 9px;
+  color: var(--text3);
+  text-align: center;
+  margin-top: 4px;
+}
+.swatch-label.bold { font-weight: 700; color: var(--text1); }
+
+.swatch-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.swatch-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 8px;
+}
+
+/* ── SEMANTIC TOKENS ─────────────────────────────────────── */
+.semantic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.semantic-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.semantic-swatch { width: 28px; height: 28px; border-radius: 6px; flex-shrink: 0; }
+.semantic-name { font-size: 12px; font-weight: 600; color: var(--text1); }
+.semantic-value { font-size: 11px; color: var(--text3); font-family: var(--font-mo); }
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────── */
+.type-block {
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  margin-bottom: 12px;
+}
+.type-block-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.type-row:last-child { border-bottom: none; padding-bottom: 0; }
+.type-sample { min-width: 240px; flex-shrink: 0; }
+.type-meta { font-size: 11px; color: var(--text3); }
+
+/* ── SPACING ─────────────────────────────────────────────── */
+.space-row { display: flex; align-items: center; gap: 14px; padding: 5px 0; }
+.space-bar { background: var(--tc500); border-radius: 3px; height: 11px; flex-shrink: 0; }
+.space-label { font-size: 12px; color: var(--text2); }
+.space-label strong { color: var(--text1); font-weight: 600; }
+
+/* ── RADIUS ──────────────────────────────────────────────── */
+.radius-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.radius-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radius-box { width: 48px; height: 32px; background: var(--tc500); }
+.radius-label { font-size: 11px; color: var(--text2); text-align: center; }
+
+/* ── SHADOW ──────────────────────────────────────────────── */
+.shadow-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 8px; }
+.shadow-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.shadow-name { font-size: 11px; font-weight: 600; color: var(--text1); }
+.shadow-val { font-size: 10px; color: var(--text3); font-family: var(--font-mo); line-height: 1.5; word-break: break-all; }
+
+/* ── COMPONENTS ──────────────────────────────────────────── */
+.comp-block {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  margin-bottom: 16px;
+}
+.comp-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+.comp-note {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── BADGE ───────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  white-space: nowrap;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.badge-active  { background: var(--sg50);  color: var(--sg700); }
+.badge-paused  { background: var(--cl50);  color: var(--cl700); }
+.badge-transit { background: var(--am50);  color: var(--am700); }
+.badge-done    { background: var(--n100);  color: var(--n800);  }
+
+.offline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+}
+
+/* ── BUTTON ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--r-md);
+  transition: background .15s;
+}
+.btn-lg   { font-size: 15px; height: 52px; padding: 0 20px; border-radius: var(--r-lg); }
+.btn-md   { font-size: 14px; height: 44px; padding: 0 16px; border-radius: 8px; }
+.btn-sm   { font-size: 13px; height: 36px; padding: 0 14px; }
+
+.btn-sage     { background: var(--sg500); color: #fff; }
+.btn-sage:hover { background: var(--sg700); }
+.btn-primary  { background: var(--tc500); color: #fff; }
+.btn-primary:hover { background: var(--tc600); }
+.btn-secondary { background: transparent; border: 1px solid var(--border-str); color: var(--text1); }
+.btn-ghost    { background: transparent; color: var(--tc500); }
+.btn-danger   { background: var(--cl500); color: #fff; }
+.btn-disabled { background: var(--n100); color: var(--n400); cursor: not-allowed; }
+
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ── INPUT ───────────────────────────────────────────────── */
+.input-wrap { display: flex; flex-direction: column; gap: 6px; }
+.input-label { font-size: 13px; font-weight: 600; color: var(--text1); }
+.input-required { color: var(--cl500); margin-left: 2px; }
+.input-hint { font-size: 11px; color: var(--text3); }
+.input-error-msg { font-size: 11px; color: var(--cl500); }
+.input-field {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--text1);
+  background: var(--surface);
+  border: 1px solid var(--border-str);
+  border-radius: var(--r-xl);
+  height: 52px;
+  padding: 0 14px;
+  outline: none;
+  width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+}
+.input-field::placeholder { color: var(--text3); }
+.input-field:focus { border-color: var(--tc500); box-shadow: 0 0 0 3px rgba(176,92,58,.12); }
+.input-field.error { border-color: var(--cl500); box-shadow: 0 0 0 3px rgba(184,72,72,.10); }
+.input-field.disabled { background: var(--n100); color: var(--n400); cursor: not-allowed; }
+
+.textarea-field {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text1);
+  background: var(--surface);
+  border: 1px solid var(--border-str);
+  border-radius: var(--r-xl);
+  padding: 14px;
+  outline: none;
+  width: 100%;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color .15s, box-shadow .15s;
+  line-height: 1.6;
+}
+.textarea-field:focus { border-color: var(--tc500); box-shadow: 0 0 0 3px rgba(176,92,58,.12); }
+
+.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* ── NAV BAR ─────────────────────────────────────────────── */
+.nav-bar {
+  background: var(--shell);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-radius: var(--r-lg);
+  margin-bottom: 8px;
+}
+.nav-bar-left { display: flex; align-items: center; gap: 12px; }
+.nav-bar-title { font-size: 17px; font-weight: 700; color: var(--text-inv); }
+.nav-bar-back { font-size: 14px; color: var(--tc300); font-weight: 500; display: flex; align-items: center; gap: 4px; }
+
+.nav-offline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--n600);
+  padding: 4px 8px;
+  border-radius: var(--r-full);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.nav-offline-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--n600); flex-shrink: 0; }
+.nav-offline.syncing .nav-offline-dot { background: var(--am500); }
+.nav-offline.syncing { color: var(--am500); border-color: rgba(168,122,32,.3); }
+
+/* ── TAB CHIP ────────────────────────────────────────────── */
+.tab-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab-chip {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  padding: 8px 14px;
+  border-radius: var(--r-2xl);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tab-chip.active-tab { background: var(--n900); color: var(--n50); border-color: var(--n900); }
+.tab-count {
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: var(--r-full);
+  background: rgba(0,0,0,.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+.tab-chip.active-tab .tab-count { background: rgba(255,255,255,.15); }
+
+/* ── ORDER CARD ──────────────────────────────────────────── */
+.order-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 15px 13px 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--sh-xs);
+}
+.order-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+.order-card.active::before  { background: var(--sg500); }
+.order-card.paused::before  { background: var(--cl500); }
+.order-card.transit::before { background: var(--am500); }
+.order-card.done::before    { background: var(--n400);  }
+.order-card-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.order-id { font-family: var(--font-mo); font-size: 11px; font-weight: 700; color: var(--text3); margin-bottom: 3px; }
+.order-name { font-size: 15px; font-weight: 700; color: var(--text1); }
+.order-addr { font-size: 13px; color: var(--text2); margin-top: 1px; }
+.order-right { text-align: right; flex-shrink: 0; }
+.order-time { font-family: var(--font-mo); font-size: 12px; font-weight: 500; color: var(--text3); margin-top: 6px; }
+.order-grid { display: grid; gap: 8px; }
+
+/* ── PROGRESS STEP ───────────────────────────────────────── */
+.progress-wrap {
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.progress-counter { font-size: 12px; font-weight: 600; color: var(--text3); }
+.progress-name { font-family: var(--font-d); font-size: 16px; font-weight: 700; color: var(--text1); }
+.progress-track { display: flex; align-items: center; gap: 5px; }
+.p-dot { height: 8px; border-radius: 50%; flex-shrink: 0; }
+.p-dot.done   { width: 8px; background: var(--sg500); }
+.p-dot.active { width: 20px; border-radius: 4px; background: var(--tc500); }
+.p-dot.pend   { width: 8px; background: var(--n300); }
+.p-line { height: 1px; flex: 1; }
+.p-line.done  { background: var(--sg500); }
+.p-line.pend  { background: var(--n200); }
+.progress-labels { display: flex; justify-content: space-between; margin-top: 6px; }
+.p-lbl { font-size: 10px; font-weight: 600; }
+.p-lbl.done   { color: var(--sg500); }
+.p-lbl.active { color: var(--tc500); }
+.p-lbl.pend   { color: var(--text3); }
+
+/* ── AVATAR ──────────────────────────────────────────────── */
+.avatar {
+  border-radius: var(--r-full);
+  background: var(--tc100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--tc700);
+  font-family: var(--font-ui);
+  flex-shrink: 0;
+}
+.avatar.sm { width: 24px; height: 24px; font-size: 10px; }
+.avatar.md { width: 32px; height: 32px; font-size: 12px; }
+.avatar.lg { width: 40px; height: 40px; font-size: 14px; }
+.avatar.xl { width: 52px; height: 52px; font-size: 18px; }
+
+/* ── SIGNATURE CANVAS ────────────────────────────────────── */
+.sig-canvas {
+  border: 1px solid var(--border-str);
+  border-radius: var(--r-lg);
+  height: 88px;
+  background: var(--canvas);
+  position: relative;
+  overflow: hidden;
+}
+.sig-baseline {
+  position: absolute;
+  bottom: 16px; left: 0; right: 0;
+  height: 1px; background: var(--border);
+}
+.sig-hint {
+  position: absolute;
+  bottom: 5px; left: 14px;
+  font-size: 10px; color: var(--text3);
+}
+
+/* ── GUIDED STEP ─────────────────────────────────────────── */
+.guided-phone {
+  width: 340px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--canvas);
+  box-shadow: var(--sh-lg);
+}
+.guided-phone-frame {
+  background: var(--canvas);
+}
+
+/* ── OFFLINE STATES ──────────────────────────────────────── */
+.offline-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.offline-card {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+.offline-state-name { font-size: 11px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+.offline-state-ui {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+/* ── CHECKLIST ───────────────────────────────────────────── */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.check-item:last-child { border-bottom: none; }
+.check-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.check-box.checked { background: var(--sg500); }
+.check-box.unchecked { border: 1.5px solid var(--border-str); }
+.check-text { font-size: 14px; color: var(--text1); line-height: 1.5; }
+.check-text.checked { color: var(--text3); text-decoration: line-through; }
+
+/* ── UTILITIES ───────────────────────────────────────────── */
+.row  { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.col  { display: flex; flex-direction: column; gap: 8px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.mono { font-family: var(--font-mo); }
+
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══════════════════════════════════════════ -->
+  <nav class="sidebar" aria-label="Design system navigation">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-title">FieldOps DS</div>
+      <div class="sidebar-logo-sub">v1.0 · Android · offline-first</div>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Foundation</div>
+      <a href="#colors" class="sidebar-link">Colors</a>
+      <a href="#typography" class="sidebar-link">Typography</a>
+      <a href="#spacing" class="sidebar-link">Spacing</a>
+      <a href="#radius" class="sidebar-link">Border radius</a>
+      <a href="#shadow" class="sidebar-link">Shadow</a>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Components</div>
+      <a href="#badge" class="sidebar-link">StatusBadge</a>
+      <a href="#offline" class="sidebar-link">OfflineIndicator</a>
+      <a href="#button" class="sidebar-link">Button</a>
+      <a href="#input" class="sidebar-link">FormField</a>
+      <a href="#navbar" class="sidebar-link">NavigationBar</a>
+      <a href="#tabchip" class="sidebar-link">TabChip</a>
+      <a href="#ordercard" class="sidebar-link">OrderCard</a>
+      <a href="#progress" class="sidebar-link">ProgressStep</a>
+      <a href="#avatar" class="sidebar-link">Avatar</a>
+      <a href="#signature" class="sidebar-link">SignatureCanvas</a>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Patterns</div>
+      <a href="#guided" class="sidebar-link">GuidedStep</a>
+      <a href="#rules" class="sidebar-link">Design rules</a>
+    </div>
+
+    <div class="sidebar-group" style="margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.06)">
+      <div style="font-size: 11px; color: var(--n700)">
+        Figma: <span style="color: var(--n600)">2owo4P9E6CaDX6JqPZyJc0</span><br>
+        Breno Sampaio · 2026
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ MAIN ══════════════════════════════════════════════ -->
+  <main class="main">
+
+    <!-- COVER ──────────────────────────────────────────── -->
+    <div class="ds-cover">
+      <div class="ds-cover-eyebrow">Field service operations tool</div>
+      <div class="ds-cover-title">FieldOps DS</div>
+      <div class="ds-cover-sub">Design system for field technicians. Android-first, offline-first. Built for gloved hands, direct sunlight, and unreliable connectivity.</div>
+      <div class="ds-cover-tags">
+        <span class="ds-cover-tag">Literata · display</span>
+        <span class="ds-cover-tag">Manrope · UI</span>
+        <span class="ds-cover-tag">Geist Mono · technical</span>
+        <span class="ds-cover-tag">Earthy palette</span>
+        <span class="ds-cover-tag">Offline-first</span>
+      </div>
+      <div class="ds-cover-stats">
+        <div>
+          <div class="ds-cover-stat-label">Min touch target</div>
+          <div class="ds-cover-stat-val">44px</div>
+          <div class="ds-cover-stat-note">Gloved hands on Android</div>
+        </div>
+        <div>
+          <div class="ds-cover-stat-label">Base grid</div>
+          <div class="ds-cover-stat-val">4px</div>
+          <div class="ds-cover-stat-note">All spacing multiples</div>
+        </div>
+        <div>
+          <div class="ds-cover-stat-label">Screen</div>
+          <div class="ds-cover-stat-val">390px</div>
+          <div class="ds-cover-stat-note">Android mobile</div>
+        </div>
+        <div>
+          <div class="ds-cover-stat-label">Components</div>
+          <div class="ds-cover-stat-val">10</div>
+          <div class="ds-cover-stat-note">Core components</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLORS ──────────────────────────────────────── -->
+    <section id="colors" class="ds-section">
+      <div class="ds-label">Foundation</div>
+      <div class="ds-title">Color</div>
+      <div class="ds-desc">Five color families, each with a semantic role. Neutrals are warm-tinted, not cool gray. Status colors were selected for legibility in direct sunlight on 4-year-old Android hardware.</div>
+
+      <!-- Neutral -->
+      <p class="swatch-name">Neutral · canvas → shell</p>
+      <div class="swatch-row" style="margin-bottom:20px">
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n50);height:40px;border:1px solid var(--border)"></div><div class="swatch-label">50</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n100);height:44px"></div><div class="swatch-label">100</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n200);height:48px"></div><div class="swatch-label">200</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n300);height:52px"></div><div class="swatch-label">300</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n400);height:56px"></div><div class="swatch-label">400</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n500);height:60px"></div><div class="swatch-label">500</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n600);height:64px"></div><div class="swatch-label">600</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n700);height:68px"></div><div class="swatch-label">700</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n800);height:72px"></div><div class="swatch-label">800</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--n900);height:76px"></div><div class="swatch-label">900</div></div>
+      </div>
+
+      <div class="swatch-3col">
+        <div>
+          <p class="swatch-name">Clay · paused / urgent</p>
+          <div class="swatch-row">
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--cl50);height:32px;border:1px solid var(--border)"></div><div class="swatch-label">50</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--cl100);height:40px"></div><div class="swatch-label">100</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--cl300);height:50px"></div><div class="swatch-label">300</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--cl500);height:60px"></div><div class="swatch-label bold">500</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--cl700);height:68px"></div><div class="swatch-label">700</div></div>
+          </div>
+        </div>
+        <div>
+          <p class="swatch-name">Sage · active / success</p>
+          <div class="swatch-row">
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--sg50);height:32px;border:1px solid var(--border)"></div><div class="swatch-label">50</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--sg100);height:40px"></div><div class="swatch-label">100</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--sg300);height:50px"></div><div class="swatch-label">300</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--sg500);height:60px"></div><div class="swatch-label bold">500</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--sg700);height:68px"></div><div class="swatch-label">700</div></div>
+          </div>
+        </div>
+        <div>
+          <p class="swatch-name">Amber · transit / warning</p>
+          <div class="swatch-row">
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--am50);height:32px;border:1px solid var(--border)"></div><div class="swatch-label">50</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--am100);height:40px"></div><div class="swatch-label">100</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--am300);height:50px"></div><div class="swatch-label">300</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--am500);height:60px"></div><div class="swatch-label bold">500</div></div>
+            <div class="swatch-item"><div class="swatch-block" style="background:var(--am700);height:68px"></div><div class="swatch-label">700</div></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="swatch-name">Terracotta · brand / interactive · the one color with personality</p>
+      <div class="swatch-row" style="margin-bottom:32px">
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc50);height:32px;border:1px solid var(--border)"></div><div class="swatch-label">50</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc100);height:36px"></div><div class="swatch-label">100</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc200);height:42px"></div><div class="swatch-label">200</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc300);height:48px"></div><div class="swatch-label">300</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc400);height:54px"></div><div class="swatch-label">400</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc500);height:62px"></div><div class="swatch-label bold">500</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc600);height:68px"></div><div class="swatch-label">600</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc700);height:74px"></div><div class="swatch-label">700</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:var(--tc800);height:78px"></div><div class="swatch-label">800</div></div>
+      </div>
+
+      <!-- Semantic -->
+      <p class="swatch-name" style="margin-bottom:12px">Semantic layer</p>
+      <div class="semantic-grid">
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--sg50);border:2px solid var(--sg500)"></div><div><div class="semantic-name">status-active</div><div class="semantic-value">#5e7a52 on #eef4eb</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--cl50);border:2px solid var(--cl500)"></div><div><div class="semantic-name">status-paused</div><div class="semantic-value">#b84848 on #fdf0f0</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--am50);border:2px solid var(--am500)"></div><div><div class="semantic-name">status-transit</div><div class="semantic-value">#a87a20 on #fdf6e3</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--n100);border:2px solid var(--n700)"></div><div><div class="semantic-name">status-done</div><div class="semantic-value">#5a5347 on #f2ede6</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--tc50);border:2px solid var(--tc500)"></div><div><div class="semantic-name">interactive</div><div class="semantic-value">#b05c3a · brand CTA</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--n900)"></div><div><div class="semantic-name">surface-shell</div><div class="semantic-value">#1a1510 · nav / topbar</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:var(--n50);border:1px solid var(--border)"></div><div><div class="semantic-name">canvas</div><div class="semantic-value">#f9f7f3 · page background</div></div></div>
+        <div class="semantic-item"><div class="semantic-swatch" style="background:#fff;border:1px solid var(--border)"></div><div><div class="semantic-name">surface</div><div class="semantic-value">#ffffff · cards, panels</div></div></div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── TYPOGRAPHY ──────────────────────────────────── -->
+    <section id="typography" class="ds-section">
+      <div class="ds-title">Typography</div>
+      <div class="ds-desc">Three typefaces with distinct roles. Literata carries authority for display moments. Manrope handles all functional UI text. Geist Mono isolates technical values (IDs, ETAs, codes).</div>
+
+      <div class="type-block">
+        <div class="type-block-label">Literata · display / editorial</div>
+        <div class="type-row">
+          <div class="type-sample" style="font-family:var(--font-d);font-size:48px;font-weight:700;letter-spacing:-.02em;color:var(--tc500);line-height:1">12</div>
+          <div class="type-meta">display-2xl · 48/50 · 700 · −0.02em · KPI hero numbers</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-family:var(--font-d);font-size:40px;font-weight:700;letter-spacing:-.015em;line-height:1.05">OS pausada</div>
+          <div class="type-meta">display-xl · 40/44 · 700 · pause state hero</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-family:var(--font-d);font-size:32px;font-weight:700;letter-spacing:-.01em;line-height:1.1">Diagnóstico</div>
+          <div class="type-meta">display-lg · 32/36 · 700 · screen headings</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-family:var(--font-d);font-size:24px;font-weight:700;line-height:1.15">Passo 2 de 4</div>
+          <div class="type-meta">display-md · 24/28 · 700 · page headings</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-family:var(--font-d);font-size:20px;font-weight:600;line-height:1.2">Resumo da OS</div>
+          <div class="type-meta">display-sm · 20/24 · 600 · card headings</div>
+        </div>
+      </div>
+
+      <div class="type-block">
+        <div class="type-block-label">Manrope · all UI text</div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:17px;font-weight:700">Ordens de serviço</div>
+          <div class="type-meta">heading-lg · 17/22 · 700 · nav bar titles</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:15px;font-weight:700">Diagnóstico do equipamento</div>
+          <div class="type-meta">heading-md · 15/20 · 700 · card headings</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:13px;font-weight:600">Materiais utilizados</div>
+          <div class="type-meta">heading-sm · 13/18 · 600 · sub-headings</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:15px;font-weight:600;color:var(--tc500)">Próximo — Materiais →</div>
+          <div class="type-meta">label-lg · 15/20 · 600 · CTA buttons</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:13px;font-weight:600">Confirmar assinatura</div>
+          <div class="type-meta">label-md · 13/18 · 600 · default buttons</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)">Urgente</div>
+          <div class="type-meta">label-sm · 10/14 · 700 · 0.06em · ALL-CAPS overlines ONLY</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:15px;font-weight:400">Filtro de ar com excesso de desgaste detectado</div>
+          <div class="type-meta">body-lg · 15/22 · 400 · primary content</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:13px;font-weight:400;color:var(--text2)">Técnico chegou no local às 09:14</div>
+          <div class="type-meta">body-md · 13/20 · 400 · secondary content</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample" style="font-size:11px;font-weight:400;color:var(--text3)">Atualizado há 2 minutos</div>
+          <div class="type-meta">body-sm · 11/16 · 400 · captions, timestamps</div>
+        </div>
+      </div>
+
+      <div class="type-block">
+        <div class="type-block-label">Geist Mono · technical values — IDs, ETAs, serial numbers, codes</div>
+        <div class="type-row">
+          <div class="type-sample mono" style="font-size:14px;font-weight:700">OS-2844</div>
+          <div class="type-meta">mono-lg · 14/20 · 700 · prominent order IDs</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample mono" style="font-size:12px;font-weight:500;color:var(--text2)">14:30 · 8,2 km · ETA 23min</div>
+          <div class="type-meta">mono-md · 12/18 · 500 · ETAs, times, distances</div>
+        </div>
+        <div class="type-row">
+          <div class="type-sample mono" style="font-size:10px;font-weight:500;color:var(--text3)">SN: 4A7B2-C9D1-3F8E</div>
+          <div class="type-meta">mono-sm · 10/14 · 500 · serial numbers, version numbers</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── SPACING ─────────────────────────────────────── -->
+    <section id="spacing" class="ds-section">
+      <div class="ds-title">Spacing</div>
+      <div class="ds-desc">4px base grid. All spacing values are multiples. space-11 (44px) is the minimum touch target — non-negotiable for gloved hands on Android.</div>
+
+      <div class="grid2">
+        <div>
+          <div class="space-row"><div class="space-bar" style="width:4px"></div><div class="space-label">space-1 · <strong>4px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:8px"></div><div class="space-label">space-2 · <strong>8px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:12px"></div><div class="space-label">space-3 · <strong>12px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:16px"></div><div class="space-label">space-4 · <strong>16px</strong> · default gap</div></div>
+          <div class="space-row"><div class="space-bar" style="width:20px"></div><div class="space-label">space-5 · <strong>20px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:24px"></div><div class="space-label">space-6 · <strong>24px</strong> · component padding</div></div>
+        </div>
+        <div>
+          <div class="space-row"><div class="space-bar" style="width:32px"></div><div class="space-label">space-8 · <strong>32px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:40px"></div><div class="space-label">space-10 · <strong>40px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:44px;background:var(--cl700)"></div><div class="space-label">space-11 · <strong>44px · touch target min</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:48px;background:var(--sg700)"></div><div class="space-label">space-12 · <strong>48px</strong> · nav bar height</div></div>
+          <div class="space-row"><div class="space-bar" style="width:64px;opacity:.5"></div><div class="space-label">space-16 · <strong>64px</strong></div></div>
+          <div class="space-row"><div class="space-bar" style="width:80px;opacity:.35"></div><div class="space-label">space-20 · <strong>80px</strong> · section spacing</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RADIUS ──────────────────────────────────────── -->
+    <section id="radius" class="ds-section">
+      <div class="ds-title">Border radius</div>
+      <div class="radius-grid">
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-xs)"></div><div class="radius-label">xs · 2px<br>accent bars, tags</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-sm)"></div><div class="radius-label">sm · 4px<br>chips, tight elements</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-md)"></div><div class="radius-label">md · 6px<br>buttons, inputs sm</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-lg)"></div><div class="radius-label">lg · 10px<br>cards, panels</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-xl)"></div><div class="radius-label">xl · 14px<br>bottom sheets</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-2xl)"></div><div class="radius-label">2xl · 20px<br>pills, floating chips</div></div>
+        <div class="radius-item"><div class="radius-box" style="border-radius:var(--r-full);width:40px;height:40px"></div><div class="radius-label">full · 9999px<br>avatars, dots, toggles</div></div>
+      </div>
+    </section>
+
+    <!-- ── SHADOW ──────────────────────────────────────── -->
+    <section id="shadow" class="ds-section">
+      <div class="ds-title">Shadow</div>
+      <div class="ds-desc">5 levels. Use the lowest level that communicates the correct depth. Do not stack shadows.</div>
+      <div class="shadow-row">
+        <div class="shadow-card" style="box-shadow:var(--sh-xs)">
+          <div class="shadow-name">xs</div>
+          <div class="shadow-val">0 1px 2px rgba(0,0,0,.04)</div>
+          <div style="font-size:11px;color:var(--text3)">Hairline lift</div>
+        </div>
+        <div class="shadow-card" style="box-shadow:var(--sh-sm)">
+          <div class="shadow-name">sm</div>
+          <div class="shadow-val">0 1px 4px rgba(0,0,0,.06)</div>
+          <div style="font-size:11px;color:var(--text3)">Resting card</div>
+        </div>
+        <div class="shadow-card" style="box-shadow:var(--sh-md)">
+          <div class="shadow-name">md</div>
+          <div class="shadow-val">0 2px 8px rgba(0,0,0,.08)</div>
+          <div style="font-size:11px;color:var(--text3)">Focused / active</div>
+        </div>
+        <div class="shadow-card" style="box-shadow:var(--sh-lg)">
+          <div class="shadow-name">lg</div>
+          <div class="shadow-val">0 4px 16px -2px rgba(0,0,0,.10)</div>
+          <div style="font-size:11px;color:var(--text3)">Bottom sheet</div>
+        </div>
+        <div class="shadow-card" style="box-shadow:var(--sh-xl)">
+          <div class="shadow-name">xl</div>
+          <div class="shadow-val">0 8px 32px -4px rgba(0,0,0,.12)</div>
+          <div style="font-size:11px;color:var(--text3)">Primary CTA</div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── STATUS BADGE ────────────────────────────────── -->
+    <section id="badge" class="ds-section">
+      <div class="ds-label">Components</div>
+      <div class="ds-title">StatusBadge</div>
+      <div class="ds-desc">Color-coded status indicator. The dot + label must be legible in direct sunlight. Never use status colors for anything other than their designated meaning.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">All states</div>
+        <div class="row" style="gap:10px">
+          <span class="badge badge-active"><span class="badge-dot" style="background:var(--sg500)"></span>Em campo</span>
+          <span class="badge badge-paused"><span class="badge-dot" style="background:var(--cl500)"></span>Pausado</span>
+          <span class="badge badge-transit"><span class="badge-dot" style="background:var(--am500)"></span>Em trânsito</span>
+          <span class="badge badge-done"><span class="badge-dot" style="background:var(--n700)"></span>Concluído</span>
+        </div>
+        <div class="comp-note">
+          Padding: 4px 10px · font-size: 12px / weight 600 · border-radius: 9999px · min-height: 24px
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Token mapping</div>
+        <div class="grid2" style="font-size:13px">
+          <div>
+            <div style="margin-bottom:8px;color:var(--text2)"><strong style="color:var(--text1)">Em campo</strong> — Active</div>
+            <div class="mono" style="font-size:11px;color:var(--text3);line-height:1.9">bg: --sg50 (#eef4eb)<br>text: --sg700 (#374e30)<br>dot: --sg500 (#5e7a52)</div>
+          </div>
+          <div>
+            <div style="margin-bottom:8px;color:var(--text2)"><strong style="color:var(--text1)">Pausado</strong> — Paused</div>
+            <div class="mono" style="font-size:11px;color:var(--text3);line-height:1.9">bg: --cl50 (#fdf0f0)<br>text: --cl700 (#741818)<br>dot: --cl500 (#b84848)</div>
+          </div>
+          <div>
+            <div style="margin-bottom:8px;color:var(--text2)"><strong style="color:var(--text1)">Em trânsito</strong> — Transit</div>
+            <div class="mono" style="font-size:11px;color:var(--text3);line-height:1.9">bg: --am50 (#fdf6e3)<br>text: --am700 (#624810)<br>dot: --am500 (#a87a20)</div>
+          </div>
+          <div>
+            <div style="margin-bottom:8px;color:var(--text2)"><strong style="color:var(--text1)">Concluído</strong> — Done</div>
+            <div class="mono" style="font-size:11px;color:var(--text3);line-height:1.9">bg: --n100 (#f2ede6)<br>text: --n800 (#3d3730)<br>dot: --n700 (#5a5347)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OFFLINE INDICATOR ───────────────────────────── -->
+    <section id="offline" class="ds-section">
+      <div class="ds-title">OfflineIndicator</div>
+      <div class="ds-desc">Lives in the navigation bar — never as a banner. When offline, communicates what IS happening (saving), not what is absent (internet). No banners, no modals, no blocked states.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">3 states — always in the nav bar</div>
+        <div class="offline-grid">
+          <div class="offline-card">
+            <div class="offline-state-name">Offline</div>
+            <div style="margin-bottom:8px">
+              <div class="nav-offline" style="display:inline-flex">
+                <div class="nav-offline-dot"></div>
+                Saving locally
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--text3);line-height:1.6">Neutral tone. Communicates that data is being saved — not that there's a problem. No alarm.</div>
+          </div>
+          <div class="offline-card">
+            <div class="offline-state-name">Syncing</div>
+            <div style="margin-bottom:8px">
+              <div class="nav-offline syncing" style="display:inline-flex">
+                <div class="nav-offline-dot" style="background:var(--am500)"></div>
+                Uploading...
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--text3);line-height:1.6">Amber tone. Connection restored, data is being sent. Positive direction — no action needed.</div>
+          </div>
+          <div class="offline-card">
+            <div class="offline-state-name">Reconnecting</div>
+            <div style="margin-bottom:8px">
+              <div class="nav-offline" style="display:inline-flex;color:var(--sg700);border-color:rgba(94,122,82,.3)">
+                <div class="nav-offline-dot" style="background:var(--sg500)"></div>
+                Reconnecting...
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--text3);line-height:1.6">Sage tone. Signal detected, reconnecting. Positive signal — work is about to resume.</div>
+          </div>
+        </div>
+        <div class="comp-note">
+          Exception: when a step requires real-time validation that can't run locally, show a contextual inline notice inside that step only — never a page-level banner.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BUTTON ──────────────────────────────────────── -->
+    <section id="button" class="ds-section">
+      <div class="ds-title">Button</div>
+      <div class="ds-desc">All touch targets are minimum 44px. The primary CTA on key screens (signature, close-out) uses sage green to signal a positive conclusion — not the brand terracotta.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Variants</div>
+        <div class="btn-group">
+          <button class="btn btn-lg btn-sage">Confirmar e fechar OS</button>
+          <button class="btn btn-md btn-primary">Próximo passo →</button>
+          <button class="btn btn-md btn-secondary">Reagendar</button>
+          <button class="btn btn-md btn-ghost">Cancelar OS</button>
+          <button class="btn btn-sm btn-danger">Remover foto</button>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Sizes — all ≥ 44px except sm (36px, non-primary only)</div>
+        <div class="col" style="gap:10px;align-items:flex-start">
+          <div class="row">
+            <button class="btn btn-lg btn-primary">Botão grande (lg)</button>
+            <span style="font-size:12px;color:var(--text3)">52px · 15px · r-lg · primary CTA</span>
+          </div>
+          <div class="row">
+            <button class="btn btn-md btn-primary">Botão médio (md)</button>
+            <span style="font-size:12px;color:var(--text3)">44px · 14px · 8px radius · default</span>
+          </div>
+          <div class="row">
+            <button class="btn btn-sm btn-secondary">Botão pequeno (sm)</button>
+            <span style="font-size:12px;color:var(--text3)">36px · 13px · r-md · non-primary only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">States</div>
+        <div class="btn-group">
+          <button class="btn btn-md btn-primary">Padrão</button>
+          <button class="btn btn-md btn-primary" style="background:var(--tc600)">Hover / pressed</button>
+          <button class="btn btn-md btn-disabled" disabled>Desabilitado</button>
+          <button class="btn btn-md btn-primary" style="opacity:.6">Carregando...</button>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Full-width primary (common on mobile)</div>
+        <button class="btn btn-lg btn-sage" style="width:100%">Confirmar e fechar OS</button>
+        <div style="height:8px"></div>
+        <button class="btn btn-md btn-secondary" style="width:100%">Reagendar</button>
+      </div>
+    </section>
+
+    <!-- ── FORM FIELD ──────────────────────────────────── -->
+    <section id="input" class="ds-section">
+      <div class="ds-title">FormField</div>
+      <div class="ds-desc">Input height is 52px — taller than convention, optimized for gloved-hand accuracy. Required fields are surfaced before optional ones in GuidedStep. Validation is always inline, never modal.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">States</div>
+        <div class="input-grid">
+          <div class="input-wrap">
+            <label class="input-label">Nome do técnico</label>
+            <input class="input-field" type="text" value="Carlos Silva" readonly>
+            <span class="input-hint">Padrão · preenchido</span>
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Diagnóstico<span class="input-required">*</span></label>
+            <input class="input-field" type="text" placeholder="Descreva o problema encontrado" style="border-color:var(--tc500);box-shadow:0 0 0 3px rgba(176,92,58,.12)" readonly>
+            <span class="input-hint">Focado</span>
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Número de série<span class="input-required">*</span></label>
+            <input class="input-field error" type="text" value="4A7B2" readonly>
+            <span class="input-error-msg">Número de série deve ter pelo menos 10 caracteres</span>
+          </div>
+          <div class="input-wrap">
+            <label class="input-label">Código do equipamento</label>
+            <input class="input-field disabled" type="text" value="EQ-001" disabled>
+            <span class="input-hint">Campo preenchido automaticamente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Textarea — diagnóstico e observações</div>
+        <div class="input-wrap">
+          <label class="input-label">Observações do técnico<span class="input-required">*</span></label>
+          <textarea class="textarea-field" placeholder="Descreva o serviço executado, materiais utilizados e qualquer observação relevante..." readonly></textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="input-hint">Mínimo 20 caracteres</span>
+            <span class="input-hint mono">0/500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Checklist (material utilizado)</div>
+        <div>
+          <div class="check-item">
+            <div class="check-box checked" style="display:flex;align-items:center;justify-content:center">
+              <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="check-text checked">Filtro de ar novo instalado</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box checked" style="display:flex;align-items:center;justify-content:center">
+              <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="check-text checked">Correia do motor substituída</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box unchecked"></div>
+            <span class="check-text">Fluido de refrigeração reabastecido</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box unchecked"></div>
+            <span class="check-text">Teste de pressão realizado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NAVIGATION BAR ──────────────────────────────── -->
+    <section id="navbar" class="ds-section">
+      <div class="ds-title">NavigationBar</div>
+      <div class="ds-desc">56px height. Dark shell (#1a1510). OfflineIndicator always lives here — never a separate bar or modal. Back button when inside a flow.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Job queue (root screen)</div>
+        <div class="nav-bar">
+          <div class="nav-bar-left">
+            <div class="nav-bar-title">Ordens de serviço</div>
+          </div>
+          <div class="nav-offline">
+            <div class="nav-offline-dot"></div>
+            Saving locally
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">GuidedStep (inside a flow)</div>
+        <div class="nav-bar">
+          <div class="nav-bar-left">
+            <div class="nav-bar-back">← OS-2844</div>
+            <div class="nav-bar-title">Diagnóstico</div>
+          </div>
+          <div class="nav-offline syncing">
+            <div class="nav-offline-dot" style="background:var(--am500)"></div>
+            Uploading...
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Online (no indicator)</div>
+        <div class="nav-bar">
+          <div class="nav-bar-left">
+            <div class="nav-bar-back">← Hoje</div>
+            <div class="nav-bar-title">Ordens</div>
+          </div>
+          <div style="font-size:13px;color:var(--n600)">+ Nova</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TAB CHIP ────────────────────────────────────── -->
+    <section id="tabchip" class="ds-section">
+      <div class="ds-title">TabChip</div>
+      <div class="ds-desc">Horizontal filter row in the job queue. Active chip uses the shell background. Count badges show the number of orders in each state.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Job queue filters</div>
+        <div class="tab-row">
+          <div class="tab-chip active-tab">Todas <span class="tab-count">12</span></div>
+          <div class="tab-chip">Em campo <span class="tab-count" style="background:rgba(94,122,82,.15);color:var(--sg700)">4</span></div>
+          <div class="tab-chip">Em trânsito <span class="tab-count" style="background:rgba(168,122,32,.15);color:var(--am700)">3</span></div>
+          <div class="tab-chip">Pausadas <span class="tab-count" style="background:rgba(184,72,72,.15);color:var(--cl700)">2</span></div>
+        </div>
+        <div class="comp-note">
+          Height: 44px · font: 13px 600 · border-radius: 20px · gap between chips: 6px
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ORDER CARD ──────────────────────────────────── -->
+    <section id="ordercard" class="ds-section">
+      <div class="ds-title">OrderCard</div>
+      <div class="ds-desc">3 data points at list level only: status (color-coded accent bar), destination (where), scheduled time (when). Everything else lives in the order detail. The 3px left accent bar provides instant status scanning without reading the badge.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">All status variants</div>
+        <div class="order-grid">
+          <div class="order-card paused">
+            <div class="order-card-inner">
+              <div><div class="order-id">OS-2844</div><div class="order-name">Frigorífico Central SA</div><div class="order-addr">Av. Paulista, 1000 · São Paulo</div></div>
+              <div class="order-right"><span class="badge badge-paused"><span class="badge-dot" style="background:var(--cl500)"></span>Pausado</span><div class="order-time">14:30</div></div>
+            </div>
+          </div>
+          <div class="order-card active">
+            <div class="order-card-inner">
+              <div><div class="order-id">OS-2901</div><div class="order-name">Supermercado Bom Preço</div><div class="order-addr">R. Consolação, 450 · São Paulo</div></div>
+              <div class="order-right"><span class="badge badge-active"><span class="badge-dot" style="background:var(--sg500)"></span>Em campo</span><div class="order-time">15:00</div></div>
+            </div>
+          </div>
+          <div class="order-card transit">
+            <div class="order-card-inner">
+              <div><div class="order-id">OS-2918</div><div class="order-name">Clínica São Camilo</div><div class="order-addr">R. Vergueiro, 1800 · São Paulo</div></div>
+              <div class="order-right"><span class="badge badge-transit"><span class="badge-dot" style="background:var(--am500)"></span>Em trânsito</span><div class="order-time">16:15</div></div>
+            </div>
+          </div>
+          <div class="order-card done" style="opacity:.7">
+            <div class="order-card-inner">
+              <div><div class="order-id">OS-2790</div><div class="order-name">Padaria Nacional</div><div class="order-addr">R. Augusta, 200 · São Paulo</div></div>
+              <div class="order-right"><span class="badge badge-done"><span class="badge-dot" style="background:var(--n700)"></span>Concluído</span><div class="order-time">11:00</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="comp-note">
+          Width: 342px (390px screen − 2×24px margin) · border-radius: 12px · accent bar: 3px left · box-shadow: shadow-xs
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROGRESS STEP ───────────────────────────────── -->
+    <section id="progress" class="ds-section">
+      <div class="ds-title">ProgressStep</div>
+      <div class="ds-desc">Shows position in the GuidedStep flow. The active step uses the terracotta pill. Completed steps use sage. Pending steps use neutral. Step labels are always visible — not just the dots.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Step 2 of 4 — active</div>
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <div class="progress-counter">Passo 2 de 4</div>
+            <div class="progress-name">Diagnóstico</div>
+          </div>
+          <div class="progress-track">
+            <div class="p-dot done"></div>
+            <div class="p-line done"></div>
+            <div class="p-dot active"></div>
+            <div class="p-line pend"></div>
+            <div class="p-dot pend"></div>
+            <div class="p-line pend"></div>
+            <div class="p-dot pend"></div>
+          </div>
+          <div class="progress-labels">
+            <div class="p-lbl done">Chegada</div>
+            <div class="p-lbl active">Diagnóstico</div>
+            <div class="p-lbl pend">Materiais</div>
+            <div class="p-lbl pend">Assinatura</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block">
+        <div class="comp-label">Step 4 of 4 — signature (last step)</div>
+        <div class="progress-wrap">
+          <div class="progress-header">
+            <div class="progress-counter">Passo 4 de 4</div>
+            <div class="progress-name">Assinatura</div>
+          </div>
+          <div class="progress-track">
+            <div class="p-dot done"></div>
+            <div class="p-line done"></div>
+            <div class="p-dot done"></div>
+            <div class="p-line done"></div>
+            <div class="p-dot done"></div>
+            <div class="p-line done" style="background:var(--tc500)"></div>
+            <div class="p-dot active"></div>
+          </div>
+          <div class="progress-labels">
+            <div class="p-lbl done">Chegada</div>
+            <div class="p-lbl done">Diagnóstico</div>
+            <div class="p-lbl done">Materiais</div>
+            <div class="p-lbl active">Assinatura</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── AVATAR ──────────────────────────────────────── -->
+    <section id="avatar" class="ds-section">
+      <div class="ds-title">Avatar</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Sizes</div>
+        <div class="row" style="align-items:center;gap:16px">
+          <div style="text-align:center">
+            <div class="avatar sm" style="margin:0 auto 4px">CS</div>
+            <div style="font-size:10px;color:var(--text3)">sm · 24px</div>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar md" style="margin:0 auto 4px">CS</div>
+            <div style="font-size:10px;color:var(--text3)">md · 32px</div>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar lg" style="margin:0 auto 4px">CS</div>
+            <div style="font-size:10px;color:var(--text3)">lg · 40px</div>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar xl" style="margin:0 auto 4px">CS</div>
+            <div style="font-size:10px;color:var(--text3)">xl · 52px</div>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar xl" style="background:var(--sg50);color:var(--sg700);margin:0 auto 4px">MR</div>
+            <div style="font-size:10px;color:var(--text3)">sage variant</div>
+          </div>
+          <div style="text-align:center">
+            <div class="avatar xl" style="background:var(--n100);color:var(--n700);margin:0 auto 4px">JB</div>
+            <div style="font-size:10px;color:var(--text3)">neutral variant</div>
+          </div>
+        </div>
+        <div class="comp-note">
+          Initials only — no profile photos in v1. Terracotta is the default. Use sage for active/field technicians, neutral for completed/inactive.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SIGNATURE CANVAS ────────────────────────────── -->
+    <section id="signature" class="ds-section">
+      <div class="ds-title">SignatureCanvas</div>
+      <div class="ds-desc">A step inside GuidedStep — not a separate screen reached by a "Get Signature" button. Appears at the natural close-out moment. Re-sign affordance is a labeled button below the canvas, never an X on the signature itself.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Signature step — full layout</div>
+        <div style="background:var(--canvas);border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border)">
+          <div class="nav-bar" style="border-radius:0">
+            <div class="nav-bar-left">
+              <div class="nav-bar-back">← OS-2844</div>
+              <div class="nav-bar-title">Assinatura</div>
+            </div>
+            <div class="nav-offline">
+              <div class="nav-offline-dot"></div>
+              Saving locally
+            </div>
+          </div>
+          <div style="padding:16px">
+            <div class="progress-wrap" style="margin-bottom:16px;background:transparent;border:none;padding:0">
+              <div class="progress-track">
+                <div class="p-dot done"></div><div class="p-line done"></div>
+                <div class="p-dot done"></div><div class="p-line done"></div>
+                <div class="p-dot done"></div><div class="p-line" style="background:var(--tc500)"></div>
+                <div class="p-dot active"></div>
+              </div>
+            </div>
+            <div style="font-family:var(--font-d);font-size:20px;font-weight:700;margin-bottom:4px">Assinatura do responsável</div>
+            <div style="font-size:13px;color:var(--text2);margin-bottom:16px">OS-2844 · Frigorífico Central SA</div>
+            <div class="sig-canvas" style="margin-bottom:10px">
+              <div class="sig-baseline"></div>
+              <div class="sig-hint">assine acima da linha</div>
+            </div>
+            <button class="btn btn-sm btn-secondary" style="width:100%;margin-bottom:10px;border-radius:var(--r-md)">Limpar e assinar de novo</button>
+            <button class="btn btn-lg btn-sage" style="width:100%">Confirmar e fechar OS</button>
+          </div>
+        </div>
+        <div class="comp-note">
+          Re-sign: labeled button below the canvas — never an × icon on the signature. Canvas height: 88px minimum. Baseline: 16px from bottom.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GUIDED STEP PATTERN ─────────────────────────── -->
+    <section id="guided" class="ds-section">
+      <div class="ds-label">Patterns</div>
+      <div class="ds-title">GuidedStep</div>
+      <div class="ds-desc">One task per screen. Replaces scrollable long-form. Required fields surface before optional ones. Conditional fields appear only when a prior answer triggers them. Completion enforcement feels like natural sequence, not adversarial blocking.</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Step 2/4 — diagnóstico · with offline indicator</div>
+        <div style="background:var(--canvas);border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);max-width:360px">
+          <div class="nav-bar" style="border-radius:0">
+            <div class="nav-bar-left">
+              <div class="nav-bar-back">← OS-2844</div>
+              <div class="nav-bar-title">Diagnóstico</div>
+            </div>
+            <div class="nav-offline"><div class="nav-offline-dot"></div>Saving locally</div>
+          </div>
+          <div style="padding:16px">
+            <div class="progress-wrap" style="margin-bottom:16px;background:transparent;border:none;padding:0">
+              <div class="progress-header">
+                <div class="progress-counter">Passo 2 de 4</div>
+                <div class="progress-name" style="font-size:14px">Diagnóstico</div>
+              </div>
+              <div class="progress-track">
+                <div class="p-dot done"></div><div class="p-line done"></div>
+                <div class="p-dot active"></div><div class="p-line pend"></div>
+                <div class="p-dot pend"></div><div class="p-line pend"></div>
+                <div class="p-dot pend"></div>
+              </div>
+            </div>
+            <div class="input-wrap" style="margin-bottom:14px">
+              <label class="input-label">Diagnóstico<span class="input-required">*</span></label>
+              <textarea class="textarea-field" style="min-height:80px;font-size:14px" readonly>Compressor com falha no capacitor de partida. Correia do motor apresenta desgaste...</textarea>
+            </div>
+            <div class="input-wrap" style="margin-bottom:16px">
+              <label class="input-label">Materiais utilizados</label>
+              <div>
+                <div class="check-item" style="padding:8px 0">
+                  <div class="check-box checked" style="display:flex;align-items:center;justify-content:center"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                  <span class="check-text" style="font-size:14px">Filtro de ar (FLT-220)</span>
+                </div>
+                <div class="check-item" style="padding:8px 0">
+                  <div class="check-box unchecked"></div>
+                  <span class="check-text" style="font-size:14px">Correia do motor (COR-08)</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-md btn-primary" style="width:100%">Próximo — Materiais →</button>
+          </div>
+          <div style="background:var(--n900);padding:10px 16px;display:flex;align-items:center;gap:8px;border-top:1px solid rgba(255,255,255,.06)">
+            <div style="font-family:var(--font-mo);font-size:11px;color:var(--n600)">1h 23min</div>
+            <div style="flex:1;height:1px;background:rgba(255,255,255,.06)"></div>
+            <div style="font-size:11px;color:var(--n700)">correndo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DESIGN RULES ────────────────────────────────── -->
+    <section id="rules" class="ds-section">
+      <div class="ds-title">Design rules</div>
+
+      <div class="comp-block">
+        <div class="comp-label">Non-negotiable constraints</div>
+        <div class="col" style="gap:12px">
+          <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+            <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--tc500);min-width:28px;line-height:1">1</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">Minimum 44px touch target</div><div style="font-size:13px;color:var(--text2);line-height:1.6">Every interactive element — buttons, checkboxes, chips, cards — must be at least 44×44px. Field technicians frequently work with gloves. This is not adjustable.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+            <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--tc500);min-width:28px;line-height:1">2</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">Offline is the default state</div><div style="font-size:13px;color:var(--text2);line-height:1.6">Design for offline first. Online is the exception. Never block the technician from completing work due to connectivity. Never show a "No Connection" banner — it implies they should stop. They should not stop.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+            <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--tc500);min-width:28px;line-height:1">3</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">Status colors are semantic, not decorative</div><div style="font-size:13px;color:var(--text2);line-height:1.6">Clay = paused/urgent. Sage = active/success. Amber = transit/warning. Terracotta = brand interaction only. Never use these colors for anything outside their designated role.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+            <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--tc500);min-width:28px;line-height:1">4</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">OrderCard shows 3 things at list level</div><div style="font-size:13px;color:var(--text2);line-height:1.6">Status, destination, time. That's it. More than 3 data points at the list level creates scanning effort at the moment the technician's working memory is most loaded.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+            <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--tc500);min-width:28px;line-height:1">5</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">Literata is for status moments, not body text</div><div style="font-size:13px;color:var(--text2);line-height:1.6">Literata carries authority. Use it for KPI numbers, the pause state hero, screen titles at 24px+, step counters. Never use it for body text, labels, or UI copy — that's Manrope's territory.</div></div>
+          </div>
+          <div style="display:flex;gap:12px;padding:12px 0">
+            <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--tc500);min-width:28px;line-height:1">6</div>
+            <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">Signature is a step, not a screen</div><div style="font-size:13px;color:var(--text2);line-height:1.6">Signature collection lives inside GuidedStep as step 4 of 4. Never as a separate screen reached via a button. The re-sign affordance is a labeled button below the canvas — not an × on the signature itself.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-block" style="background:var(--n900);border-color:rgba(255,255,255,.06)">
+        <div class="comp-label" style="color:var(--n700)">File references</div>
+        <div class="col" style="gap:8px">
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+            <span style="font-size:13px;color:var(--n400)">Figma file</span>
+            <span class="mono" style="font-size:12px;color:var(--tc300)">2owo4P9E6CaDX6JqPZyJc0</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+            <span style="font-size:13px;color:var(--n400)">Token JSON</span>
+            <span class="mono" style="font-size:12px;color:var(--n500)">fieldops-ds-tokens.json</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0">
+            <span style="font-size:13px;color:var(--n400)">CSS custom properties</span>
+            <span class="mono" style="font-size:12px;color:var(--n500)">fieldops-ds-tokens.css</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

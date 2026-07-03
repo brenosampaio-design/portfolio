@@ -1,0 +1,13 @@
+{
+  "$type": "dimension",
+  "radius": {
+    "none": { "$value": "0px",    "$description": "Square — critical action buttons (rounded = soft, square = tool)" },
+    "xs":   { "$value": "2px",    "$description": "Subtle rounding — badges, tags" },
+    "sm":   { "$value": "4px",    "$description": "Inputs, small cards" },
+    "md":   { "$value": "6px",    "$description": "Standard cards, modals" },
+    "lg":   { "$value": "8px",    "$description": "Large cards, panels" },
+    "xl":   { "$value": "12px",   "$description": "Section containers" },
+    "2xl":  { "$value": "16px",   "$description": "Overlays, drawers" },
+    "full": { "$value": "9999px", "$description": "Pills, avatar circles" }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$description": "FieldOps Motion Primitives — raw duration and easing values. Do not consume directly. Alias through semantic/motion.tokens.json. Field context: operators move fast, sunlight reduces visual acuity, tasks are time-critical. Motion must be invisible when idle and decisive when it fires.",
+
+  "duration": {
+    "$type": "duration",
+    "$description": "Duration scale. Every step is a deliberate choice, not a linear ramp. Validated against P50 frame budget on a 60 Hz Android mid-range device (16.67 ms/frame). Nothing here exceeds 1 frame at the fast end, nothing exceeds 18 frames at the slow end.",
+
+    "0":   { "$value": "0ms",   "$description": "Forced instant — accessibility prefers-reduced-motion target. Maps to instant semantic." },
+    "50":  { "$value": "50ms",  "$description": "Below perception threshold (~40–60 ms). Feels like hardware response, not software." },
+    "100": { "$value": "100ms", "$description": "Micro feedback — tap ripple, toggle snap. Matches finger lift latency expectation." },
+    "150": { "$value": "150ms", "$description": "Fast UI response — hover states, badge updates." },
+    "200": { "$value": "200ms", "$description": "Standard interactive response. Apple HIG 'immediate' zone upper bound." },
+    "250": { "$value": "250ms", "$description": "Slightly deliberate — small panel slide-ins." },
+    "300": { "$value": "300ms", "$description": "Modal / sheet entry. Material M3 standard enter." },
+    "400": { "$value": "400ms", "$description": "Complex layout shift — step advancement, multi-part reveals." },
+    "500": { "$value": "500ms", "$description": "Slow narrative — onboarding, completion celebration. Use sparingly." }
+  },
+
+  "easing": {
+    "$type": "cubicBezier",
+    "$description": "Easing vocabulary. Named for semantic intent, not visual description. All values are cubic-bezier(x1, y1, x2, y2). CSS-ready. Spring approximations computed via Framer Motion stiffness/damping mapping then sampled to 4-point bezier using spring2bezier methodology.",
+
+    "linear":       { "$value": "cubic-bezier(0.00, 0.00, 1.00, 1.00)", "$description": "Raw linear — only for progress fills and continuous loaders. Never for discrete UI transitions." },
+
+    "standard":     { "$value": "cubic-bezier(0.20, 0.00, 0.00, 1.00)", "$description": "Workhorse. Asymmetric: fast out, slow settle. Matches Material M3 'Standard' (0.2,0,0,1). Applied to most enter + property transitions where no directional drama is needed." },
+
+    "enter":        { "$value": "cubic-bezier(0.00, 0.00, 0.20, 1.00)", "$description": "Elements arriving. Decelerating into rest position — communicates 'landed'. Material M3 Decelerate. Apple uses this for sheet presentation. Mathematically: zero initial velocity, then rapid decel to rest." },
+
+    "exit":         { "$value": "cubic-bezier(0.30, 0.00, 1.00, 1.00)", "$description": "Elements leaving. Accelerating out — does not linger. Material M3 Accelerate. Fast leading edge. Crucially: exits should be faster than enters (field operators need information gone, not farewell)." },
+
+    "spring-snappy":{ "$value": "cubic-bezier(0.34, 1.56, 0.64, 1.00)", "$description": "Spring overshoot approximation. Framer Motion: stiffness=400, damping=28, mass=1. One controlled overshoot — used for step completion checkmark, successful action confirm. NOT for destructive/error states. Peak overshoot ~8% past target." },
+
+    "spring-gentle":{ "$value": "cubic-bezier(0.16, 1.00, 0.30, 1.00)", "$description": "Critically-damped spring — no overshoot, organic feel. Framer Motion: stiffness=260, damping=28. For panel slides, sheet entries. Matches Apple UISpringTimingParameters with damping ratio 1.0, response 0.35s. The 'correct' feel for native iOS sheet." },
+
+    "bounce-subtle":{ "$value": "cubic-bezier(0.34, 1.20, 0.64, 1.00)", "$description": "Micro bounce — lighter than spring-snappy. Framer Motion: stiffness=300, damping=20. For status badge appearance, icon arrival. ~3% overshoot." },
+
+    "decelerate":   { "$value": "cubic-bezier(0.00, 0.00, 0.35, 1.00)", "$description": "Aggressive decel. For elements entering from off-screen (bottom sheet, slide-in panel). Arrives fast, stops precisely." },
+
+    "accelerate":   { "$value": "cubic-bezier(0.65, 0.00, 1.00, 1.00)", "$description": "Aggressive accel. Exits only. Sheet dismiss, panel close. The element is 'gone' within the first third of duration." },
+
+    "sharp":        { "$value": "cubic-bezier(0.30, 0.00, 0.80, 0.15)", "$description": "Brutal fast snap. For attention-critical state changes: offline → syncing flip, error appearance. No organic feel — this is a system alert, not a transition." }
+  }
+}

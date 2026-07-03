@@ -1,0 +1,238 @@
+{
+  "$description": "FieldOps Component Motion Tokens — per-component animation specs. Every token maps to a specific animated property on a specific component. A senior engineer can implement each component's animation by reading only its section. Format: {component}.motion.{trigger}.{property}: { duration, easing, from?, to? }",
+
+  "button": {
+    "motion": {
+      "$description": "Buttons animate exactly one thing: the pressed/active state. Loading is the only 'long' state. No hover translate. No scale on tap (scale animations under a gloved hand feel laggy and imprecise).",
+      "press": {
+        "bg":       { "$type": "duration", "$value": "{motion.duration.micro}", "easing": "{motion.easing.default}",  "$description": "Background color shift on :active. 100ms, no drama." },
+        "opacity":  { "$type": "duration", "$value": "{motion.duration.micro}", "easing": "{motion.easing.default}",  "$description": "Pressed state optical feedback: opacity 1 → 0.88 → 1." }
+      },
+      "focus-ring": {
+        "appear":   { "$type": "duration", "$value": "{motion.duration.instant}", "easing": "none", "$description": "Focus ring MUST appear instantly. Zero delay, zero easing. Accessibility — any latency on focus indicators is a WCAG 2.4.11 risk." }
+      },
+      "loading-enter": {
+        "spinner":  { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.enter}",  "$description": "Spinner fades in (opacity 0→1) + label fades out simultaneously. 200ms. Cross-fade, not sequential." },
+        "rotation": { "$type": "duration", "$value": "800ms",                     "easing": "{motion.easing.progress}", "$description": "Spinner rotation: 360deg continuous. 800ms per revolution. linear easing only. CSS: animation: spin 800ms linear infinite." }
+      },
+      "loading-exit": {
+        "spinner":  { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.exit}",   "$description": "Spinner fades out fast. 150ms. Shorter than enter — operator expects label back quickly." }
+      },
+      "disabled": {
+        "opacity":  { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.default}", "$description": "Transition to/from disabled: opacity 1 ↔ 0.4. 150ms." }
+      },
+      "do-not": [
+        "translate-y on hover (no nudge/lift — not a consumer app)",
+        "scale on press (imprecise under gloves, conflicts with 48px tap target integrity)",
+        "box-shadow bloom on hover (performance hit on mid-range Android)",
+        "color shimmer / gradient animation on loading"
+      ]
+    }
+  },
+
+  "input": {
+    "motion": {
+      "$description": "Input animations serve two masters: legibility (label must always be readable) and state communication (error is urgent but not alarming). No decorative motion.",
+      "focus": {
+        "border-color": { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.default}", "$description": "Border transitions from default to focus color. 200ms." },
+        "ring-appear":  { "$type": "duration", "$value": "{motion.duration.instant}", "easing": "none",                   "$description": "Focus ring: instant. See Button.focus-ring rationale." }
+      },
+      "label-float": {
+        "transform":    { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.settle}",  "$description": "Floating label: translateY(0) + scale(1) → translateY(-20px) + scale(0.75). 200ms spring-gentle. The scale must be done via transform, not font-size change — font-size animation causes layout reflow." },
+        "color":        { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.default}", "$description": "Label color shifts simultaneously with transform. Single transition block." }
+      },
+      "error-enter": {
+        "helper-text":  { "$type": "duration", "$value": "{motion.duration.transition}", "easing": "{motion.easing.enter}",  "$description": "Error helper text: height 0→auto + opacity 0→1. 250ms. height animation: use max-height trick (max-height: 0 → 60px). Do not use clip-path — perf." },
+        "border-color": { "$type": "duration", "$value": "{motion.duration.fast}",      "easing": "{motion.easing.alert}",  "$description": "Border snaps to error color faster than the text appears. 150ms sharp. Communicates: error detected, detail incoming." },
+        "shake":        { "$value": "none",     "$description": "DO NOT shake inputs on error. Field operators are filling forms under task pressure — a shaking input is disorienting, not helpful. Color change is sufficient." }
+      },
+      "error-exit": {
+        "helper-text":  { "$type": "duration", "$value": "{motion.duration.fast}", "easing": "{motion.easing.exit}", "$description": "Helper text collapses on valid input. 150ms. Faster exit = less distraction while typing." }
+      },
+      "do-not": [
+        "shake/vibrate animation on error",
+        "background color flash on focus",
+        "placeholder fade (placeholder should simply disappear on type — no transition)"
+      ]
+    }
+  },
+
+  "status-badge": {
+    "motion": {
+      "$description": "StatusBadge can be mounted (appears on page load or list update) or swapped (state changes in-place). These are different interactions with different motion contracts.",
+      "mount": {
+        "scale":    { "$type": "duration", "$value": "{motion.duration.micro}",    "easing": "{motion.easing.appear}",   "$description": "Badge scales from 0.7 → 1.0 on first mount. 100ms bounce-subtle. Only on mount, never on hover." },
+        "opacity":  { "$type": "duration", "$value": "{motion.duration.micro}",    "easing": "{motion.easing.enter}",    "$description": "Paired with scale. opacity 0 → 1. Same 100ms duration, same enter easing." }
+      },
+      "state-swap": {
+        "strategy": { "$value": "cross-dissolve", "$description": "When badge state changes (e.g. new → active → completed): cross-dissolve. Old badge opacity 1→0 (75ms exit), new badge opacity 0→1 (150ms enter). Color change happens at the 0-opacity midpoint so there is no visible color blend." },
+        "exit":     { "$type": "duration", "$value": "75ms",                       "easing": "{motion.easing.exit}" },
+        "enter":    { "$type": "duration", "$value": "{motion.duration.fast}",     "easing": "{motion.easing.enter}" }
+      },
+      "offline-badge": {
+        "pulse": {
+          "$description": "The sync-pending dot on OrderCard pulses to communicate 'this data is not yet confirmed'. Pulse ONLY when in sync-pending state. Stop immediately when synced.",
+          "keyframes": "opacity 1 → 0.3 → 1",
+          "duration":  "2000ms",
+          "easing":    "{motion.easing.linear}",
+          "iteration": "infinite",
+          "pause-when": "prefers-reduced-motion OR synced"
+        }
+      },
+      "do-not": [
+        "animate color directly (always cross-dissolve to avoid perceiving intermediate hues)",
+        "bounce the badge on every list refresh",
+        "pulse more than one badge at a time in the same viewport"
+      ]
+    }
+  },
+
+  "alert-banner": {
+    "motion": {
+      "$description": "AlertBanner mounts at the top of a view. It must be noticed but not startling. The most common trigger is an offline→error transition — operators must see this change without losing their place in a form.",
+      "enter": {
+        "transform":  { "$type": "duration", "$value": "{motion.duration.enter}",  "easing": "{motion.easing.enter}",    "$description": "Slides down from translateY(-100%) to translateY(0). 300ms decelerate. Does NOT push content down — it overlaps (position: sticky top-0) to avoid layout shifts mid-form." },
+        "opacity":    { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.enter}",    "$description": "Opacity 0→1 over 200ms. Starts simultaneously with transform. The opacity finishes slightly before the slide — this makes the text legible before motion stops." }
+      },
+      "exit": {
+        "transform":  { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.exit}",    "$description": "Slides back up to translateY(-100%). 200ms. Exits faster than it enters — once the error is resolved, operators don't need a goodbye." },
+        "opacity":    { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.exit}",    "$description": "Opacity 1→0 over 150ms. Slightly faster than the slide — text disappears before the banner fully retracts." }
+      },
+      "icon": {
+        "error-mount":   { "$type": "duration", "$value": "{motion.duration.micro}", "easing": "{motion.easing.alert}",  "$description": "Error icon snaps in sharp. No spring — this is an alert, not a delight." },
+        "success-mount": { "$type": "duration", "$value": "{motion.duration.micro}", "easing": "{motion.easing.confirm}", "$description": "Success icon uses spring-snappy. One micro-overshoot communicates 'done'." }
+      },
+      "do-not": [
+        "bounce or shake the banner to attract attention — color + position change is sufficient",
+        "animate banners that are already visible (update text in-place without re-animating)",
+        "stack multiple banners with staggered animation — show the highest-severity only"
+      ]
+    }
+  },
+
+  "order-card": {
+    "motion": {
+      "$description": "OrderCard is the primary content unit in the field list. Two contexts: list (many cards, scroll performance critical) and detail-expand (single card expands in-place). Motion budget is tight here — every ms of animation is ms the GPU is busy while the operator scrolls.",
+      "hover": {
+        "shadow":       { "$type": "duration", "$value": "{motion.duration.fast}",     "easing": "{motion.easing.default}", "$description": "Box shadow transitions from shadow.sm to shadow.md. 150ms. GPU-composited (use filter:drop-shadow or will-change:box-shadow sparingly — test on Android)." },
+        "border-color": { "$type": "duration", "$value": "{motion.duration.fast}",     "easing": "{motion.easing.default}", "$description": "Border transitions to action.primary. 150ms simultaneous with shadow." },
+        "transform":    { "$value": "none",    "$description": "NO translateY lift on hover. List performance — 20+ cards translating simultaneously tanks frame rate on the target device (Android mid-range)." }
+      },
+      "press": {
+        "opacity":      { "$type": "duration", "$value": "{motion.duration.micro}",    "easing": "{motion.easing.default}", "$description": "Card dims to 0.92 opacity on :active. 100ms. Conveys tap without scale." }
+      },
+      "sync-pending-indicator": {
+        "$ref": "{status-badge.motion.offline-badge.pulse}",
+        "$description": "The sync-pending corner dot uses the same pulse spec as status-badge offline pulse."
+      },
+      "status-change": {
+        "strategy":   { "$value": "in-place cross-dissolve",  "$description": "When status changes on a card that is already visible (e.g. websocket push updates status from 'active' to 'completed'): the StatusBadge inside the card cross-dissolves per its own spec. The card itself does not animate." },
+        "priority-flash": {
+          "keyframes": "background-color: transparent → warning/50 → transparent",
+          "duration":  "600ms",
+          "easing":    "{motion.easing.linear}",
+          "$description": "ONE-TIME flash when a card is promoted to high priority via push. Runs once, does not loop. Draws attention to a card the operator may have already scanned past. Implementation: add class .priority-flash, remove after animationend."
+        }
+      },
+      "list-reorder": {
+        "transform":    { "$type": "duration", "$value": "{motion.duration.layout}",   "easing": "{motion.easing.settle}",  "$description": "Cards reorder on sort change. Each card translates to its new position. 400ms spring-gentle. Use FLIP technique (First Last Invert Play) — do not animate top/left. Only translateX/Y." },
+        "stagger-delay":{ "$value": "20ms per card", "$description": "20ms stagger between cards in the reorder sequence. Maximum stagger applied to first 8 visible cards only — beyond that, all remaining cards animate simultaneously to avoid a domino effect that takes 160ms+ to complete." }
+      },
+      "do-not": [
+        "animate card width or height in the list",
+        "use box-shadow animation on scroll (causes continuous GPU work)",
+        "apply entrance animation on every list refresh — only animate newly-added cards"
+      ]
+    }
+  },
+
+  "guided-step": {
+    "motion": {
+      "$description": "GuidedStep orchestrates the core field task flow. Motion here is a communication protocol: blocked → unlocked → completed is a semantic sequence that must be visually unambiguous. The step indicator (circle) is the primary animated object.",
+      "unlock": {
+        "$description": "Transition: completion-blocked → completion-unlocked. Field data has been entered.",
+        "indicator-bg":   { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.default}",  "$description": "Circle background transitions from white to sage/500. 200ms." },
+        "border":         { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.default}",  "$description": "Step container border: error/300 → sage/300. 200ms." },
+        "advance-btn":    { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.enter}",    "$description": "Advance button: disabled opacity 0.4 → 1.0. 150ms. Does NOT slide in — it was always there, just disabled. Opacity transition only." }
+      },
+      "block": {
+        "$description": "Transition: completion-unlocked → completion-blocked. Required field cleared.",
+        "indicator-bg":   { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.alert}",   "$description": "Circle transitions from sage fill to error border. Sharp 150ms — communicates 'you removed something important'." },
+        "advance-btn":    { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.default}", "$description": "Button dims to disabled. 150ms." }
+      },
+      "complete": {
+        "$description": "Step marked complete. The most celebratory motion in the system — one micro-spring on the checkmark.",
+        "checkmark-scale":{ "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.confirm}",  "$description": "Checkmark SVG path draws in AND scales: scale 0.6→1.0 with spring-snappy overshoot. 200ms. The overshoot lands at ~8% then settles. Do not use stroke-dashoffset draw animation — too slow and conflicts with spring timing." },
+        "connector":      { "$type": "duration", "$value": "{motion.duration.transition}","easing": "{motion.easing.settle}", "$description": "Vertical connector below the step fills from top to bottom (scaleY 0→1, transform-origin: top). 250ms. Runs AFTER checkmark settles (150ms delay)." },
+        "step-bg":        { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.default}", "$description": "Step background transitions to sage/50. 200ms. Simultaneous with checkmark." },
+        "next-step-enter":{ "$type": "duration", "$value": "{motion.duration.enter}",   "easing": "{motion.easing.enter}",   "$description": "The next step reveals (if it was hidden). opacity 0→1 + translateY(8px→0). 300ms. 100ms delay after connector finishes. Total sequence: 0ms checkmark, 150ms connector, 400ms next-step." }
+      },
+      "do-not": [
+        "animate the step number/label text — it is navigation reference, not a state indicator",
+        "run complete sequence backwards on undo — instead: instant state reset, then re-enter from unlock",
+        "stagger multiple completed steps on page load — render them all as completed, no animation on hydration"
+      ]
+    }
+  },
+
+  "offline-indicator": {
+    "motion": {
+      "$description": "OfflineIndicator is a persistent system tray element. Three states with distinct motion signatures — each state has a unique behavioral animation so operators know connectivity status from peripheral vision.",
+      "state-transition": {
+        "all":          { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.alert}",  "$description": "All state transitions use sharp 200ms. Not spring — connectivity is infrastructure, not UI delight." },
+        "bg":           { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.alert}",  "$description": "Background color cross-transitions simultaneously." },
+        "label-swap":   { "$value": "cross-dissolve 100ms",                          "$description": "Text label cross-dissolves: old opacity 0, new opacity 1. 100ms each. Labels are short (max 2 words) — no layout shift." }
+      },
+      "offline-state": {
+        "icon-animation": { "$value": "none", "$description": "Offline icon is static. No pulse, no blink. The static nature communicates stasis — the system is waiting, not working." }
+      },
+      "syncing-state": {
+        "icon-rotation":  { "$value": "360deg continuous",     "duration": "1200ms", "easing": "{motion.easing.linear}", "iteration": "infinite", "$description": "Sync icon rotates. 1200ms per revolution — slightly slower than a loading spinner (800ms) to communicate steady upload, not urgency. CSS: animation: spin 1200ms linear infinite." },
+        "pause-when":     { "$value": "syncing complete — freeze rotation on the exact frame where icon is upright (0deg) to avoid a jarring stop mid-spin. Implementation: on sync-complete, add .freeze class that sets animation-play-state:paused then transitions away." }
+      },
+      "reconnecting-state": {
+        "icon-animation": {
+          "keyframes":   "opacity 1 → 0.4 → 1",
+          "duration":    "1400ms",
+          "easing":      "{motion.easing.linear}",
+          "iteration":   "infinite",
+          "$description": "Icon fades in/out (breath pattern). Slower than syncing spin — communicates 'waiting for network', not 'uploading data'. Different rhythm from syncing so they're distinguishable at a glance."
+        }
+      },
+      "position": {
+        "banner-enter":   { "$type": "duration", "$value": "{motion.duration.enter}", "easing": "{motion.easing.enter}",  "$description": "If OfflineIndicator manifests as a top banner (mobile), it uses AlertBanner.enter spec. Shared implementation." }
+      },
+      "do-not": [
+        "blink the offline indicator (blink is deprecated accessibility-wise and seizure risk)",
+        "play a sound on state change (operators may be in noisy environments or meetings)",
+        "dismiss the indicator automatically — it must be manually dismissed or state-driven"
+      ]
+    }
+  },
+
+  "signature-canvas": {
+    "motion": {
+      "$description": "SignatureCanvas is a capture instrument, not a navigation element. Its motion design is almost entirely suppressed — the drawn line itself is the 'animation'. The only animated moments are: canvas ready-state entry, and post-capture confirmation.",
+      "mount": {
+        "opacity":      { "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.enter}",   "$description": "Canvas fades in. 200ms. No translate — canvas at mount position is its final position. The operator is about to draw; spatial jump would misalign their hand." }
+      },
+      "clear": {
+        "canvas-wipe":  { "$value": "instant",   "$description": "Canvas clear is instant. Wipe animations (swipe-to-erase etc.) are actively harmful here — the operator needs to know the canvas is clean NOW, not in 300ms. Use a single synchronous ctx.clearRect() call." }
+      },
+      "capture-confirm": {
+        "$description": "After a signature is accepted (data URL captured, timestamp recorded). One moment of calm confirmation.",
+        "checkmark-enter":{ "$type": "duration", "$value": "{motion.duration.respond}", "easing": "{motion.easing.confirm}", "$description": "A checkmark fades in over the completed canvas. 200ms spring-snappy. Same as GuidedStep.complete.checkmark-scale. Signals capture success." },
+        "canvas-dim":     { "$type": "duration", "$value": "{motion.duration.fast}",    "easing": "{motion.easing.default}", "$description": "Canvas dims to 60% opacity to indicate it is now read-only (captured). 150ms. The signature is still visible — opacity reduction, not color change." }
+      },
+      "one-handed-mode": {
+        "panel-slide":  { "$type": "duration", "$value": "{motion.duration.enter}",   "easing": "{motion.easing.settle}",  "$description": "If the canvas panel slides up for one-handed 6-inch reach (bottom-sheet pattern): translateY(full→0) 300ms spring-gentle. Same as AlertBanner but from bottom." }
+      },
+      "do-not": [
+        "animate the stroke rendering (hardware canvas API handles this — no CSS motion on the drawing layer)",
+        "add a 'pen lift' animation between strokes",
+        "animate the bounding box / capture rectangle",
+        "play any animation while the user is actively drawing"
+      ]
+    }
+  }
+}

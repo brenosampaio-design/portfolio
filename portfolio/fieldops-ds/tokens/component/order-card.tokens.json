@@ -1,0 +1,29 @@
+{
+  "$description": "OrderCard tokens. Field-first card — scannable under sunlight, gloved tap.",
+  "order-card": {
+    "bg":              { "$type": "color", "$value": "{color.surface.elevated}" },
+    "bg-hover":        { "$type": "color", "$value": "{sand.50}" },
+    "border":          { "$type": "color", "$value": "{color.border.default}" },
+    "border-active":   { "$type": "color", "$value": "{color.action.primary}" },
+    "radius":          { "$type": "dimension", "$value": "{radius.md}" },
+    "padding":         { "$type": "dimension", "$value": "{spacing.4}" },
+    "gap":             { "$type": "dimension", "$value": "{spacing.3}" },
+    "shadow":          { "$value": "{shadow.sm}" },
+    "shadow-hover":    { "$value": "{shadow.md}" },
+    "header-font-size":{ "$type": "dimension", "$value": "{font.size.16}" },
+    "header-weight":   { "$type": "fontWeight", "$value": "{font.weight.semibold}" },
+    "meta-font-size":  { "$type": "dimension", "$value": "{font.size.12}" },
+    "meta-color":      { "$type": "color", "$value": "{color.text.secondary}" },
+    "id-font-family":  { "$value": "{font.family.mono}", "$description": "Order ID always in mono" },
+    "id-font-size":    { "$type": "dimension", "$value": "{font.size.12}" },
+    "id-color":        { "$type": "color", "$value": "{color.text.secondary}" },
+    "status": {
+      "new":           { "$type": "color", "$value": "{info.500}" },
+      "in-progress":   { "$type": "color", "$value": "{terracota.500}" },
+      "completed":     { "$type": "color", "$value": "{sage.500}" },
+      "overdue":       { "$type": "color", "$value": "{error.500}" },
+      "offline-indicator": { "$type": "color", "$value": "{neutral.400}", "$description": "Subtle corner dot when syncing pending" }
+    },
+    "tap-target-min": { "$type": "dimension", "$value": "{spacing.12}", "$description": "48px — entire card must be tappable" }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$description": "GuidedStep tokens. Core field workflow component — models mandatory blocking, not just visual state.",
+  "guided-step": {
+    "gap":        { "$type": "dimension", "$value": "{spacing.4}" },
+    "padding":    { "$type": "dimension", "$value": "{spacing.4}" },
+    "radius":     { "$type": "dimension", "$value": "{radius.sm}" },
+    "indicator": {
+      "size":   { "$type": "dimension", "$value": "28px", "$description": "Step circle — large enough for gloved recognition" },
+      "font-size": { "$type": "dimension", "$value": "{font.size.14}" },
+      "font-weight":{ "$type": "fontWeight", "$value": "{font.weight.semibold}" }
+    },
+    "connector": {
+      "width": { "$type": "dimension", "$value": "2px" },
+      "color": { "$type": "color", "$value": "{color.border.default}" },
+      "color-completed": { "$type": "color", "$value": "{sage.300}" }
+    },
+    "completion-unlocked": {
+      "$description": "Field is filled — can advance. Green signal.",
+      "bg":              { "$type": "color", "$value": "{sage.50}" },
+      "border":          { "$type": "color", "$value": "{sage.300}" },
+      "indicator-bg":    { "$type": "color", "$value": "{sage.500}" },
+      "indicator-text":  { "$type": "color", "$value": "{white}" },
+      "label":           { "$type": "color", "$value": "{color.text.primary}" },
+      "advance-btn-bg":  { "$type": "color", "$value": "{color.action.primary}" }
+    },
+    "completion-blocked": {
+      "$description": "Mandatory field empty — advance disabled. Red ring, no fill (not alarming, just blocked).",
+      "bg":              { "$type": "color", "$value": "{color.surface.elevated}" },
+      "border":          { "$type": "color", "$value": "{error.300}" },
+      "indicator-bg":    { "$type": "color", "$value": "{white}" },
+      "indicator-border":{ "$type": "color", "$value": "{error.400}" },
+      "indicator-text":  { "$type": "color", "$value": "{error.600}" },
+      "label":           { "$type": "color", "$value": "{color.text.primary}" },
+      "advance-btn-bg":  { "$type": "color", "$value": "{color.action.disabled}", "$description": "Button visible but disabled" },
+      "advance-btn-text":{ "$type": "color", "$value": "{color.action.disabled-text}" }
+    },
+    "optional": {
+      "$description": "Step is skippable — skip affordance visible. Neutral.",
+      "bg":              { "$type": "color", "$value": "{color.surface.elevated}" },
+      "border":          { "$type": "color", "$value": "{color.border.default}" },
+      "indicator-bg":    { "$type": "color", "$value": "{neutral.200}" },
+      "indicator-text":  { "$type": "color", "$value": "{neutral.500}" },
+      "label":           { "$type": "color", "$value": "{color.text.secondary}" },
+      "skip-text":       { "$type": "color", "$value": "{neutral.500}" }
+    },
+    "completed": {
+      "$description": "Step done — checkmark, greyed out, connector turns green.",
+      "bg":              { "$type": "color", "$value": "{sage.50}" },
+      "border":          { "$type": "color", "$value": "{sage.200}" },
+      "indicator-bg":    { "$type": "color", "$value": "{sage.500}" },
+      "indicator-text":  { "$type": "color", "$value": "{white}" },
+      "label":           { "$type": "color", "$value": "{sage.700}" }
+    }
+  }
+}

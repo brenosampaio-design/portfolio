@@ -1,0 +1,10 @@
+{
+  "$description": "Breakpoints — FieldOps dual-surface system. Field mobile (≤599px) and desktop manager (≥600px). No 'tablet' breakpoint: FieldOps has no tablet persona. 600px is a narrow desktop window, not a device category.",
+  "breakpoint": {
+    "field-max":   { "$type": "dimension", "$value": "599px",  "$description": "Upper bound of field device. Any viewport ≤599px: cold canvas, 48px tap targets enforced, 16px body minimum, no hover states." },
+    "desktop-min": { "$type": "dimension", "$value": "600px",  "$description": "Desktop manager minimum. At 600px: sand-50 canvas, sidebar visible, denser tap targets permitted. NOT called 'tablet'." },
+    "desktop-md":  { "$type": "dimension", "$value": "1024px", "$description": "Two-column manager layout — OrderCard list + detail panel side by side." },
+    "desktop-lg":  { "$type": "dimension", "$value": "1280px", "$description": "Three-column — analytics sidebar visible by default." },
+    "desktop-xl":  { "$type": "dimension", "$value": "1440px", "$description": "Max content width locks at 1440px. Outer margins grow, content does not." }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$type": "dimension",
+  "$description": "4px base unit. All spacing is a multiple of 4.",
+  "spacing": {
+    "0":  { "$value": "0px" },
+    "1":  { "$value": "4px",  "$description": "Micro — icon padding, tight gaps" },
+    "2":  { "$value": "8px",  "$description": "XS — inline gaps, compact items" },
+    "3":  { "$value": "12px", "$description": "SM — tight component padding" },
+    "4":  { "$value": "16px", "$description": "MD — standard padding, grid gap" },
+    "5":  { "$value": "20px", "$description": "LG — comfortable padding" },
+    "6":  { "$value": "24px", "$description": "XL — section spacing" },
+    "8":  { "$value": "32px", "$description": "2XL — layout gaps" },
+    "10": { "$value": "40px", "$description": "3XL — large layout spacing" },
+    "12": { "$value": "48px", "$description": "Tap target minimum — gloved hand threshold" },
+    "14": { "$value": "56px", "$description": "Tap target recommended — field-first (48 + error margin)" },
+    "16": { "$value": "64px", "$description": "Section break, hero padding" },
+    "20": { "$value": "80px" },
+    "24": { "$value": "96px" }
+  }
+}

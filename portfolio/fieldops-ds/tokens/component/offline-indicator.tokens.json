@@ -1,0 +1,30 @@
+{
+  "$description": "OfflineIndicator tokens. Persistent system indicator — 3 semantically distinct connectivity states.",
+  "offline-indicator": {
+    "radius":    { "$type": "dimension", "$value": "{radius.sm}" },
+    "padding-x": { "$type": "dimension", "$value": "{spacing.3}" },
+    "padding-y": { "$type": "dimension", "$value": "{spacing.2}" },
+    "icon-size": { "$type": "dimension", "$value": "16px" },
+    "icon-gap":  { "$type": "dimension", "$value": "{spacing.2}" },
+    "font-size": { "$type": "dimension", "$value": "{font.size.12}" },
+    "font-weight":{ "$type": "fontWeight", "$value": "{font.weight.medium}" },
+    "offline": {
+      "$description": "No connection. Data saves locally. NO action required from user.",
+      "bg":   { "$type": "color", "$value": "{color.connectivity.offline-bg}" },
+      "text": { "$type": "color", "$value": "{color.connectivity.offline-text}" },
+      "icon": { "$type": "color", "$value": "{color.connectivity.offline-icon}" }
+    },
+    "syncing": {
+      "$description": "Upload queue draining. DO NOT close app.",
+      "bg":   { "$type": "color", "$value": "{color.connectivity.syncing-bg}" },
+      "text": { "$type": "color", "$value": "{color.connectivity.syncing-text}" },
+      "icon": { "$type": "color", "$value": "{color.connectivity.syncing-icon}" }
+    },
+    "reconnecting": {
+      "$description": "Active retry in progress. Aware but not alarming.",
+      "bg":   { "$type": "color", "$value": "{color.connectivity.reconnecting-bg}" },
+      "text": { "$type": "color", "$value": "{color.connectivity.reconnecting-text}" },
+      "icon": { "$type": "color", "$value": "{color.connectivity.reconnecting-icon}" }
+    }
+  }
+}
