@@ -46,6 +46,7 @@ export function AboutContent() {
               fill
               sizes="(max-width: 980px) 90vw, 360px"
               style={{ objectFit: "cover" }}
+              priority
             />
           </div>
         </Reveal>
