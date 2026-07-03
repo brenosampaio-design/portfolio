@@ -1,7 +1,7 @@
 // Sitemap — the four real, indexable routes. Cases change rarely; the landing
 // and about a little more often. Domain mirrors metadataBase in layout.jsx.
 export default function sitemap() {
-  const base = "https://brenosampaio.com";
+  const base = "https://brenosampaio.vercel.app";
   const lastModified = new Date();
   return [
     { url: `${base}/`, lastModified, changeFrequency: "monthly", priority: 1 },

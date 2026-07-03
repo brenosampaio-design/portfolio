@@ -18,7 +18,7 @@ const SHARE_DESCRIPTION =
   "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.";
 
 export const metadata = {
-  metadataBase: new URL("https://brenosampaio.com"),
+  metadataBase: new URL("https://brenosampaio.vercel.app"),
   title: {
     default: "Breno Sampaio — Product Designer with a technical edge",
     template: "%s — Breno Sampaio",
@@ -27,7 +27,7 @@ export const metadata = {
   openGraph: {
     title: "Breno Sampaio — Product Designer with a technical edge",
     description: SHARE_DESCRIPTION,
-    url: "https://brenosampaio.com",
+    url: "https://brenosampaio.vercel.app",
     siteName: "Breno Sampaio",
     locale: "en_US",
     type: "website",
@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
               name: profile.name,
               jobTitle: "Product Designer",
               description: SHARE_DESCRIPTION,
-              url: "https://brenosampaio.com",
+              url: "https://brenosampaio.vercel.app",
               email: `mailto:${profile.email}`,
               address: {
                 "@type": "PostalAddress",

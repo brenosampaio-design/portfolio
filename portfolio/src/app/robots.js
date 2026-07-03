@@ -6,7 +6,7 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://brenosampaio.com/sitemap.xml",
-    host: "https://brenosampaio.com",
+    sitemap: "https://brenosampaio.vercel.app/sitemap.xml",
+    host: "https://brenosampaio.vercel.app",
   };
 }
