@@ -1,11 +1,27 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+
+const SEEN_KEY = "preloader-seen";
 
 export function Preloader() {
-  const [phase, setPhase] = useState("visible"); // visible → fading → done
+  const pathname = usePathname();
+  // Server and first client render must agree, so the initial state can only
+  // depend on pathname (identical on both) — never on sessionStorage, which
+  // doesn't exist on the server and would cause a hydration mismatch.
+  const onHome = pathname === "/";
+  const [phase, setPhase] = useState(onHome ? "visible" : "done"); // visible → fading → done
   const logoRef = useRef(null);
 
+  // Runs client-only, before paint: if this tab has already played the intro
+  // this session, skip it silently with no visible flash.
+  useLayoutEffect(() => {
+    if (onHome && sessionStorage.getItem(SEEN_KEY)) setPhase("done");
+  }, [onHome]);
+
   useEffect(() => {
+    if (!onHome || phase !== "visible") return;
+    sessionStorage.setItem(SEEN_KEY, "1");
     const wordmarkEl = document.querySelector(".wordmark");
 
     // After B/S animation completes, fly logo to header wordmark position
@@ -51,7 +67,7 @@ export function Preloader() {
       clearTimeout(doneTimer);
       if (wordmarkEl) { wordmarkEl.style.opacity = ""; wordmarkEl.style.transition = ""; }
     };
-  }, []);
+  }, [onHome, phase]);
 
   if (phase === "done") return null;
 
