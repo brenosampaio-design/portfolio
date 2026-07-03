@@ -13,8 +13,11 @@ export function Providers({ children }) {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     setTheme(saved || (prefersDark ? "dark" : "light"));
 
+    // Only "en" ships content today (see lib/i18n.js). A stale "es"/"fr" saved
+    // by an earlier version of the site is ignored so document.lang can't end
+    // up mismatched with the actual (English) content.
     const savedLang = localStorage.getItem("lang");
-    if (savedLang && ["en", "es", "fr"].includes(savedLang)) setLang(savedLang);
+    if (savedLang && ["en"].includes(savedLang)) setLang(savedLang);
   }, []);
 
   useEffect(() => {
