@@ -19,3 +19,6 @@ portfolio/dev.log
 .claude.json
 *.ps1
 brand/
+
+# Portfolio case studies — each is its own git repo (see gh repo per case)
+portfolio-cases/
