@@ -166,6 +166,10 @@ const en = {
       delivered: "Delivered", impact: "Expected impact — to validate",
       hypotheses: "Hypotheses to test — no numbers until measured.",
     },
+    factLabels: {
+      role: "Role", type: "Type", platform: "Platform",
+      stack: "Stack", status: "Status", delivered: "Delivered",
+    },
     sectionNums: {
       context: "01 — Context & problem",
       scope:   "02 — Role, scope & constraints",
@@ -184,7 +188,7 @@ const en = {
 
     serviceOps: {
       tag: "Service operations",
-      lead: "One operational view of what’s open at shift handover — so information stops getting lost between PMS, chat, paper and memory.",
+      lead: "At handover, what isn’t rebuilt from memory gets dropped — and what gets dropped becomes tomorrow’s complaint. This case is one operational view of what’s open, so information stops getting lost between PMS, chat, paper and memory.",
       contextHeading: "The day doesn’t end. It gets handed over.",
       processHeading: "Evidence I lived, assumptions to validate.",
       designHeading:  "Operational clarity before pretty reports.",
@@ -194,6 +198,14 @@ const en = {
       snapshotMyRole:    "Sole designer — problem framing from lived experience, flows, information architecture, system logic, and UI.",
       snapshotDelivered: "Core flows, key screens with real states, and a slice of the design system.",
       snapshotImpact:    "Less information lost at handover; faster context pickup for the incoming shift.",
+      facts: {
+        role:      "Sole designer — problem framing, IA, flows, system logic, UI",
+        type:      "Internal web app · operational dashboard",
+        platform:  "Desktop-first, mobile for quick logging",
+        stack:     "Next.js · React · Tailwind (same as this site)",
+        status:    "Concept case, based on lived experience",
+        delivered: "Core flows, key screens with real states, DS slice",
+      },
       quote: "The handover usually lives nowhere — half in a notebook, half in a chat, half in someone’s memory.",
       contextProse: [
         "In a hotel front desk, the day doesn’t end — it gets handed over. And the handover is where things quietly break.",
