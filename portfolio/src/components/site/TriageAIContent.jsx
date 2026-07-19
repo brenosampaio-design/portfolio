@@ -272,7 +272,7 @@ export function TriageAIContent() {
                   <span className="incident__id">REQ-4471</span>
                   <Confidence level="low" />
                 </div>
-                <span className="incident__title">"No recibí el reembolso de mi reserva cancelada."</span>
+                <span className="incident__title">“No recibí el reembolso de mi reserva cancelada.”</span>
                 <div className="incident__meta">
                   <Tag>ES</Tag>
                   <Tag>Refund</Tag>
