@@ -3,16 +3,17 @@
 Personal portfolio for Breno Sampaio, Product Designer with a technical edge.
 Built on Breno's own design system as the real foundation — not a reskin.
 
-Three pages: **Home**, a full **case study** (Service Operations Dashboard), and **About**.
+Four pages: **Home**, **About**, and two full case studies — **Service Operations
+Dashboard** and **TriageAI**.
 
 ---
 
 ## Run it
 
-Requires Node.js 18.18+ (built and tested on Node 24).
+Requires Node.js 20.9+ (built and tested on Node 22 and Node 24).
 
 ```bash
-npm install
+npm ci
 npm run dev      # http://localhost:3000
 ```
 
@@ -32,9 +33,9 @@ The brand is the source of truth, linked for real — not reinvented.
   every token file (color, type, spacing, motion) and the base reset. Every colour,
   font, space and easing in the site resolves to one of these CSS variables — no
   invented values.
-- The 9 design-system components (`Button`, `Text`, `Tag`, `TextField`, `Status`,
-  `Divider`, `QuoteBlock`, `ProjectCard`, `PrincipleCard`) were **rebuilt as clean
-  React** in `src/components/ds/`, from the spec files in
+- Seven design-system components (`Button`, `Text`, `Tag`, `Status`, `Divider`,
+  `QuoteBlock`, `ProjectCard`) were **rebuilt as clean React** in
+  `src/components/ds/`, from the spec files in
   `design-system/components/`. The `_ds_bundle.js` runtime is **not** used.
 - **Fonts.** The DS declares DM Sans + Cormorant Garamond via an `@import` in
   `design-system/tokens/fonts.css`. Bundlers strip nested remote `@import`s, so the
@@ -49,7 +50,8 @@ accent — headline words, the case opener, pull quotes. Never in body or UI. Mo
 
 ### One accent
 Clay (`#8A6A4E`) is the only tint — actions, focus, eyebrows, dots. Alert
-(`#C44A31`) appears once, on a genuine urgency state in the case. Everything else is
+(`#A63D28`, with an accessible dark-theme counterpart) appears only on genuine
+urgency states. Everything else is
 warm neutrals, Paper → Ink.
 
 ---
@@ -68,14 +70,12 @@ warm neutrals, Paper → Ink.
 ## Content
 
 All copy is real. There are **no invented clients, logos, or metrics** — the
-reference mockups were used for layout only. Where there isn't real content yet, the
-site shows an honest empty state (e.g. "more coming", labelled "— to add" frames in
-the case) rather than filler.
+reference mockups were used for layout only. Product previews are the same
+code-built interfaces shown inside each case, rather than invented screenshots.
 
 - `src/lib/content.js` — profile, selected work, and Breno's design principles.
-- `src/app/work/service-operations/page.jsx` — the case, built from
-  `../case-content-service-operations.md`, with honest placeholder frames where
-  screens aren't designed yet.
+- `src/app/work/service-operations/page.jsx` — Service Operations case route.
+- `src/app/work/triageai/page.jsx` — TriageAI case route.
 
 ---
 
@@ -89,9 +89,10 @@ src/
     globals.css                     # layout helpers only — all values are DS tokens
     page.jsx                        # Home
     about/page.jsx                  # About
-    work/service-operations/page.jsx# Case study
+    work/service-operations/page.jsx# Service Operations case study
+    work/triageai/page.jsx          # TriageAI case study
   components/
-    ds/                             # 9 DS components rebuilt as clean React
+    ds/                             # 7 DS components rebuilt as clean React
     site/                           # Header, Footer, SmoothScroll, Reveal, etc.
   lib/content.js                    # real content
 ```

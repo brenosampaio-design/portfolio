@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { Wordmark } from "./Wordmark";
 import { useTheme, useLang } from "@/context/AppContext";
@@ -31,6 +32,7 @@ function MoonIcon() {
 
 export function Header() {
   const headerRef = useRef(null);
+  const pathname = usePathname();
   const { theme, toggle } = useTheme();
   const { lang } = useLang();
   const t = getT(lang);
@@ -38,6 +40,7 @@ export function Header() {
   useEffect(() => {
     const header = headerRef.current;
     if (!header) return;
+    header.classList.remove("site-header--dark");
 
     const darkEls = document.querySelectorAll("[data-nav-dark]");
     if (!darkEls.length) return;
@@ -55,8 +58,11 @@ export function Header() {
     );
 
     darkEls.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      header.classList.remove("site-header--dark");
+    };
+  }, [pathname]);
 
   return (
     <header className="site-header" ref={headerRef}>

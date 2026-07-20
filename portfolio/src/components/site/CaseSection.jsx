@@ -10,7 +10,7 @@ import { Collapsible } from "@/components/site/Collapsible";
  * case-dock scroll nav via data-label; `number` is the scrambled eyebrow
  * ("01 — Context & problem").
  */
-export function CaseSection({ id, number, heading, label, defaultOpen = true, children }) {
+export function CaseSection({ id, number, heading, label, defaultOpen = false, children }) {
   const headingId = `${id}-heading`;
   return (
     <section id={id} data-label={label} className="container section case-section" aria-labelledby={headingId}>

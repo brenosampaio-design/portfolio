@@ -16,6 +16,7 @@ export function ProjectCard({
   role,
   year,
   href,
+  preview,
   previewSrc,
   previewLabel = "case preview",
   upcoming = false,
@@ -55,7 +56,11 @@ export function ProjectCard({
           transition: "box-shadow var(--duration-md) var(--ease-out)",
         }}
       >
-        {previewSrc ? (
+        {preview ? (
+          <div className="project-card__preview" aria-hidden="true">
+            {preview}
+          </div>
+        ) : previewSrc ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={previewSrc} alt={title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         ) : (
@@ -65,7 +70,7 @@ export function ProjectCard({
               fontSize: "10px",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "var(--pebble)",
+              color: "var(--stone)",
             }}
           >
             {upcoming ? "more coming" : previewLabel}

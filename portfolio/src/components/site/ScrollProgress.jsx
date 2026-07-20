@@ -51,7 +51,10 @@ export function ScrollProgress() {
     const update = () => {
       ticking = false;
       const secs = sectionsRef.current;
-      const threshold = window.innerHeight * 0.5;
+      // Track the section nearest the reading start below the fixed header.
+      // A midpoint threshold could mark the following section immediately
+      // after an accordion anchor was opened.
+      const threshold = Math.min(160, window.innerHeight * 0.25);
       let idx = 0;
       for (let i = 0; i < secs.length; i += 1) {
         if (secs[i].getBoundingClientRect().top <= threshold) idx = i;
@@ -114,7 +117,7 @@ export function ScrollProgress() {
       if (!dot) return;
       const pr = pill.getBoundingClientRect();
       const dr = dot.getBoundingClientRect();
-      name.style.left = `${dr.left - pr.left + dr.width / 2}px`;
+      name.style.transform = `translateX(${dr.left - pr.left + dr.width / 2}px) translateX(-50%)`;
     };
     place();
     window.addEventListener("resize", place);
@@ -169,7 +172,7 @@ export function ScrollProgress() {
 
   return (
     <>
-      <nav className="rail" aria-hidden="true" style={isCaseStudy ? { display: "none" } : undefined}>
+      <nav className="rail" aria-hidden="true">
         <span className="rail__line" />
         {sections.map((s, i) => (
           <a
@@ -187,7 +190,7 @@ export function ScrollProgress() {
         </span>
       </nav>
 
-      <div className="rail-mini" aria-hidden="true" style={isCaseStudy ? { display: "none" } : undefined}>
+      <div className="rail-mini" aria-hidden="true">
         <span className="rail-mini__dot" />
         <span className="rail-mini__label">{sections[active]?.label}</span>
       </div>

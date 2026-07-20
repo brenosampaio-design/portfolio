@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
 import { Text, Tag, Status, Button, Divider, QuoteBlock } from "@/components/ds";
 import { Reveal } from "@/components/site/Reveal";
-import { Scramble } from "@/components/site/Scramble";
-import { Collapsible } from "@/components/site/Collapsible";
 import { Icon } from "@/components/site/Icon";
+import { CaseHero } from "@/components/site/CaseHero";
+import { CaseSnapshot } from "@/components/site/CaseSnapshot";
+import { CaseSection } from "@/components/site/CaseSection";
 import { DecisionsLedger } from "@/components/site/DecisionsLedger";
 import { BrowserFrame } from "@/components/site/BrowserFrame";
 import { PhoneFrame } from "@/components/site/PhoneFrame";
@@ -27,42 +27,32 @@ export function TriageAIContent() {
   const c = t.cases;
   const s = t.cases.triageai;
 
+  const factItems = [
+    { label: c.factLabels.role, value: s.facts.role },
+    { label: c.factLabels.type, value: s.facts.type },
+    { label: c.factLabels.platform, value: s.facts.platform },
+    { label: c.factLabels.stack, value: s.facts.stack },
+    { label: c.factLabels.status, value: s.facts.status },
+    { label: c.factLabels.delivered, value: s.facts.delivered },
+  ];
+
   return (
     <article>
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <header className="container case-hero">
-        <Reveal>
-          <Link href="/#work" className="case-back">
-            <span aria-hidden="true">←</span> {c.back}
-          </Link>
-        </Reveal>
-
-        <div className="stack" style={{ gap: "var(--space-6)" }}>
-          <Reveal>
-            <div className="case-hero__meta">
-              <Tag>{c.conceptCase}</Tag>
-              <Tag>{s.tag}</Tag>
-              <Tag>2026</Tag>
-            </div>
-          </Reveal>
-          <Reveal mask delay={60}>
-            <Text variant="display" className="case-hero__title">
-              Triage<span className="accent">AI</span>
-            </Text>
-          </Reveal>
-          <Reveal delay={160}>
-            <Text variant="body-lg" style={{ maxWidth: "60ch", color: "var(--graphite)" }}>
-              {s.lead}
-            </Text>
-          </Reveal>
-        </div>
-
-        <Reveal delay={240} className="case-hero__visual">
+      <CaseHero
+        backHref="/#work"
+        backLabel={c.back}
+        tags={[s.tag, "2026"]}
+        title={<>Triage<span className="accent">AI</span></>}
+        lead={s.lead}
+        visual={
           <BrowserFrame url="triageai.app/inbox">
             <TriageInbox />
           </BrowserFrame>
-        </Reveal>
-      </header>
+        }
+      >
+        <CaseSnapshot items={factItems} />
+      </CaseHero>
 
       {/* ── Snapshot / TL;DR ─────────────────────────────────── */}
       <section id="snapshot" data-label="Snapshot" className="container section--tight" aria-label="Snapshot">
@@ -99,18 +89,7 @@ export function TriageAIContent() {
       </section>
 
       {/* ── Context & problem ────────────────────────────────── */}
-      <section id="sec-context" data-label="Context" className="container section case-section" aria-labelledby="ctx">
-        <Collapsible
-          defaultOpen
-          header={
-            <div className="case-section__head">
-              <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.context} />
-              <Reveal mask>
-                <Text variant="h2" id="ctx">{s.contextHeading}</Text>
-              </Reveal>
-            </div>
-          }
-        >
+      <CaseSection id="context" label="Context" number={c.sectionNums.context} heading={s.contextHeading} defaultOpen>
           <Reveal className="prose">
             {s.contextProse.map((p, i) => <p key={i}>{p}</p>)}
           </Reveal>
@@ -139,24 +118,12 @@ export function TriageAIContent() {
           <Reveal style={{ maxWidth: "var(--max-prose)", paddingBlock: "var(--space-6)" }}>
             <QuoteBlock size="md" quote={s.quote} />
           </Reveal>
-        </Collapsible>
-      </section>
+      </CaseSection>
 
       <div className="container"><Divider /></div>
 
       {/* ── Role, scope & constraints ────────────────────────── */}
-      <section id="sec-scope" data-label="Scope" className="container section case-section" aria-labelledby="scope">
-        <Collapsible
-          defaultOpen
-          header={
-            <div className="case-section__head">
-              <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.scope} />
-              <Reveal mask>
-                <Text variant="h2" id="scope">{c.scopeHeading}</Text>
-              </Reveal>
-            </div>
-          }
-        >
+      <CaseSection id="scope" label="Scope" number={c.sectionNums.scope} heading={c.scopeHeading}>
           <Reveal className="prose">
             <p className="muted">
               <strong style={{ color: "var(--ink)", fontWeight: 500 }}>{c.roleLabel}</strong>{" "}
@@ -189,24 +156,12 @@ export function TriageAIContent() {
             <Text variant="h3" style={{ marginBottom: "var(--space-6)" }}>{s.sysGateHeading}</Text>
             <SystemFlow />
           </Reveal>
-        </Collapsible>
-      </section>
+      </CaseSection>
 
       <div className="container"><Divider /></div>
 
       {/* ── Process ──────────────────────────────────────────── */}
-      <section id="sec-process" data-label="Process" className="container section case-section" aria-labelledby="process">
-        <Collapsible
-          defaultOpen
-          header={
-            <div className="case-section__head">
-              <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.process} />
-              <Reveal mask>
-                <Text variant="h2" id="process">{s.processHeading}</Text>
-              </Reveal>
-            </div>
-          }
-        >
+      <CaseSection id="process" label="Process" number={c.sectionNums.process} heading={s.processHeading}>
           <Reveal className="prose">
             {s.processProse.map((item, i) => (
               <p key={i} className="muted">
@@ -224,24 +179,12 @@ export function TriageAIContent() {
             <Text variant="h3" style={{ marginBottom: "var(--space-8)" }}>{c.decisionsHeading}</Text>
           </Reveal>
           <DecisionsLedger decisions={s.decisions} />
-        </Collapsible>
-      </section>
+      </CaseSection>
 
       <div className="container"><Divider /></div>
 
       {/* ── The design & system ──────────────────────────────── */}
-      <section id="sec-design" data-label="Design" className="container section case-section" aria-labelledby="design">
-        <Collapsible
-          defaultOpen
-          header={
-            <div className="case-section__head">
-              <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.design} />
-              <Reveal mask>
-                <Text variant="h2" id="design">{s.designHeading}</Text>
-              </Reveal>
-            </div>
-          }
-        >
+      <CaseSection id="design" label="Design" number={c.sectionNums.design} heading={s.designHeading}>
           <Reveal className="prose">
             <p>{s.designProse[0]}</p>
             <p className="muted">
@@ -339,24 +282,12 @@ export function TriageAIContent() {
             <Text variant="h3" style={{ marginBottom: "var(--space-6)" }}>{c.statesHeading}</Text>
             <TriageStates />
           </Reveal>
-        </Collapsible>
-      </section>
+      </CaseSection>
 
       <div className="container"><Divider /></div>
 
       {/* ── Outcome & reflection ─────────────────────────────── */}
-      <section id="sec-outcome" data-label="Outcome" className="container section case-section" aria-labelledby="outcome">
-        <Collapsible
-          defaultOpen
-          header={
-            <div className="case-section__head">
-              <Scramble className="eyebrow eyebrow--accent" text={c.sectionNums.outcome} />
-              <Reveal mask>
-                <Text variant="h2" id="outcome">{s.outcomeHeading}</Text>
-              </Reveal>
-            </div>
-          }
-        >
+      <CaseSection id="outcome" label="Outcome" number={c.sectionNums.outcome} heading={s.outcomeHeading}>
           <Reveal className="prose">
             <p className="muted">
               <strong style={{ color: "var(--ink)", fontWeight: 500 }}>{s.outcomeProse.impact.label}</strong>{" "}
@@ -392,8 +323,7 @@ export function TriageAIContent() {
             <Text variant="body" style={{ color: "var(--stone)" }}>{c.moreComing}</Text>
             <Button href="/#contact" variant="secondary">{c.getInTouch}</Button>
           </Reveal>
-        </Collapsible>
-      </section>
+      </CaseSection>
     </article>
   );
 }

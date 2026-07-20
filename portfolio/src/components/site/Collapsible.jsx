@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 /*
  * Collapsible — progressive disclosure that is MOBILE-ONLY.
@@ -18,36 +18,38 @@ import { useId, useState } from "react";
  */
 export function Collapsible({ header, children, defaultOpen = false, className = "" }) {
   const [open, setOpen] = useState(defaultOpen);
+  const [isMobile, setIsMobile] = useState(false);
   const panelId = useId();
 
-  function toggle() {
-    // Desktop keeps everything open — the toggle is inert above the breakpoint.
-    if (typeof window !== "undefined" && window.matchMedia("(min-width: 701px)").matches) return;
-    setOpen((o) => !o);
-  }
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 700px)");
+    const sync = () => setIsMobile(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
 
-  function onKeyDown(e) {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggle();
-    }
-  }
+  const expanded = !isMobile || open;
+  const Head = isMobile ? "button" : "div";
 
   return (
     <div className={`collapsible${open ? " is-open" : ""}${className ? ` ${className}` : ""}`}>
-      <div
+      <Head
         className="collapsible__head"
-        role="button"
-        tabIndex={0}
-        aria-expanded={open}
-        aria-controls={panelId}
-        onClick={toggle}
-        onKeyDown={onKeyDown}
+        type={isMobile ? "button" : undefined}
+        aria-expanded={isMobile ? open : undefined}
+        aria-controls={isMobile ? panelId : undefined}
+        onClick={isMobile ? () => setOpen((value) => !value) : undefined}
       >
         <div className="collapsible__headInner">{header}</div>
         <span className="collapsible__icon" aria-hidden="true" />
-      </div>
-      <div className="collapsible__panel" id={panelId}>
+      </Head>
+      <div
+        className="collapsible__panel"
+        id={panelId}
+        aria-hidden={!expanded || undefined}
+        inert={!expanded || undefined}
+      >
         <div className="collapsible__panelInner">{children}</div>
       </div>
     </div>

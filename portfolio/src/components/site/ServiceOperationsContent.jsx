@@ -90,7 +90,7 @@ export function ServiceOperationsContent() {
       </section>
 
       {/* ── Context & problem ────────────────────────────────── */}
-      <CaseSection id="context" label="Context" number={c.sectionNums.context} heading={s.contextHeading}>
+      <CaseSection id="context" label="Context" number={c.sectionNums.context} heading={s.contextHeading} defaultOpen>
         <Reveal className="prose">
           {s.contextProse.map((p, i) => <p key={i}>{p}</p>)}
         </Reveal>

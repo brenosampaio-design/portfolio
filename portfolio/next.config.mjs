@@ -36,6 +36,11 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
+  turbopack: {
+    // Keep module resolution inside this monorepo package even when another
+    // lockfile exists higher in the developer's home directory.
+    root: process.cwd(),
+  },
   async headers() {
     return [
       {

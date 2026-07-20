@@ -15,7 +15,7 @@
   --silk:     #F0EDE7;  /* Card / input surfaces — slightly warmer */
   --mist:     #DDD9D4;  /* Borders, hairlines — soft stone */
   --pebble:   #BCB8B3;  /* Disabled, placeholders — river pebble */
-  --stone:    #857F79;  /* Secondary text — aged stone */
+  --stone:    #6D6761;  /* Secondary text — aged stone, AA on Silk/Paper */
   --graphite: #3D3B38;  /* Strong surface text — graphite stick */
   --ink:      #1C1A18;  /* Primary text — charcoal ink */
 
@@ -27,7 +27,7 @@
   --clay-wash:  rgba(138, 106, 78, 0.06);  /* Subtle tinted surface */
 
   /* ── Alert — genuine exception only ────────────────────────── */
-  --alert:        #C44A31;
+  --alert:        #A63D28;
   --alert-wash:   rgba(196,  74, 49, 0.06);
   --alert-border: rgba(196,  74, 49, 0.20);
 

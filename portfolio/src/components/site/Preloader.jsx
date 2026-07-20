@@ -16,13 +16,20 @@ export function Preloader() {
   // Runs client-only, before paint: if this tab has already played the intro
   // this session, skip it silently with no visible flash.
   useLayoutEffect(() => {
-    if (onHome && sessionStorage.getItem(SEEN_KEY)) setPhase("done");
+    if (!onHome) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || sessionStorage.getItem(SEEN_KEY)) {
+      sessionStorage.setItem(SEEN_KEY, "1");
+      setPhase("done");
+    }
   }, [onHome]);
 
   useEffect(() => {
     if (!onHome || phase !== "visible") return;
     sessionStorage.setItem(SEEN_KEY, "1");
     const wordmarkEl = document.querySelector(".wordmark");
+    let landingTimer;
+    let restoreStyleTimer;
 
     // After B/S animation completes, fly logo to header wordmark position
     const flyTimer = setTimeout(() => {
@@ -44,7 +51,7 @@ export function Preloader() {
       logoEl.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
 
       // Logo lands → start fading preloader
-      setTimeout(() => setPhase("fading"), 700);
+      landingTimer = setTimeout(() => setPhase("fading"), 700);
     }, 2350);
 
     // As preloader fades out, fade the wordmark back in
@@ -52,7 +59,7 @@ export function Preloader() {
       if (!wordmarkEl) return;
       wordmarkEl.style.transition = "opacity 0.2s ease";
       wordmarkEl.style.opacity = "1";
-      setTimeout(() => {
+      restoreStyleTimer = setTimeout(() => {
         wordmarkEl.style.transition = "";
         wordmarkEl.style.opacity = "";
       }, 250);
@@ -65,6 +72,8 @@ export function Preloader() {
       clearTimeout(flyTimer);
       clearTimeout(restoreTimer);
       clearTimeout(doneTimer);
+      clearTimeout(landingTimer);
+      clearTimeout(restoreStyleTimer);
       if (wordmarkEl) { wordmarkEl.style.opacity = ""; wordmarkEl.style.transition = ""; }
     };
   }, [onHome, phase]);

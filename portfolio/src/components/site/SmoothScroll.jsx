@@ -39,6 +39,7 @@ export function SmoothScroll() {
     const touch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
     let lenis;
+    let scrollTrigger;
     let rafId;
     let cancelled = false;
 
@@ -81,8 +82,11 @@ export function SmoothScroll() {
       return () => document.removeEventListener("click", onClick, true);
     }
 
-    import("lenis").then(({ default: Lenis }) => {
+    Promise.all([import("lenis"), import("gsap"), import("gsap/ScrollTrigger")]).then(
+      ([{ default: Lenis }, { gsap }, stMod]) => {
       if (cancelled) return;
+      scrollTrigger = stMod.ScrollTrigger || stMod.default;
+      gsap.registerPlugin(scrollTrigger);
       lenis = new Lenis({
         duration: 0.9,
         easing: (t) => 1 - Math.pow(1 - t, 3), // ease-out cubic, restrained
@@ -91,6 +95,9 @@ export function SmoothScroll() {
         touchMultiplier: 1.2,
       });
       window.__lenis = lenis;
+      // One bridge for the whole application. Individual Reveal components
+      // must not register duplicate listeners on every route transition.
+      lenis.on("scroll", scrollTrigger.update);
 
       const raf = (time) => {
         lenis.raf(time);
@@ -102,12 +109,14 @@ export function SmoothScroll() {
         const el = document.getElementById(initialHash);
         if (el) setTimeout(() => scrollToEl(el, true), 60);
       }
-    });
+      }
+    );
 
     return () => {
       cancelled = true;
       document.removeEventListener("click", onClick, true);
       if (rafId) cancelAnimationFrame(rafId);
+      if (lenis && scrollTrigger) lenis.off("scroll", scrollTrigger.update);
       if (lenis) lenis.destroy();
       delete window.__lenis;
     };

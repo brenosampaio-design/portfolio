@@ -229,8 +229,8 @@ html {
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--space-6);
-  padding: 15px 22px;
+  gap: 0;
+  padding: 6px 8px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
@@ -244,8 +244,8 @@ html {
 .case-dock__name {
   position: absolute;
   bottom: calc(100% + 9px);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  transform: translateX(50%) translateX(-50%);
   font-family: var(--font-mono);
   font-size: var(--text-small);
   letter-spacing: var(--tracking-eyebrow);
@@ -259,29 +259,32 @@ html {
   border-radius: var(--radius-full);
   padding: 5px 13px;
   box-shadow: 0 6px 16px rgba(28, 26, 24, 0.12);
-  transition: left 0.5s cubic-bezier(0.34, 1.3, 0.5, 1);
+  transition: transform 0.5s var(--ease-out);
 }
 .case-dock__dot {
   position: relative;
-  width: 10px;
-  height: 10px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--pebble);
+  background: transparent;
   flex: 0 0 auto;
-  transition:
-    background 0.35s var(--ease),
-    transform 0.45s cubic-bezier(0.34, 1.5, 0.5, 1);
 }
-/* Generous invisible hit area (~36px) so the small dot is easy to tap. */
+/* The control is a real 44px target; the visual dot stays deliberately quiet. */
 .case-dock__dot::before {
   content: "";
   position: absolute;
-  inset: -13px;
+  width: 10px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
+  background: var(--pebble);
+  transition: background 0.2s var(--ease), transform 0.24s var(--ease-in-out);
 }
-.case-dock__dot.is-active {
+.case-dock__dot.is-active::before {
   background: var(--clay);
-  transform: scale(1.5);
+  transform: translate(-50%, -50%) scale(1.5);
 }
 
 /* Dark glass — same flip as the header, over dark content at the bottom */
@@ -297,19 +300,20 @@ html {
   border-color: rgba(255, 255, 255, 0.14);
   color: var(--clay-light);
 }
-.case-dock--dark .case-dock__dot { background: rgba(255, 255, 255, 0.4); }
-.case-dock--dark .case-dock__dot.is-active { background: var(--clay-light); }
+.case-dock--dark .case-dock__dot::before { background: rgba(255, 255, 255, 0.55); }
+.case-dock--dark .case-dock__dot.is-active::before { background: var(--clay-light); }
 
 /* Touch devices: the dock takes over from the rail + mini indicator */
 @media (hover: none) {
   .rail { display: none; }
   .rail-mini { display: none; }
   .case-dock { display: block; }
+  .to-top { display: none; }
 }
-
-/* Case study pages — dock shows on all devices (rail is hidden via inline style in ScrollProgress) */
-.case-dock--case {
-  display: block;
+@media (hover: none) {
+  body:has(.case-dock--case) #main {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -538,6 +542,10 @@ html {
   transition:
     opacity var(--duration-lg) var(--ease-reveal),
     transform var(--duration-lg) var(--ease-reveal);
+}
+.js .reveal.is-settled,
+.js .reveal.is-settled .reveal__inner {
+  will-change: auto;
 }
 
 /* Cascade items — lighter, snappier per-item motion than a full block reveal */
@@ -812,6 +820,15 @@ html {
 .work-grid--solo {
   grid-template-columns: repeat(2, 1fr);
 }
+.project-card__preview {
+  width: 126%;
+  pointer-events: none;
+  transform: scale(0.8);
+  transform-origin: center;
+}
+.project-card__preview .browser-frame {
+  box-shadow: 0 18px 42px rgba(28, 26, 24, 0.14);
+}
 /* Desktop keeps a single featured case + a discrete line; the upcoming cards
    exist only for the mobile carousel. */
 .work-item--upcoming { display: none; }
@@ -973,13 +990,7 @@ html {
 /* JS-gated disclosure. Height eases via grid-template-rows 0fr→1fr (exact to
    content — smooth, unlike a guessed max-height), in lockstep with the dim and
    blur over the shared --reveal-dur. */
-.js .seq-step {
-  opacity: 0.5;
-  transition: opacity var(--reveal-dur) var(--ease);
-}
-.js .seq-step.is-open {
-  opacity: 1;
-}
+.js .seq-step { opacity: 1; }
 .js .seq-step__descwrap {
   grid-template-rows: 0fr;
   transition: grid-template-rows var(--reveal-dur) var(--ease-reveal);
@@ -1618,7 +1629,7 @@ html {
   font-size: var(--text-mono);
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: var(--pebble);
+  color: var(--stone);
 }
 .incident__val {
   font-family: var(--font-sans);
@@ -1999,7 +2010,7 @@ html {
 .evidence-stat { display: flex; flex-direction: column; gap: var(--space-2); }
 .evidence-stat__num { font-family: var(--font-sans); font-size: var(--text-h2); font-weight: var(--weight-light); letter-spacing: -0.03em; color: var(--clay); line-height: 1; }
 .evidence-stat__desc { font-family: var(--font-sans); font-size: var(--text-small); line-height: 1.45; color: var(--graphite); }
-.evidence__src { font-family: var(--font-mono); font-size: var(--text-mono); color: var(--pebble); line-height: 1.5; }
+.evidence__src { font-family: var(--font-mono); font-size: var(--text-mono); color: var(--stone); line-height: 1.5; }
 
 /* Triage states — slate "needs review" variant on the shared states grid */
 .state__box--review { background: var(--clay-wash); border-color: color-mix(in srgb, var(--clay) 25%, transparent); }
@@ -2044,6 +2055,13 @@ html {
   justify-content: space-between;
   gap: var(--space-5);
   cursor: default;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
 }
 .collapsible__head:focus-visible {
   outline: 2px solid var(--clay-ring);
@@ -2195,8 +2213,8 @@ html {
    * comes from the specular edge + refraction gradient, NOT opacity.
    */
   background: rgba(255, 255, 255, 0.18);
-  -webkit-backdrop-filter: blur(48px) saturate(210%) brightness(108%);
-  backdrop-filter: blur(48px) saturate(210%) brightness(108%);
+  -webkit-backdrop-filter: blur(18px) saturate(190%) brightness(108%);
+  backdrop-filter: blur(18px) saturate(190%) brightness(108%);
 
   /* Pill */
   border-radius: 100px;
@@ -2246,8 +2264,8 @@ html {
 /* Dark glass — when dock floats over dark content (portrait, dark sections) */
 .site-header--dark .dock {
   background: rgba(20, 18, 16, 0.38);
-  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(92%);
-  backdrop-filter: blur(48px) saturate(180%) brightness(92%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%) brightness(92%);
+  backdrop-filter: blur(18px) saturate(170%) brightness(92%);
   border-color: rgba(255, 255, 255, 0.14);
   box-shadow:
     0 16px 64px rgba(0, 0, 0, 0.32),
@@ -2312,17 +2330,20 @@ html {
 }
 .wm-b {
   display: inline-block;
-  animation: wm-b-emerge 1.3s cubic-bezier(0.76, 0, 0.24, 1) 1.05s both;
+  animation: wm-b-emerge 0.45s var(--ease-out) 0.08s both;
 }
 .wm-slash {
   display: inline-block;
   transform-origin: 50% 50%;
-  animation: wm-slash-spin 1.6s cubic-bezier(0.76, 0, 0.24, 1) 0s both;
+  animation: wm-slash-spin 0.52s var(--ease-out) 0s both;
 }
 .wm-s {
   display: inline-block;
-  animation: wm-s-emerge 1.3s cubic-bezier(0.76, 0, 0.24, 1) 1.05s both;
+  animation: wm-s-emerge 0.45s var(--ease-out) 0.08s both;
 }
+.preloader .wm-b { animation: wm-b-emerge 1.3s cubic-bezier(0.76, 0, 0.24, 1) 1.05s both; }
+.preloader .wm-slash { animation: wm-slash-spin 1.6s cubic-bezier(0.76, 0, 0.24, 1) 0s both; }
+.preloader .wm-s { animation: wm-s-emerge 1.3s cubic-bezier(0.76, 0, 0.24, 1) 1.05s both; }
 @media (prefers-reduced-motion: reduce) {
   .wm-b, .wm-slash, .wm-s { animation: none; }
 }
@@ -2481,13 +2502,21 @@ html {
   /* Dock — a centered, content-hugging pill (not a stretched bar). Drop the
      availability indicator and its divider so it reads clean: B/S | Work About Contact */
   .site-header { left: 50%; right: auto; transform: translateX(-50%); }
-  .dock { height: 48px; padding-inline: var(--space-5); gap: var(--space-4); }
+  .dock {
+    width: max-content;
+    max-width: calc(100vw - 16px);
+    height: 48px;
+    padding-inline: var(--space-5);
+    gap: var(--space-4);
+  }
   .nav { gap: var(--space-5); }
   .nav a { font-size: var(--text-small); }
   .nav .nav-hide-sm { display: none; }
   .dock .availability { display: none; }
   .dock .dock__divider--mid { display: none; }
   .dock__actions { gap: 0; }
+  .case-dock__name { display: none; }
+  .to-top { display: none; }
 
   .site-footer__grid { grid-template-columns: 1fr; gap: var(--space-8); }
 
@@ -2538,6 +2567,13 @@ html {
   .decision { grid-template-columns: 1fr; gap: var(--space-4); padding: var(--space-6); }
   .incident__fields { grid-template-columns: 1fr; }
   .prose p { font-size: var(--text-body); }
+}
+
+@media (max-width: 350px) {
+  .dock { padding-inline: 12px; gap: 10px; }
+  .nav { gap: 12px; }
+  .header-contact { display: none; }
+  .dock__actions { display: none; }
 }
 
 /* ── Mobile accordion (≤700px) — case sections & process steps ───── */
@@ -2618,6 +2654,17 @@ html {
     filter: none;
     transition: none;
   }
+
+  /* Progressive enhancement: without JavaScript there is no toggle, so every
+     section must remain readable instead of becoming a closed dead end. */
+  html:not(.js) .collapsible { gap: var(--space-8); }
+  html:not(.js) .collapsible__head { cursor: default; padding-block: 0; }
+  html:not(.js) .collapsible__icon { display: none; }
+  html:not(.js) .collapsible__panel {
+    display: block;
+    grid-template-rows: none;
+  }
+  html:not(.js) .collapsible__panelInner { padding-bottom: 0; }
 }
 
 /* ── Preloader ─────────────────────────────────────────────── */
@@ -2695,13 +2742,14 @@ html {
   --clay-ring:   rgba(123, 149, 196, 0.20);
   --clay-wash:   rgba(123, 149, 196, 0.08);
   --grid-dot:    rgba(255, 255, 255, 0.025);
+  --alert:       #E36B50;
 }
 
 /* Dock — dark-glass base in dark mode */
 [data-theme="dark"] .dock {
   background: rgba(13, 16, 23, 0.65);
-  -webkit-backdrop-filter: blur(48px) saturate(160%) brightness(85%);
-  backdrop-filter: blur(48px) saturate(160%) brightness(85%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%) brightness(85%);
+  backdrop-filter: blur(18px) saturate(160%) brightness(85%);
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow:
     0 16px 64px rgba(0, 0, 0, 0.40),

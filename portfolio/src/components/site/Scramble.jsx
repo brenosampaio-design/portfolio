@@ -60,8 +60,6 @@ export function Scramble({
             });
           },
         });
-
-        if (window.__lenis) window.__lenis.on("scroll", ScrollTrigger.update);
       })
       .catch(() => {
         /* plugin unavailable — leave the plain text in place */

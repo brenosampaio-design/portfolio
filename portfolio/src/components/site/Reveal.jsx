@@ -2,6 +2,16 @@
 
 import { useEffect, useRef } from "react";
 
+let refreshFrame = 0;
+
+function scheduleRefresh(ScrollTrigger) {
+  if (refreshFrame) return;
+  refreshFrame = requestAnimationFrame(() => {
+    refreshFrame = 0;
+    ScrollTrigger.refresh();
+  });
+}
+
 /*
  * Reveal — a discreet entrance. GSAP ScrollTrigger only *triggers* it; the
  * motion itself is CSS, so values stay in the design-system motion tokens.
@@ -27,13 +37,23 @@ export function Reveal({ as: Tag = "div", mask = false, delay = 0, className = "
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      el.classList.add("is-in");
+      el.classList.add("is-in", "is-settled");
       return;
     }
 
     let st;
     let split;
+    let settleTimer;
     let cancelled = false;
+
+    const settle = () => {
+      el.classList.add("is-settled");
+    };
+
+    const revealCss = () => {
+      el.classList.add("is-in");
+      settleTimer = window.setTimeout(settle, 900 + delay);
+    };
 
     // Non-mask reveals (and the mask fallback) only need ScrollTrigger.
     const runCssReveal = (gsap, ScrollTrigger) => {
@@ -46,10 +66,9 @@ export function Reveal({ as: Tag = "div", mask = false, delay = 0, className = "
         trigger: el,
         start: "top 90%",
         once: true,
-        onEnter: () => el.classList.add("is-in"),
+        onEnter: revealCss,
       });
-      if (window.__lenis) window.__lenis.on("scroll", ScrollTrigger.update);
-      ScrollTrigger.refresh();
+      scheduleRefresh(ScrollTrigger);
     };
 
     const loaders = [import("gsap"), import("gsap/ScrollTrigger")];
@@ -80,11 +99,14 @@ export function Reveal({ as: Tag = "div", mask = false, delay = 0, className = "
           split = new SplitText(inner, {
             type: "lines",
             linesClass: "reveal__line",
+            // SplitText's default aria mode hides the original heading and
+            // moves its text to this wrapper. Preserve the real h1/h2 instead.
+            aria: "none",
           });
 
           // Each line starts low, transparent and out of focus; neutralise the
           // block-level CSS mask so only the per-line motion shows.
-          gsap.set(split.lines, { yPercent: 55, autoAlpha: 0, filter: "blur(12px)" });
+          gsap.set(split.lines, { yPercent: 55, autoAlpha: 0, filter: "blur(8px)" });
           el.classList.add("reveal--split");
 
           st = ScrollTrigger.create({
@@ -106,14 +128,13 @@ export function Reveal({ as: Tag = "div", mask = false, delay = 0, className = "
                     split = null;
                   }
                   el.classList.remove("reveal--split");
-                  el.classList.add("is-in");
+                  el.classList.add("is-in", "is-settled");
                 },
               });
             },
           });
 
-          if (window.__lenis) window.__lenis.on("scroll", ScrollTrigger.update);
-          ScrollTrigger.refresh();
+          scheduleRefresh(ScrollTrigger);
         });
       })
       .catch(() => {
@@ -123,6 +144,7 @@ export function Reveal({ as: Tag = "div", mask = false, delay = 0, className = "
 
     return () => {
       cancelled = true;
+      window.clearTimeout(settleTimer);
       if (split) split.revert();
       if (st) st.kill();
     };

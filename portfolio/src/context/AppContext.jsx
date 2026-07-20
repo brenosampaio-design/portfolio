@@ -23,8 +23,9 @@ export function Providers({ children }) {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === "dark" ? "#0D1017" : "#FAFAFA";
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.content = theme === "dark" ? "#0D1017" : "#FAFAFA";
+    });
   }, [theme]);
 
   useEffect(() => {

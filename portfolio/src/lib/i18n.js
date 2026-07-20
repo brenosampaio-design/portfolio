@@ -202,7 +202,7 @@ const en = {
         role:      "Sole designer — problem framing, IA, flows, system logic, UI",
         type:      "Internal web app · operational dashboard",
         platform:  "Desktop-first, mobile for quick logging",
-        stack:     "Next.js · React · Tailwind (same as this site)",
+        stack:     "Next.js · React · CSS design tokens",
         status:    "Concept case, based on lived experience",
         delivered: "Core flows, key screens with real states, DS slice",
       },
@@ -260,6 +260,14 @@ const en = {
     triageai: {
       tag: "AI-native intake",
       lead: "Multilingual requests arrive from everywhere, unranked. TriageAI structures and prioritises them with AI — and keeps a human in control of every reply that goes out.",
+      facts: {
+        role:      "Sole designer — framing, IA, human-AI model, flows, UI",
+        type:      "AI-assisted intake · concept case",
+        platform:  "Responsive web app",
+        stack:     "Next.js · React · CSS design tokens",
+        status:    "Concept case, interactions illustrated in code",
+        delivered: "Core flow, key screens with real states, DS slice",
+      },
       contextHeading:  "The message arrived. Now what?",
       processHeading:  "Evidence and assumptions, kept honest.",
       designHeading:   "Built to be checked, not just trusted.",

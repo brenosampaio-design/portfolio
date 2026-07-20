@@ -40,7 +40,10 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#FAFAFA",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FAFAFA" },
+    { media: "(prefers-color-scheme: dark)", color: "#0D1017" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -91,7 +94,7 @@ export default function RootLayout({ children }) {
               },
               knowsLanguage: profile.languages.map((l) => l.name),
               sameAs: ["https://www.linkedin.com/in/brenosampaio"],
-            }),
+            }).replace(/</g, "\\u003c"),
           }}
         />
         {/* Enable JS-gated reveals before first paint. */}

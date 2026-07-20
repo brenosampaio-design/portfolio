@@ -41,4 +41,7 @@ jobs:
         run: npm run build
 
       - name: Block high-severity dependency advisories
-        run: npm audit --omit=dev --audit-level=high
+        run: npm audit --audit-level=high
+
+      - name: Verify npm registry provenance
+        run: npm audit signatures

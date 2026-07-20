@@ -30,7 +30,7 @@ Personal brand design system for Breno Sampaio, Product Designer.
 | Ink | `--ink` | `#1C1A18` | Primary text |
 | Clay | `--clay` | `#8A6A4E` | Accent — the only tint |
 | Clay Dark | `--clay-dark` | `#6A5038` | Hover / pressed |
-| Alert | `--alert` | `#C44A31` | Errors only |
+| Alert | `--alert` | `#A63D28` | Errors only; dark theme overrides for AA contrast |
 
 All old names (`--moss`, `--warm-grey`, `--ivory`, `--charcoal`, etc.) remain as backwards-compatible aliases.
 
