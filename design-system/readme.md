@@ -1,6 +1,6 @@
 # Breno Sampaio — Design System
 
-Personal brand design system for Breno Sampaio, Product Designer.
+Personal brand design system for Breno Sampaio's technical-functional portfolio.
 
 **Aesthetic:** Japanese structural discipline (間 ma, 簡 kanso, 渋 shibui) combined with Apple-like product clarity and editorial precision.
 

@@ -15,17 +15,17 @@ import { Providers } from "@/context/AppContext";
 import { profile } from "@/lib/content";
 
 const SHARE_DESCRIPTION =
-  "Product designer with a technical edge. Service operations, systems thinking, design systems, and an implementation sensibility.";
+  "Software implementation, SaaS onboarding and application support grounded in multilingual service operations and UX/UI experience.";
 
 export const metadata = {
   metadataBase: new URL("https://brenosampaio.vercel.app"),
   title: {
-    default: "Breno Sampaio — Product Designer with a technical edge",
+    default: "Breno Sampaio — Software Implementation & Application Support",
     template: "%s — Breno Sampaio",
   },
   description: SHARE_DESCRIPTION,
   openGraph: {
-    title: "Breno Sampaio — Product Designer with a technical edge",
+    title: "Breno Sampaio — Software Implementation & Application Support",
     description: SHARE_DESCRIPTION,
     url: "https://brenosampaio.vercel.app",
     siteName: "Breno Sampaio",
@@ -34,7 +34,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Breno Sampaio — Product Designer with a technical edge",
+    title: "Breno Sampaio — Software Implementation & Application Support",
     description: SHARE_DESCRIPTION,
   },
 };
@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Person",
               name: profile.name,
-              jobTitle: "Product Designer",
+              jobTitle: "Software Implementation and Application Support",
               description: SHARE_DESCRIPTION,
               url: "https://brenosampaio.vercel.app",
               email: `mailto:${profile.email}`,

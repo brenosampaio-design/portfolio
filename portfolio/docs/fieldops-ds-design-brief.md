@@ -1,12 +1,12 @@
 # FieldOps Design System — Design Brief
 > Gerado por pesquisa multiagente · 2026-06-28  
-> Referências: Apple HIG, Anthropic identity, Linear, Polaris (Shopify), Primer (GitHub), Radix, Material 3, Tailwind v4
+> Referências: Apple HIG, editorial warm-neutral systems, Linear, Polaris (Shopify), Primer (GitHub), Radix, Material 3, Tailwind v4
 
 ---
 
 ## Contexto da pesquisa
 
-Cinco agentes em paralelo investigaram: linguagem visual (Apple/Anthropic/Awwwards), arquitetura de tokens (Primer/Polaris/Radix/M3), B2B field UI premium, tipografia operacional e sistemas de cor quentes. Este brief sintetiza os achados em decisões acionáveis.
+Cinco frentes de pesquisa investigaram: linguagem visual (Apple/editorial/Awwwards), arquitetura de tokens (Primer/Polaris/Radix/M3), B2B field UI premium, tipografia operacional e sistemas de cor quentes. Este brief sintetiza os achados em decisões acionáveis.
 
 ---
 
@@ -24,15 +24,15 @@ Um kit genérico tem 12 variantes de botão sem razão. Awwwards-level tem 3 var
 **Referências que mostram esse padrão:**
 1. **Garmin Connect / fenix OS** — melhor resolução atual de "legível outdoor + bonito" em contexto utilitário. Alto contraste, tap targets generosos, paleta restrita (chrome escuro + coral/laranja como único acento), zero ornamental.
 2. **Linear.app** — benchmark de desktop manager layer. Único acento, Inter Variable, superfícies neutras frias (#F5F5F5, não warm), denso em informação mas não em visual.
-3. **Claude.ai / Anthropic brand** — o sistema Styrene B + Tiempos Text + warm off-white é a referência mais próxima do que FieldOps DESKTOP poderia ser: quente, intelectual, confiável.
+3. **Editorial warm-neutral systems** — a combinação de sans geométrica, serif editorial e warm off-white é a referência mais próxima do que FieldOps DESKTOP poderia ser: quente, intelectual, confiável.
 
 ---
 
 ## 02 — Decisões de cor
 
-### O que os agentes descobriram sobre Anthropic
+### O que a pesquisa visual mostrou
 
-Anthropic usa:
+Sistemas editoriais warm-neutral usam:
 - **Fonte:** Styrene B (geométrico sans, Commercial Type) + Tiempos Text (serif transitional, Klim)
 - **Paleta:** warm rust-orange `~#d97757` sobre warm off-white `#faf9f5`
 - **O que faz funcionar:** o calor vem da tipografia e do acento — não do background. O layout é disciplinado e esparso. Nenhum gradiente, nenhum glass, nenhum glow.
@@ -51,7 +51,7 @@ A tese do case ("warmth é consequência funcional, não estética") é defensá
 
 **Opção B — Cold field, warm accent (recomendação da pesquisa)**
 - Field mobile surface: `#F4F5F6` neutral/50 (frio)
-- Desktop manager surface: `#F9F7F3` sand/50 (quente, como Anthropic)
+- Desktop manager surface: `#F9F7F3` sand/50 (quente e editorial)
 - Acento terracota: único, usado max 2x por tela
 - Pro: mais nítido, mais operacional, melhor percepção de contraste, dual-register field vs. desktop
 - Con: muda levemente a narrativa "warmth everywhere" do case
@@ -62,7 +62,7 @@ A tese do case ("warmth é consequência funcional, não estética") é defensá
 
 O terracota atual `#B04234` lê como "artisanal cerâmica" por dois motivos: leans orange (H6°) e lightness L44% cai na zona de esmalte de cerâmica. A versão **arquitetônica** do mesmo matiz é `#9C3B31` — 5 pontos de lightness mais escuro, ligeiramente menos laranja. Essa mudança única desloca a referência cultural de "Zara Home cushion" para "fachada Herzog & de Meuron". É a decisão de maior alavancagem no sistema inteiro.
 
-Anthropic usa exatamente o mesmo anchor que já temos: `#faf9f5` como canvas — validação externa da escolha atual.
+O anchor `#faf9f5` também aparece em referências editoriais contemporâneas, reforçando a escolha atual.
 
 ### Paleta refinada
 
@@ -70,7 +70,7 @@ Anthropic usa exatamente o mesmo anchor que já temos: `#faf9f5` como canvas —
 Primitivos — ajuste de valor:
   terracota/500  = #9C3B31  ← AJUSTE (era #B04234) — 5 pontos mais escuro = arquitetônico
   terracota/400  = #B04234  ← (o atual 500 vira 400 — mantém na ramp)
-  sand/50        = #F9F7F3  ← canvas desktop (validado por Anthropic)
+  sand/50        = #F9F7F3  ← canvas desktop warm-neutral
   
 Adições:
   neutral/50     = #F4F5F6  ← canvas field mobile (mais fria — decisão P1)
@@ -443,7 +443,7 @@ Pipeline recomendado: **Tokens Studio** (Figma plugin) → `@tokens-studio/sd-tr
 ## Referências dos agentes (pesquisa primária)
 
 **Visual Language:**
-- Geist / Anthropic brand study: Styrene B + Tiempos Text, `--faf9f5` bg
+- Editorial warm-neutral study: geometric sans + transitional serif, `--faf9f5` bg
 - Apple NNGroup iOS 26 critique: Liquid Glass prejudicou legibilidade (contraste vs. beleza)
 - Linear UI redesign: "every part of the product should feel like it was made by one person"
 

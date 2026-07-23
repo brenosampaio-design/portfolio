@@ -47,7 +47,7 @@ export function TriageAIContent() {
           </Reveal>
           <Reveal mask delay={60}>
             <Text variant="display" className="case-hero__title">
-              Triage<span className="accent">AI</span>
+              Multilingual <span className="accent">Support Triage</span>
             </Text>
           </Reveal>
           <Reveal delay={160}>
@@ -58,7 +58,7 @@ export function TriageAIContent() {
         </div>
 
         <Reveal delay={240} className="case-hero__visual">
-          <BrowserFrame url="triageai.app/inbox">
+          <BrowserFrame url="support.local/intake">
             <TriageInbox />
           </BrowserFrame>
         </Reveal>

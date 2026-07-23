@@ -1,9 +1,9 @@
 import { TriageAIContent } from "@/components/site/TriageAIContent";
 
 export const metadata = {
-  title: "TriageAI",
+  title: "Multilingual Support Triage",
   description:
-    "Concept case — human-controlled AI intake for multilingual service requests. AI structures and ranks; a human approves every reply that goes out.",
+    "Technical-functional concept for structuring, prioritising and routing multilingual support requests with human approval, escalation rules and failure handling.",
 };
 
 export default function TriageAICase() {

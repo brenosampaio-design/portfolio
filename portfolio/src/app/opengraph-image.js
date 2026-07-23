@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 // Social share card (LinkedIn / WhatsApp / X). Same restraint as the site:
 // cold paper, charcoal ink, one slate accent in Cormorant italic. 1200×630.
-export const alt = "Breno Sampaio — Product designer with a technical edge";
+export const alt = "Breno Sampaio — Software implementation grounded in real operations";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,14 +19,14 @@ async function loadFont(family, text) {
 }
 
 export default async function Image() {
-  const sans = "Product designer with a technical edge. BRENO SAMPAIO brenosampaio.vercel.app · Valencia, Spain";
+  const sans = "Software implementation, grounded in real operations. BRENO SAMPAIO brenosampaio.vercel.app · Valencia, Spain";
 
   let fonts;
   try {
     const [dm400, dm500, serif] = await Promise.all([
       loadFont("DM+Sans:wght@400", sans),
       loadFont("DM+Sans:wght@500", sans),
-      loadFont("Cormorant+Garamond:ital,wght@1,500", "technical"),
+      loadFont("Cormorant+Garamond:ital,wght@1,500", "grounded in real operations."),
     ]);
     fonts = [
       { name: "DM Sans", data: dm400, weight: 400, style: "normal" },
@@ -59,12 +59,11 @@ export default async function Image() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", color: "#1C1A18", letterSpacing: -2 }}>
-          <div style={{ display: "flex", fontSize: 78, lineHeight: 1.04 }}>Product designer with a</div>
+          <div style={{ display: "flex", fontSize: 78, lineHeight: 1.04 }}>Software implementation,</div>
           <div style={{ display: "flex", alignItems: "baseline", fontSize: 78, lineHeight: 1.04 }}>
             <span style={{ fontFamily: "Cormorant", fontStyle: "italic", fontWeight: 500, color: "#3C4A63" }}>
-              technical
+              grounded in real operations.
             </span>
-            <span style={{ marginLeft: 22 }}>edge.</span>
           </div>
         </div>
 

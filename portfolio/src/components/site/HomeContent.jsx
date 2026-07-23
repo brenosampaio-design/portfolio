@@ -192,7 +192,7 @@ export function HomeContent() {
         <div className="about-hero__copy">
           <Scramble className="eyebrow eyebrow--accent" text={t.about.eyebrow} />
           <Reveal mask delay={60}>
-            <Text variant="h1" className="about-hero__title" id="about-title">
+            <Text variant="h1" as="h2" className="about-hero__title" id="about-title">
               {renderTitle(t.about.heading)}
             </Text>
           </Reveal>
@@ -260,7 +260,7 @@ export function HomeContent() {
           <div className="stack" style={{ gap: "var(--space-6)" }}>
             <Scramble className="eyebrow eyebrow--accent" text={t.contact.eyebrow} />
             <Reveal mask delay={60}>
-              <Text variant="h1" id="contact-title" style={{ maxWidth: "16ch" }}>
+              <Text variant="h1" as="h2" id="contact-title" style={{ maxWidth: "16ch" }}>
                 {renderTitle(t.contact.heading)}
               </Text>
             </Reveal>

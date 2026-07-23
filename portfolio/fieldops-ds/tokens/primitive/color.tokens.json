@@ -14,7 +14,7 @@
     "900": { "$value": "#280A07", "$description": "Near-black terracota" }
   },
   "sand": {
-    "$description": "Warm neutral — desktop manager surface. Validated against Anthropic #faf9f5 anchor.",
+    "$description": "Warm neutral — desktop manager surface, anchored near #faf9f5.",
     "50":  { "$value": "#F9F7F3", "$description": "Canvas — desktop manager background" },
     "100": { "$value": "#F2EDE6", "$description": "Card / secondary surface" },
     "200": { "$value": "#E5DDD0", "$description": "Hover, dividers" },

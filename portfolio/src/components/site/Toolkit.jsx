@@ -102,7 +102,7 @@ export function Toolkit({ items = TOOLKIT_ICONS, stagger = 90 }) {
 
   return (
     <div className="toolkit" ref={ref}>
-      <Scramble className="eyebrow eyebrow--accent toolkit__label" text="Toolkit" />
+      <Scramble className="eyebrow eyebrow--accent toolkit__label" text="Technical foundation" />
       <div className="toolkit__row">
         {items.map((it, i) => (
           <span
