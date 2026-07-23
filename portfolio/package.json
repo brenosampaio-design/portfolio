@@ -15,7 +15,7 @@
     "next": "^16.2.11",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "simple-icons": "^16.23.0"
+    "simple-icons": "^16.27.0"
   },
   "devDependencies": {
     "eslint": "^9",
