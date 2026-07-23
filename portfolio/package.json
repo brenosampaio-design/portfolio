@@ -4,10 +4,10 @@
   "private": true,
   "description": "Breno Sampaio's portfolio for software implementation, SaaS onboarding and application support.",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint src --max-warnings=0"
+    "dev": "node node_modules/next/dist/bin/next dev",
+    "build": "node node_modules/next/dist/bin/next build",
+    "start": "node node_modules/next/dist/bin/next start",
+    "lint": "node node_modules/eslint/bin/eslint.js src --max-warnings=0"
   },
   "dependencies": {
     "gsap": "^3.12.5",
