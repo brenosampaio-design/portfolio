@@ -2,7 +2,7 @@
 
 export const profile = {
   name: "Breno Sampaio",
-  role: "Product Designer with a technical edge",
+  role: "Software implementation and application support",
   location: "Valencia, Spain",
   timezone: "Europe/Madrid",
   email: "hello@brenosampaio.com",
@@ -10,7 +10,6 @@ export const profile = {
     { name: "Portuguese", level: "Native" },
     { name: "Spanish", level: "Fluent" },
     { name: "French", level: "Professional / Fluent" },
-    { name: "Italian", level: "Intermediate" },
     { name: "English", level: "Professional working" },
   ],
 };
@@ -20,20 +19,20 @@ export const projects = [
   {
     slug: "service-operations",
     category: "Concept case",
-    title: "Service Operations Dashboard",
+    title: "Incident & Handover Workflow",
     problem:
-      "One operational view of what's open at shift handover, so information stops getting lost between tools, paper and memory.",
-    role: "Sole designer",
+      "An operational workflow for logging, assigning, escalating and handing over open incidents with clear status, ownership and history.",
+    role: "Technical-functional concept",
     year: "2026",
     href: "/work/service-operations",
   },
   {
     slug: "triageai",
     category: "Concept case",
-    title: "TriageAI",
+    title: "Multilingual Support Triage",
     problem:
-      "Human-controlled AI intake for multilingual requests — AI structures and ranks, a human approves every reply that goes out.",
-    role: "Sole designer",
+      "A support intake workflow that structures, prioritises and routes multilingual requests while keeping every outgoing response under human approval.",
+    role: "Technical-functional concept",
     year: "2026",
     href: "/work/triageai",
   },
@@ -45,100 +44,100 @@ export const process = [
   {
     title: "Discover",
     icon: "search",
-    description: "Understand the operation, the people, and the constraints before proposing anything.",
-    items: ["Talk to the people doing the work", "Map where information lives", "Find the failure points", "Separate evidence from assumption"],
+    description: "Understand users, operations, current tools and failure points.",
+    items: ["Interview the people doing the work", "Map where information lives", "Find operational gaps", "Separate evidence from assumption"],
   },
   {
-    title: "Frame",
+    title: "Requirements",
     icon: "frame",
-    description: "Turn the mess into a clear problem worth solving, with explicit scope.",
-    items: ["Define the real problem", "Set what's in and out of scope", "Name the constraints", "Decide what success looks like"],
+    description: "Define scope, functional needs, business rules and acceptance criteria.",
+    items: ["Write functional requirements", "Name constraints and dependencies", "Define what is out of scope", "Agree what success means"],
   },
   {
-    title: "Systems",
+    title: "Configure",
     icon: "sitemap",
-    description: "Design the structure before the screens — the rules that keep things consistent.",
-    items: ["Information architecture", "Core flows", "States and rules", "Tokens and components"],
+    description: "Translate the workflow into data, states, permissions and routing.",
+    items: ["Map required data", "Define states and transitions", "Set roles and permissions", "Document integration assumptions"],
   },
   {
-    title: "Interface",
-    icon: "layout",
-    description: "Make it clear, fast, and honest — designed for the worst moment, not the demo.",
-    items: ["Hierarchy and contrast", "Guided over free-form", "Every state, not just the happy path", "Plain language"],
-  },
-  {
-    title: "Validate",
+    title: "Test",
     icon: "check-circle",
-    description: "Test the assumptions with real people and iterate on what breaks.",
-    items: ["Put it in front of real users", "Watch behaviour, not opinions", "Iterate on what breaks", "Keep what holds"],
+    description: "Verify normal flows, exceptions, validation and access.",
+    items: ["Test the happy path", "Exercise error and recovery states", "Check permissions", "Prepare and support UAT"],
   },
   {
-    title: "Deliver",
+    title: "Onboard",
+    icon: "layout",
+    description: "Prepare documentation, training and handover for adoption.",
+    items: ["Write practical guidance", "Train around real tasks", "Clarify ownership", "Track adoption questions"],
+  },
+  {
+    title: "Support",
     icon: "send",
-    description: "Hand off so it ships as designed — build-aware, with the edge cases written down.",
-    items: ["Build-aware specs", "Work with engineering", "Edge cases documented", "Support through implementation"],
+    description: "Reproduce issues, gather evidence and improve the process.",
+    items: ["Capture steps and evidence", "Prioritise by impact", "Follow resolution clearly", "Feed recurring issues back"],
   },
 ];
 
 // Approach — how Breno works a project, step by step (mockup 4). His own voice.
 export const approach = [
   {
-    title: "Understand the work deeply",
+    title: "Understand the real workflow",
     description:
-      "I start inside the operation — behaviours, constraints, and where things actually break — before proposing anything.",
+      "Start with users, current tools, constraints and the moments where information, ownership or service breaks.",
   },
   {
-    title: "Anchor in real context",
+    title: "Map requirements and dependencies",
     description:
-      "I align every decision with how the business actually runs and what's feasible, not how it looks on a slide.",
+      "Turn the operational problem into explicit scope, functional requirements, constraints and acceptance criteria.",
   },
   {
-    title: "Think in systems, not screens",
+    title: "Define data, states and responsibilities",
     description:
-      "I design the structure first — information architecture, flows, states and rules — so it stays coherent as it grows.",
+      "Make fields, status changes, permissions, routing rules and ownership clear before configuration begins.",
   },
   {
-    title: "Design with clarity and restraint",
+    title: "Test normal and failure paths",
     description:
-      "I simplify without dumbing down. Hierarchy, content and interaction over decoration — clear, not clever.",
+      "Check the happy path, exceptions, validation, access, integrations and recovery — not only the demo flow.",
   },
   {
-    title: "Build with implementation in mind",
+    title: "Document and support adoption",
     description:
-      "I design knowing it has to ship, and work with engineering through edge cases and handoff so it gets built right.",
+      "Prepare users, hand over decisions clearly and keep learning from support issues after launch.",
   },
 ];
 
 // Principles — Breno's guiding values (mockup 6). Compass, not rules.
 export const principles = [
   {
-    annotation: "間 ma",
-    principle: "Clarity over noise",
-    description: "I remove what's unnecessary so what matters can speak.",
+    annotation: "",
+    principle: "Clear communication",
+    description: "State scope, decisions, risks and next actions in language each team can use.",
   },
   {
     annotation: "",
-    principle: "Usefulness first",
-    description: "I design with purpose, solving real problems for real people.",
-  },
-  {
-    annotation: "渋 shibui",
-    principle: "Restraint with intention",
-    description: "I choose less, but with precision — restraint is a feature, not a shortage.",
+    principle: "Operational fit",
+    description: "Configure around the real workflow, not an idealised process that disappears after launch.",
   },
   {
     annotation: "",
-    principle: "Design for the worst moment",
-    description: "The real test isn't the demo — it's a tired person at 3am. I design for them.",
+    principle: "Traceability",
+    description: "Keep ownership, status changes, approvals and support evidence visible.",
   },
   {
     annotation: "",
-    principle: "Systems thinking",
-    description: "I see the whole, then design each part to belong and stay consistent.",
+    principle: "Human control",
+    description: "Automate support work without hiding uncertainty or removing accountable review.",
   },
   {
     annotation: "",
-    principle: "Build-aware craft",
-    description: "I care how it's built, because that's what decides whether it ships as designed.",
+    principle: "Multilingual context",
+    description: "Treat language as an operational requirement across intake, documentation and support.",
+  },
+  {
+    annotation: "",
+    principle: "UX as a supporting layer",
+    description: "Use clarity and restraint to reduce errors, training effort and cognitive load.",
   },
 ];

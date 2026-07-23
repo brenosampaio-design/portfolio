@@ -1,9 +1,9 @@
 import { ServiceOperationsContent } from "@/components/site/ServiceOperationsContent";
 
 export const metadata = {
-  title: "Service Operations Dashboard",
+  title: "Incident & Handover Workflow",
   description:
-    "Concept case — one operational view of what's open at shift handover, so information stops getting lost between tools, paper and memory.",
+    "Technical-functional concept for logging, assigning, escalating and handing over service incidents with clear status, ownership, history and acceptance criteria.",
 };
 
 export default function ServiceOperationsCase() {

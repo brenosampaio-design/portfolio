@@ -1,6 +1,6 @@
 ---
 name: breno-sampaio-design
-description: Use this skill to generate well-branded interfaces and assets for Breno Sampaio's Product Design portfolio, either for production or throwaway prototypes/mocks. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for prototyping — a quiet, warm-neutral, Apple/Anthropic-calm system.
+description: Use this skill to generate well-branded interfaces and assets for Breno Sampaio's technical-functional portfolio, either for production or throwaway prototypes/mocks. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for a quiet, warm-neutral editorial system.
 user-invocable: true
 ---
 

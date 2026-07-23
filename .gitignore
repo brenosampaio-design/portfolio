@@ -18,7 +18,7 @@ portfolio/dev.log
 .env*
 !.env.example
 
-# Claude Code local state
+# Local AI-tool state
 .claude/
 .claude.json
 *.ps1

@@ -17,10 +17,10 @@ import { useLang } from "@/context/AppContext";
 import { getT } from "@/lib/i18n";
 
 const STATES = [
-  { label: "Empty", variant: "empty", caption: "Nothing open in this area. Quiet shift." },
+  { label: "Empty", variant: "empty", caption: "No open or escalated incidents in this view." },
   { label: "Loading", variant: "loading" },
-  { label: "Error", variant: "error", caption: "Couldn’t save. Tap to retry — nothing was lost." },
-  { label: "Success", variant: "success", caption: "Logged. Visible to the next shift now." },
+  { label: "Error", variant: "error", caption: "Save failed. Draft kept locally — retry when ready." },
+  { label: "Success", variant: "success", caption: "Incident logged with owner, status and history." },
 ];
 
 export function ServiceOperationsContent() {
@@ -44,7 +44,7 @@ export function ServiceOperationsContent() {
         backHref="/#work"
         backLabel={c.back}
         tags={[s.tag, "2026"]}
-        title={<>Service Operations <span className="accent">Dashboard</span></>}
+        title={<>Incident & <span className="accent">Handover Workflow</span></>}
         lead={s.lead}
         visual={
           <BrowserFrame url="operations.local/open-now">

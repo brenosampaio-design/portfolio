@@ -7,7 +7,7 @@
 
 - **Problem:** On shift handover, operational information scatters across PMS, email, WhatsApp, notebooks and people's memory — so the incoming shift can't quickly see what's open, what's urgent, and what's already resolved.
 - **For whom:** Front-desk and service-operations teams — and everyone downstream: housekeeping, maintenance, shift leads, and ultimately the guest.
-- **My role:** Sole designer — problem framing from lived experience, flows, information architecture, system logic, and UI.
+- **My role:** Independent technical-functional role — problem framing from lived experience, flows, information architecture, system logic, acceptance criteria and interface decisions.
 - **Delivered:** Core flows, key screens with real states, and a slice of the design system.
 - **Expected impact — to validate:** Less information lost at handover; faster context pickup for the incoming shift. *(Hypotheses to test — no numbers until measured.)*
 - **Type:** Concept case · 2026
@@ -30,7 +30,7 @@ The person taking over can't quickly see what's actually open, what's already re
 
 ## BLOCO 2 — Role, scope & constraints
 
-- **Role:** Sole designer. Research from lived experience, flow mapping, information architecture, system logic, screens and UI.
+- **Role:** Independent technical-functional role. Research from lived experience, flow mapping, information architecture, system logic, acceptance criteria, screens and interface decisions.
 - **Scope:** Concept case based on real operational experience in hotel reception, shift work and front/back office — not a product deployed in a real hotel. The problem is real; the solution is a proposal.
 - **Effort:** A few weeks across research, framing the problem, flows, IA, wireframes, UI and refinement.
 

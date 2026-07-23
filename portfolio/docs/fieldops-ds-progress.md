@@ -5,7 +5,7 @@
 ---
 
 ## Design Brief (pesquisa multiagente 2026-06-28)
-`D:\20_studio\portfolio\docs\fieldops-ds-design-brief.md`
+`D:\Trabalho\Meus projetos\portfolio\docs\fieldops-ds-design-brief.md`
 
 Decisões pendentes (sem implementar até Breno confirmar):
 1. Surface field mobile: warm #F9F7F3 (atual) vs cold #F4F5F6 (recomendado)
